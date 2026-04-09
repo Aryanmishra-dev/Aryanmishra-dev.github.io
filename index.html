@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests">
     <title>Aryan Mishra | Data Science & Tech Enthusiast</title>
     <meta name="description"
         content="Aryan Mishra - B.Tech Computer Science student specializing in Data Science at IIST Indore. Skilled in Python, Machine Learning, and building AI-powered solutions like PathoPredict.">
@@ -27,11 +27,14 @@
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><text x='50' y='65' font-size='45' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>AM</text></svg>">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" integrity="sha384-igm5BeiBt36UU4gqwWS7imYmelpTsZlQ45FZf+XBn9MuJbn4nQr7yx1yFydocC/K"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous"
+        referrerpolicy="no-referrer">
     <style>
         :root {
             --bg-primary: #0a0a0a;
@@ -203,12 +206,12 @@
     </style>
 </head>
 
-<body class="cyber-grid">
+<body id="top" class="cyber-grid">
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="#" class="flex items-center">
+                <a href="#top" class="flex items-center">
                     <div class="w-10 h-10 rounded-lg glossy-btn flex items-center justify-center">
                         <span class="text-white font-bold text-lg">AM</span>
                     </div>
@@ -222,7 +225,8 @@
                     <a href="#education" class="nav-link text-gray-400 hover:text-white transition-colors">Education</a>
                     <a href="#contact" class="glossy-btn px-5 py-2 rounded-full text-white font-medium">Contact</a>
                 </div>
-                <button id="mobileMenuBtn" class="md:hidden text-white text-2xl">
+                <button id="mobileMenuBtn" class="md:hidden text-white text-2xl" aria-label="Toggle menu"
+                    aria-controls="mobileMenu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -231,21 +235,16 @@
 
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
-        <div class="absolute inset-0 bg-black/80" onclick="toggleMobileMenu()"></div>
+        <div class="absolute inset-0 bg-black/80" data-close-menu="true"></div>
         <div class="absolute right-0 top-0 h-full w-64 glass-card p-6 pt-20">
             <div class="flex flex-col gap-6">
-                <a href="#about" class="text-gray-400 hover:text-white transition-colors"
-                    onclick="toggleMobileMenu()">About</a>
-                <a href="#skills" class="text-gray-400 hover:text-white transition-colors"
-                    onclick="toggleMobileMenu()">Skills</a>
-                <a href="#projects" class="text-gray-400 hover:text-white transition-colors"
-                    onclick="toggleMobileMenu()">Projects</a>
-                <a href="#certifications" class="text-gray-400 hover:text-white transition-colors"
-                    onclick="toggleMobileMenu()">Certifications</a>
-                <a href="#education" class="text-gray-400 hover:text-white transition-colors"
-                    onclick="toggleMobileMenu()">Education</a>
+                <a href="#about" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">About</a>
+                <a href="#skills" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">Skills</a>
+                <a href="#projects" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">Projects</a>
+                <a href="#certifications" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">Certifications</a>
+                <a href="#education" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">Education</a>
                 <a href="#contact" class="glossy-btn px-5 py-2 rounded-full text-white font-medium text-center"
-                    onclick="toggleMobileMenu()">Contact</a>
+                    data-close-menu="true">Contact</a>
             </div>
         </div>
     </div>
@@ -294,11 +293,11 @@
                                 class="text-gray-400 hover:text-indigo-400 text-2xl transition-colors">
                                 <i class="fab fa-kaggle"></i>
                             </a>
-                            <a href="mailto:aryanmishraa18@gmail.com"
+                            <a href="#" data-email-link="true" aria-label="Email Aryan Mishra"
                                 class="text-gray-400 hover:text-indigo-400 text-2xl transition-colors">
                                 <i class="fas fa-envelope"></i>
                             </a>
-                            <a href="tel:+919999933328"
+                            <a href="#" data-phone-link="true" aria-label="Call Aryan Mishra"
                                 class="text-gray-400 hover:text-indigo-400 text-2xl transition-colors">
                                 <i class="fas fa-phone"></i>
                             </a>
@@ -849,21 +848,21 @@
                     <p class="text-gray-400 max-w-2xl mx-auto">Let's connect and discuss opportunities</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <a href="mailto:aryanmishraa18@gmail.com"
+                    <a href="#" data-email-link="true"
                         class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
                         <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
                             <i class="far fa-envelope text-indigo-400 text-xl"></i>
                         </div>
                         <h3 class="font-bold text-white">Email</h3>
-                        <p class="text-indigo-400 text-sm mt-2">aryanmishraa18@gmail.com</p>
+                        <p class="text-indigo-400 text-sm mt-2" data-email-text="true">Email available on click</p>
                     </a>
-                    <a href="tel:+919999933328"
+                    <a href="#" data-phone-link="true"
                         class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
                         <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
                             <i class="fas fa-phone text-indigo-400 text-xl"></i>
                         </div>
                         <h3 class="font-bold text-white">Phone</h3>
-                        <p class="text-indigo-400 text-sm mt-2">+91 9999933328</p>
+                        <p class="text-indigo-400 text-sm mt-2" data-phone-text="true">Phone available on click</p>
                     </a>
                     <a href="https://www.linkedin.com/in/aryanmdev/" target="_blank" rel="noopener noreferrer"
                         class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
@@ -917,7 +916,7 @@
                         class="text-gray-400 hover:text-indigo-400 transition-colors">
                         <i class="fab fa-linkedin text-xl"></i>
                     </a>
-                    <a href="mailto:aryanmishraa18@gmail.com"
+                    <a href="#" data-email-link="true" aria-label="Email Aryan Mishra"
                         class="text-gray-400 hover:text-indigo-400 transition-colors">
                         <i class="fas fa-envelope text-xl"></i>
                     </a>
@@ -930,70 +929,14 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        }
-        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    document.getElementById('mobileMenu').classList.add('hidden');
-                }
-            });
-        });
-
-        // Animate skill bars on scroll
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const bar = entry.target;
-                    const targetWidth = bar.getAttribute('data-width');
-                    setTimeout(() => { bar.style.width = targetWidth; }, 200);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        document.querySelectorAll('.skill-progress').forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0';
-            bar.setAttribute('data-width', width);
-            skillObserver.observe(bar);
-        });
-
-        // Navbar background on scroll
-        const nav = document.querySelector('nav');
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            nav.style.background = window.scrollY > 50 ? 'rgba(10, 10, 10, 0.95)' : '';
-            // Show/hide back to top button
-            if (window.scrollY > 500) {
-                backToTop.classList.remove('opacity-0', 'pointer-events-none');
-                backToTop.classList.add('opacity-100');
-            } else {
-                backToTop.classList.add('opacity-0', 'pointer-events-none');
-                backToTop.classList.remove('opacity-100');
-            }
-        });
-
-        // Back to top click
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
-
     <!-- Back to Top Button -->
     <button id="backToTop"
         class="fixed bottom-8 right-8 w-12 h-12 glossy-btn rounded-full flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-50"
         aria-label="Back to top">
         <i class="fas fa-arrow-up text-white"></i>
     </button>
+
+    <script src="main.js" defer></script>
 </body>
 
 </html>
