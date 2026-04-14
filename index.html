@@ -1,924 +1,1248 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-eval' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests">
-    <title>Aryan Mishra | Data Scientist & ML Engineer</title>
-    <meta name="description"
-        content="Aryan Mishra - B.Tech Computer Science student specializing in Data Science at IIST Indore. Skilled in Python, Machine Learning, and building AI-powered solutions like PathoPredict.">
-    <meta name="keywords"
-        content="Aryan Mishra, data science, machine learning, python, data visualization, B.Tech, computer science, IIST Indore, PathoPredict">
-    <meta name="author" content="Aryan Mishra">
-    <meta name="robots" content="index, follow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryan Mishra | Data Scientist & ML Engineer</title>
+  <meta name="description" content="Aryan Mishra — Kaggle Datasets Master, B.Tech CS student specializing in Data Science at IIST Indore.">
+  <meta property="og:image" content="profile_hd.png">
+  <link rel="icon" type="image/png" href="profile_hd.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  <style>
+    :root {
+      --bg:     #0a0a08;
+      --bg2:    #0e0e0c;
+      --bg3:    #141412;
+      --panel:  #181816;
+      --border: rgba(255,255,224,0.07);
+      --border2: rgba(255,255,224,0.18);
+      --cyan:   #FFFFE0;
+      --cyan2:  #e8e8b0;
+      --text:   #c8c8b0;
+      --muted:  #4a4a38;
+      --muted2: #7a7a60;
+      --white:  #f0f0d8;
+      --red:    #ff3b5c;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Aryan Mishra | Data Scientist & ML Engineer">
-    <meta property="og:description"
-        content="B.Tech CS student specializing in Data Science. Building ML solutions & Healthcare AI projects.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="profile_hd.png">
-    <meta name="twitter:card" content="summary_large_image">
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><text x='50' y='65' font-size='45' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'>AM</text></svg>">
+    /* ─── LAYOUT ─── */
+    .shell { display: flex; min-height: 100vh; }
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous"
-        referrerpolicy="no-referrer">
-    <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a2e;
-            --text-primary: #FFFFFF;
-            --text-secondary: #B3B3B3;
-            --accent: #6366f1;
-            --accent-secondary: #8b5cf6;
-        }
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: 220px;
+      min-height: 100vh;
+      background: var(--bg2);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+      position: fixed;
+      top: 0; left: 0; height: 100vh;
+      z-index: 50;
+      overflow: hidden;
+    }
+    .sidebar::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+    .logo {
+      font-family: 'Syne Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .logo-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .status-line {
+      display: flex; align-items: center; gap: 7px;
+      font-family: 'Syne Mono', monospace;
+      font-size: 9px;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .status-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 4px rgba(255,255,224,0.4);
+      animation: pulse 2s ease infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.85)} }
 
-        * {
-            font-family: 'Roboto', sans-serif;
-        }
+    .nav { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .nav-label {
+      font-family: 'Syne Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 1rem 0 0.5rem;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      color: var(--muted2);
+      font-family: 'Syne Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.15s;
+      border: 1px solid transparent;
+      position: relative;
+      user-select: none;
+    }
+    .nav-item i { width: 13px; text-align: center; font-size: 10px; }
+    .nav-item:hover { color: var(--cyan); background: rgba(255,255,224,0.03); }
+    .nav-item.active {
+      color: var(--cyan);
+      background: rgba(255,255,224,0.05);
+      border-color: var(--border2);
+    }
+    .nav-item.active::before {
+      content: '';
+      position: absolute; left: -1px; top: 20%; bottom: 20%;
+      width: 2px;
+      background: var(--cyan);
+      box-shadow: 0 0 6px rgba(255,255,224,0.35);
+    }
+    .sidebar-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+      display: flex; gap: 14px;
+    }
+    .sidebar-footer a {
+      color: var(--muted2);
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+    .sidebar-footer a:hover { color: var(--cyan); }
 
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-        }
+    /* ─── MAIN ─── */
+    .main {
+      margin-left: 220px;
+      flex: 1;
+      overflow-y: auto;
+      height: 100vh;
+    }
+    .section {
+      display: none;
+      min-height: 100vh;
+      padding: 3rem 3.5rem;
+      animation: fadeIn 0.25s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .section.active { display: block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    /* ─── TYPOGRAPHY ─── */
+    .eyebrow {
+      font-family: 'Syne Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 5.5rem;
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    h1 span { color: var(--cyan); display: block; }
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    h2 span { color: var(--cyan); }
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    p { color: var(--muted2); line-height: 1.75; }
 
-        .glass-card {
-            background: linear-gradient(135deg, rgba(30, 30, 46, 0.9), rgba(10, 10, 10, 0.8));
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
-        }
+    /* ─── COMPONENTS ─── */
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      position: relative;
+    }
+    .panel::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+    }
+    .panel-label {
+      font-family: 'Syne Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+      opacity: 0.7;
+    }
 
-        .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
-            transform: translateY(-5px);
-        }
+    .tag {
+      display: inline-block;
+      font-family: 'Syne Mono', monospace;
+      font-size: 9.5px;
+      padding: 3px 10px;
+      border: 1px solid var(--border2);
+      color: var(--muted2);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.15s;
+    }
+    .tag:hover { color: var(--cyan); border-color: var(--cyan); }
+    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
 
-        .glossy-btn {
-            background: linear-gradient(180deg, #6366f1 0%, #4f46e5 100%);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-        }
+    .badge {
+      font-family: 'Syne Mono', monospace;
+      font-size: 8px;
+      padding: 2px 8px;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
 
-        .glossy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
-        }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px;
+      font-family: 'Syne Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer; border: none;
+      transition: all 0.18s;
+    }
+    .btn-cyan {
+      background: var(--cyan);
+      color: #000;
+    }
+    .btn-cyan:hover { background: var(--cyan2); box-shadow: 0 0 20px rgba(255,255,224,0.25); }
+    .btn-outline {
+      background: transparent;
+      color: var(--cyan);
+      border: 1px solid var(--border2);
+    }
+    .btn-outline:hover { border-color: var(--cyan); box-shadow: 0 0 12px rgba(255,255,224,0.08); }
 
-        .skill-bar {
-            background: rgba(30, 30, 46, 0.5);
-            border-radius: 10px;
-            overflow: hidden;
-        }
+    /* ─── METRICS ─── */
+    .metrics-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+    .metric {
+      background: var(--panel);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .metric-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .metric-val.accent { color: var(--cyan); }
+    .metric-lbl {
+      font-family: 'Syne Mono', monospace;
+      font-size: 8px;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
 
-        .skill-progress {
-            background: linear-gradient(90deg, #6366f1, #8b5cf6);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-            transition: width 1.5s ease-in-out;
-        }
+    /* ─── HERO ─── */
+    #home {
+      display: none;
+      padding: 0;
+    }
+    #home.active { display: block; }
+    .hero-wrap {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-left {
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute; bottom: 0; left: 4rem; right: 4rem; height: 1px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+    }
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-img-wrap {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg3);
+    }
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(100%) contrast(1.1);
+      opacity: 0.85;
+      display: block;
+    }
+    .hero-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,224,0.07) 0%, transparent 60%),
+                  linear-gradient(to bottom, transparent 60%, var(--bg) 100%);
+    }
+    .hero-img-label {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      font-family: 'Syne Mono', monospace;
+      font-size: 8.5px;
+      color: var(--muted2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .hero-meta {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .hero-meta-item {
+      font-family: 'Syne Mono', monospace;
+    }
+    .hero-meta-key {
+      font-size: 8px;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .hero-meta-val {
+      font-size: 10px;
+      color: var(--text);
+    }
+    .hero-meta-val.cyan { color: var(--cyan); }
 
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
+    .hero-h1-wrap { margin-bottom: 2rem; }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--muted2);
+      line-height: 1.8;
+      max-width: 460px;
+      margin-bottom: 2rem;
+    }
+    .hero-tech-stack {
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 3rem; }
+    .hero-metrics { border-top: 1px solid var(--border); padding-top: 2rem; }
 
-        @keyframes float {
+    /* ─── GRID LAYOUTS ─── */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+    .g2 > * { background: var(--bg); }
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 
-            0%,
-            100% {
-                transform: translateY(0);
-            }
+    /* ─── SECTION HEADER ─── */
+    .section-head {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .section-head-right {
+      font-family: 'Syne Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
 
-            50% {
-                transform: translateY(-20px);
-            }
-        }
+    /* ─── PROJECT CARD ─── */
+    .proj-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--cyan);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.25s ease;
+    }
+    .proj-card:hover { border-color: var(--border2); }
+    .proj-card:hover::after { transform: scaleY(1); }
+    .proj-num {
+      font-family: 'Syne Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+    }
 
-        .pulse-ring {
-            animation: pulse-ring 2s infinite;
-        }
+    /* ─── TIMELINE ─── */
+    .tl { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-date {
+      font-family: 'Syne Mono', monospace;
+      font-size: 9px;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
 
-        @keyframes pulse-ring {
-            0% {
-                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
-            }
+    /* ─── SKILL BAR ─── */
+    .skill-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 40px;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-row:last-child { border-bottom: none; }
+    .skill-name {
+      font-family: 'Syne Mono', monospace;
+      font-size: 9.5px;
+      color: var(--text);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .skill-bar { height: 2px; background: var(--border); position: relative; }
+    .skill-fill {
+      position: absolute; left: 0; top: 0; height: 100%;
+      background: var(--cyan);
+      box-shadow: 0 0 6px rgba(255,255,224,0.3);
+    }
+    .skill-pct {
+      font-family: 'Syne Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      text-align: right;
+    }
 
-            70% {
-                box-shadow: 0 0 0 20px rgba(99, 102, 241, 0);
-            }
+    /* ─── KAGGLE ─── */
+    .medal {
+      font-size: 1.1rem;
+    }
 
-            100% {
-                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
-            }
-        }
+    /* ─── CONTACT ─── */
+    .contact-link {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 1rem 1.25rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.18s;
+      margin-bottom: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-link::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--cyan);
+      transform: scaleY(0);
+      transition: transform 0.2s;
+    }
+    .contact-link:hover { border-color: var(--border2); }
+    .contact-link:hover::before { transform: scaleY(1); }
+    .contact-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: var(--cyan);
+      flex-shrink: 0;
+    }
+    .contact-key {
+      font-family: 'Syne Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .contact-val {
+      font-size: 13px;
+      color: var(--white);
+    }
 
-        .nav-link {
-            position: relative;
-        }
+    /* ─── DECORATIVE GRID ─── */
+    .deco-grid {
+      position: absolute;
+      top: 0; right: 0;
+      width: 300px; height: 300px;
+      opacity: 0.03;
+      background-image:
+        linear-gradient(var(--cyan) 1px, transparent 1px),
+        linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #6366f1, #8b5cf6);
-            transition: width 0.3s ease;
-        }
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
 
-        .nav-link:hover::after {
-            width: 100%;
-        }
+    /* ─── MOBILE ─── */
+    .ham {
+      display: none;
+      position: fixed; top: 1rem; left: 1rem; z-index: 200;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      color: var(--cyan);
+      width: 38px; height: 38px;
+      align-items: center; justify-content: center;
+      cursor: pointer; font-size: 14px;
+    }
+    .ov {
+      display: none;
+      position: fixed; inset: 0; z-index: 40;
+      background: rgba(0,0,0,0.7);
+    }
+    .ov.open { display: block; }
 
-        .terminal {
-            background: linear-gradient(180deg, #2D2D2D 0%, #1E1E1E 100%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .terminal-header {
-            background: linear-gradient(180deg, #3D3D3D 0%, #2D2D2D 100%);
-        }
-
-        .cursor-blink {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            50% {
-                opacity: 1;
-            }
-
-            51%,
-            100% {
-                opacity: 0;
-            }
-        }
-
-        .glow-icon {
-            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.5));
-        }
-
-        .hero-gradient {
-            background: radial-gradient(ellipse at center top, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
-        }
-
-        .cyber-grid {
-            background-image: linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #6366f1, #8b5cf6);
-            border-radius: 4px;
-        }
-    </style>
+    @media (max-width: 900px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.25s; }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .ham { display: flex; }
+      h1 { font-size: 3.5rem; }
+      .hero-wrap { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .section { padding: 2rem 1.5rem; }
+      .hero-left { padding: 4rem 1.5rem 2.5rem; }
+      .metrics-grid { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
 </head>
+<body>
 
-<body id="top" class="cyber-grid">
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="#top" class="flex items-center">
-                    <div class="px-4 py-2 rounded-lg glossy-btn flex items-center justify-center">
-                        <span class="text-white font-bold text-lg font-mono">aryan.mishra()</span>
-                    </div>
-                </a>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#about" class="nav-link text-gray-400 hover:text-white transition-colors">About</a>
-                    <a href="#skills" class="nav-link text-gray-400 hover:text-white transition-colors">Skills</a>
-                    <a href="#projects" class="nav-link text-gray-400 hover:text-white transition-colors">Projects</a>
-                    <a href="#certifications"
-                        class="nav-link text-gray-400 hover:text-white transition-colors">Certifications</a>
-                    <a href="#education" class="nav-link text-gray-400 hover:text-white transition-colors">Education</a>
-                    <a href="#contact" class="glossy-btn px-5 py-2 rounded-full text-white font-medium">Contact</a>
-                </div>
-                <button id="mobileMenuBtn" class="md:hidden text-white text-2xl" aria-label="Toggle menu"
-                    aria-controls="mobileMenu" aria-expanded="false">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+<!-- Hamburger -->
+<button class="ham" id="ham" aria-label="Menu"><i class="fas fa-bars"></i></button>
+<div class="ov" id="ov" onclick="closeSidebar()"></div>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
-        <div class="absolute inset-0 bg-black/80" data-close-menu="true"></div>
-        <div class="absolute right-0 top-0 h-full w-64 glass-card p-6 pt-20">
-            <div class="flex flex-col gap-6">
-                <a href="#about" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">About</a>
-                <a href="#skills" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">Skills</a>
-                <a href="#projects" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">Projects</a>
-                <a href="#certifications" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">Certifications</a>
-                <a href="#education" class="text-gray-400 hover:text-white transition-colors" data-close-menu="true">Education</a>
-                <a href="#contact" class="glossy-btn px-5 py-2 rounded-full text-white font-medium text-center"
-                    data-close-menu="true">Contact</a>
-            </div>
-        </div>
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">SYSTEM_ID // AM_01</div>
+    <div class="logo-name">Aryan Mishra</div>
+    <div class="status-line">
+      <span class="status-dot"></span>
+      Active_Node · Open to Internships
     </div>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center hero-gradient pt-20">
-            <div class="max-w-7xl mx-auto px-6 py-20">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-8">
-                        <div class="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full">
-                            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                            <span class="text-gray-400 text-sm font-mono">available_for_internships = True</span>
-                        </div>
-                        <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
-                            Hi, I'm <span class="gradient-text">Aryan Mishra</span>
-                        </h1>
-                        <h2 class="text-2xl lg:text-3xl text-gray-400">
-                            Data Scientist &<br>
-                            <span class="text-indigo-400">ML Engineer</span>
-                        </h2>
-                        <p class="text-gray-400 text-lg max-w-lg">
-                            A data-driven problem solver specializing in machine learning, statistical modeling, and data visualization. Passionate about transforming raw data into actionable intelligence and scalable AI solutions.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#projects" class="glossy-btn px-8 py-3 rounded-full text-white font-medium">
-                                <i class="fas fa-code mr-2"></i>View Projects
-                            </a>
-                            <a href="#contact"
-                                class="glass-card px-8 py-3 rounded-full text-white font-medium hover:border-indigo-500 transition-colors">
-                                <i class="fas fa-envelope mr-2"></i>Get In Touch
-                            </a>
-                        </div>
-                        <div class="flex gap-6 pt-4">
-                            <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener noreferrer"
-                                class="text-gray-400 hover:text-indigo-400 text-2xl transition-colors">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/aryanmdev/" target="_blank" rel="noopener noreferrer"
-                                class="text-gray-400 hover:text-indigo-400 text-2xl transition-colors">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://www.kaggle.com/aryanmdev" target="_blank" rel="noopener noreferrer"
-                                class="text-gray-400 hover:text-indigo-400 text-2xl transition-colors">
-                                <i class="fab fa-kaggle"></i>
-                            </a>
-                            <a href="#" data-email-link="true" aria-label="Email Aryan Mishra"
-                                class="text-gray-400 hover:text-indigo-400 text-2xl transition-colors">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                            <a href="#" data-phone-link="true" aria-label="Call Aryan Mishra"
-                                class="text-gray-400 hover:text-indigo-400 text-2xl transition-colors">
-                                <i class="fas fa-phone"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="relative flex justify-center">
-                        <div class="floating">
-                            <div class="relative">
-                                <div
-                                    class="w-72 h-72 lg:w-96 lg:h-96 rounded-full glass-card pulse-ring flex items-center justify-center overflow-hidden">
-                                    <img src="profile_hd.png" alt="Aryan Mishra"
-                                        class="w-full h-full object-cover object-top">
-                                </div>
-                                <div class="absolute -top-4 -right-4 glass-card p-3 rounded-xl">
-                                    <i class="fas fa-chart-line text-indigo-500 text-xl"></i>
-                                </div>
-                                <div class="absolute -bottom-4 -left-4 glass-card p-3 rounded-xl">
-                                    <i class="fab fa-python text-yellow-500 text-xl"></i>
-                                </div>
-                                <div class="absolute top-1/2 -left-8 glass-card p-3 rounded-xl">
-                                    <i class="fas fa-brain text-purple-500 text-xl"></i>
-                                </div>
-                                <div class="absolute top-1/4 -right-8 glass-card p-3 rounded-xl">
-                                    <i class="fas fa-database text-green-500 text-xl"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <nav class="nav">
+      <div class="nav-label">// Navigation</div>
+      <div class="nav-item active" data-s="home"><i class="fas fa-terminal"></i>Home</div>
+      <div class="nav-item" data-s="about"><i class="fas fa-user"></i>About</div>
+      <div class="nav-item" data-s="skills"><i class="fas fa-code"></i>Skills</div>
+      <div class="nav-item" data-s="projects"><i class="fas fa-folder-open"></i>Projects</div>
+      <div class="nav-item" data-s="kaggle"><i class="fab fa-kaggle"></i>Kaggle</div>
+      <div class="nav-item" data-s="certifications"><i class="fas fa-certificate"></i>Certifications</div>
+      <div class="nav-item" data-s="education"><i class="fas fa-graduation-cap"></i>Education</div>
+      <div class="nav-item" data-s="blog"><i class="fas fa-rss"></i>Blog</div>
+      <div class="nav-item" data-s="contact"><i class="fas fa-satellite-dish"></i>Contact</div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/aryanmdev/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.kaggle.com/aryanmdev" target="_blank" rel="noopener"><i class="fab fa-kaggle"></i></a>
+      <a href="mailto:aryanmishra.dev@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main" id="main">
+
+    <!-- HOME -->
+    <section class="section active" id="home">
+      <div class="hero-wrap">
+        <div class="hero-left">
+          <div class="deco-grid"></div>
+
+          <div class="hero-h1-wrap">
+            <div class="eyebrow">Data Scientist &amp; ML Engineer</div>
+            <h1>Building<span>Intelligence.</span></h1>
+          </div>
+
+          <p class="hero-desc">
+            I build ML systems end-to-end — from raw data to deployed models. Kaggle Datasets Master · NLP · LLMs · FastAPI · Docker. Open to internships and research collaborations.
+          </p>
+
+          <div class="hero-tech-stack">
+            <div class="eyebrow" style="margin-bottom:0.5rem;">// Tech Stack</div>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">scikit-learn</span>
+              <span class="tag">LangChain</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Docker</span>
+              <span class="tag">SQL</span>
             </div>
-        </section>
+          </div>
 
-        <!-- About Section -->
-        <section id="about" class="py-24">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-bold mb-4">About <span class="gradient-text">Me</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Passionate about creating digital excellence through data
-                        science</p>
-                </div>
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-6">
-                        <!-- Highlight Cards -->
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="glass-card p-5 rounded-2xl">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
-                                    <i class="fas fa-graduation-cap text-indigo-400 text-xl"></i>
-                                </div>
-                                <h4 class="font-bold text-white">B.Tech CSE</h4>
-                                <p class="text-gray-400 text-sm mt-1">Data Science Specialization</p>
-                            </div>
-                            <div class="glass-card p-5 rounded-2xl">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-purple-500/15 flex items-center justify-center mb-4">
-                                    <i class="fas fa-brain text-purple-400 text-xl"></i>
-                                </div>
-                                <h4 class="font-bold text-white">ML Enthusiast</h4>
-                                <p class="text-gray-400 text-sm mt-1">Building Predictive Models</p>
-                            </div>
-                            <div class="glass-card p-5 rounded-2xl">
-                                <div class="w-12 h-12 rounded-xl bg-green-500/15 flex items-center justify-center mb-4">
-                                    <i class="fas fa-heartbeat text-green-400 text-xl"></i>
-                                </div>
-                                <h4 class="font-bold text-white">Healthcare AI</h4>
-                                <p class="text-gray-400 text-sm mt-1">PathoPredict Project</p>
-                            </div>
-                            <div class="glass-card p-5 rounded-2xl">
-                                <div
-                                    class="w-12 h-12 rounded-xl bg-orange-500/15 flex items-center justify-center mb-4">
-                                    <i class="fas fa-chart-pie text-orange-400 text-xl"></i>
-                                </div>
-                                <h4 class="font-bold text-white">Data Analyst</h4>
-                                <p class="text-gray-400 text-sm mt-1">Extracting Actionable Insights</p>
-                            </div>
-                        </div>
-                        <!-- Status Badge -->
-                        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
-                            <span class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-                            <span class="text-gray-300">Open to internships & opportunities</span>
-                        </div>
-                    </div>
-                    <div class="space-y-6">
-                        <p class="text-gray-400 text-lg leading-relaxed">
-                            Currently pursuing a B.Tech in Computer Science with a specialization in Data Science
-                            at Indore Institute of Science and Technology. My expertise spans the entire data
-                            lifecycle—from cleaning, wrangling, and preprocessing diverse datasets to building
-                            and deploying state-of-the-art predictive models.
-                        </p>
-                        <p class="text-gray-400 text-lg leading-relaxed">
-                            I am eager to tackle complex technical challenges, applying rigorous statistical
-                            methods and machine learning algorithms to drive strategic product decisions
-                            and create real-world impact.
-                        </p>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
-                            <div class="glass-card p-4 rounded-xl text-center">
-                                <div class="text-3xl font-bold text-indigo-400">7.6</div>
-                                <div class="text-gray-400 text-sm">CGPA</div>
-                            </div>
-                            <div class="glass-card p-4 rounded-xl text-center">
-                                <div class="text-3xl font-bold text-indigo-400">2+</div>
-                                <div class="text-gray-400 text-sm">ML Projects</div>
-                            </div>
-                            <div class="glass-card p-4 rounded-xl text-center">
-                                <div class="text-3xl font-bold text-indigo-400">8</div>
-                                <div class="text-gray-400 text-sm">Certifications</div>
-                            </div>
-                            <div class="glass-card p-4 rounded-xl text-center">
-                                <div class="text-3xl font-bold text-indigo-400">10+</div>
-                                <div class="text-gray-400 text-sm">Technologies</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <div class="hero-btns">
+            <a href="#" class="btn btn-cyan" onclick="navigate('projects');return false;"><i class="fas fa-folder"></i>View Projects</a>
+            <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i>GitHub</a>
+            <a href="#" class="btn btn-outline" onclick="navigate('contact');return false;"><i class="fas fa-satellite-dish"></i>Connect</a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="eyebrow" style="margin-bottom:0.75rem;">// Metrics // System_Load</div>
+            <div class="metrics-grid">
+              <div class="metric">
+                <div class="metric-val accent">158</div>
+                <div class="metric-lbl">Kaggle Rank</div>
+              </div>
+              <div class="metric">
+                <div class="metric-val">31</div>
+                <div class="metric-lbl">Repos</div>
+              </div>
+              <div class="metric">
+                <div class="metric-val">473</div>
+                <div class="metric-lbl">Commits</div>
+              </div>
+              <div class="metric">
+                <div class="metric-val">100+</div>
+                <div class="metric-lbl">Day Streak</div>
+              </div>
             </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-24 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-bold mb-4">Core <span class="gradient-text">Skills</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Technical expertise across data science domains</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Python -->
-                    <div class="glass-card p-8 rounded-2xl">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-6">
-                            <i class="fab fa-python text-indigo-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Python for Data Science</h3>
-                        <p class="text-gray-400 mb-6 text-sm leading-relaxed">Data analysis, machine learning,
-                            automation scripts, and building predictive models.</p>
-                        <div class="skill-bar h-1.5 rounded-full">
-                            <div class="skill-progress h-full rounded-full" style="width: 90%;"></div>
-                        </div>
-                        <span class="text-indigo-400 text-sm mt-3 inline-block font-medium">90%</span>
-                    </div>
-                    <!-- Statistical Analysis -->
-                    <div class="glass-card p-8 rounded-2xl">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-6">
-                            <i class="fas fa-chart-line text-indigo-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Statistical Analysis</h3>
-                        <p class="text-gray-400 mb-6 text-sm leading-relaxed">Hypothesis testing, probability distributions, A/B testing, and exploratory data analysis.</p>
-                        <div class="skill-bar h-1.5 rounded-full">
-                            <div class="skill-progress h-full rounded-full" style="width: 80%;"></div>
-                        </div>
-                        <span class="text-indigo-400 text-sm mt-3 inline-block font-medium">80%</span>
-                    </div>
-                    <!-- SQL -->
-                    <div class="glass-card p-8 rounded-2xl">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-6">
-                            <i class="fas fa-database text-indigo-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">SQL & Data Wrangling</h3>
-                        <p class="text-gray-400 mb-6 text-sm leading-relaxed">Database design, complex queries, data
-                            extraction, and management.</p>
-                        <div class="skill-bar h-1.5 rounded-full">
-                            <div class="skill-progress h-full rounded-full" style="width: 80%;"></div>
-                        </div>
-                        <span class="text-indigo-400 text-sm mt-3 inline-block font-medium">80%</span>
-                    </div>
-                    <!-- Data Visualization -->
-                    <div class="glass-card p-8 rounded-2xl">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-6">
-                            <i class="fas fa-chart-bar text-indigo-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Data Visualization</h3>
-                        <p class="text-gray-400 mb-6 text-sm leading-relaxed">Microsoft Power BI, Tableau, matplotlib,
-                            seaborn for
-                            insightful data representation.</p>
-                        <div class="skill-bar h-1.5 rounded-full">
-                            <div class="skill-progress h-full rounded-full" style="width: 85%;"></div>
-                        </div>
-                        <span class="text-indigo-400 text-sm mt-3 inline-block font-medium">85%</span>
-                    </div>
-                    <!-- Machine Learning -->
-                    <div class="glass-card p-8 rounded-2xl">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-6">
-                            <i class="fas fa-brain text-indigo-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Machine Learning</h3>
-                        <p class="text-gray-400 mb-6 text-sm leading-relaxed">Model building, feature engineering, data
-                            preprocessing, and evaluation.</p>
-                        <div class="skill-bar h-1.5 rounded-full">
-                            <div class="skill-progress h-full rounded-full" style="width: 75%;"></div>
-                        </div>
-                        <span class="text-indigo-400 text-sm mt-3 inline-block font-medium">75%</span>
-                    </div>
-                    <!-- Healthcare AI -->
-                    <div class="glass-card p-8 rounded-2xl">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-6">
-                            <i class="fas fa-notes-medical text-indigo-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Healthcare AI</h3>
-                        <p class="text-gray-400 mb-6 text-sm leading-relaxed">Clinical data mining, medical image analysis, and predictive healthcare modeling algorithms.</p>
-                        <div class="skill-bar h-1.5 rounded-full">
-                            <div class="skill-progress h-full rounded-full" style="width: 85%;"></div>
-                        </div>
-                        <span class="text-indigo-400 text-sm mt-3 inline-block font-medium">85%</span>
-                    </div>
-                </div>
-                <!-- Technologies -->
-                <div class="mt-20">
-                    <h3 class="text-2xl font-bold text-center mb-10">Technologies & Tools</h3>
-                    <div class="flex flex-wrap justify-center gap-4 font-mono text-sm">
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">python</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">pandas</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">numpy</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">scikit-learn</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">sql</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">power-bi</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">tableau</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">jupyter</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">colab</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">weka</span>
-                        <span class="glass-card px-6 py-3 rounded-full text-gray-400 hover:text-indigo-400 hover:border-indigo-500 transition-all cursor-default">git</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-24">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-bold mb-4">Featured <span class="gradient-text">Projects</span>
-                    </h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Machine learning and data science solutions I've
-                        developed</p>
-                </div>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Project 1 -->
-                    <div class="glass-card rounded-2xl overflow-hidden">
-                        <div
-                            class="h-48 bg-gradient-to-br from-indigo-500/20 to-transparent flex items-center justify-center">
-                            <i class="fas fa-gamepad text-6xl text-indigo-400 glow-icon"></i>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap items-center gap-2 mb-3 font-mono">
-                                <span class="text-xs bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full">scikit-learn</span>
-                                <span class="text-xs bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full">pandas</span>
-                                <span class="text-xs bg-green-500/20 text-green-500 px-3 py-1 rounded-full">Python</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">Video Game Sales Prediction</h3>
-                            <p class="text-gray-400 text-sm mb-4">Build a machine learning model to predict video game
-                                sales using real-world datasets. Applied data preprocessing, feature engineering, and
-                                model evaluation techniques for accurate sales forecasting.</p>
-                            <a href="https://colab.research.google.com/drive/1nhqe_zEH8aIlMpqREX1Z82HcKFrexopa#scrollTo=P-H6Lw1vyNNd"
-                                target="_blank" rel="noopener noreferrer"
-                                class="glossy-btn px-6 py-2 rounded-full text-white text-sm inline-flex items-center gap-2 font-mono w-max">
-                                <i class="fas fa-external-link-alt"></i> open_in_colab()
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="glass-card rounded-2xl overflow-hidden">
-                        <div
-                            class="h-48 bg-gradient-to-br from-purple-500/20 to-transparent flex items-center justify-center">
-                            <i class="fas fa-heartbeat text-6xl text-purple-500 glow-icon"></i>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex flex-wrap items-center gap-2 mb-3 font-mono">
-                                <span class="text-xs bg-purple-500/20 text-purple-500 px-3 py-1 rounded-full">medical-datasets</span>
-                                <span class="text-xs bg-indigo-500/20 text-indigo-400 px-3 py-1 rounded-full">predictive-modeling</span>
-                                <span class="text-xs bg-green-500/20 text-green-500 px-3 py-1 rounded-full">Python</span>
-                            </div>
-                            <h3 class="text-xl font-bold mb-2">PathoPredict - Health Prediction Platform</h3>
-                            <p class="text-gray-400 text-sm mb-4">Developed a disease detection model using advanced ML
-                                algorithms for early and accurate diagnosis. Leveraged diverse medical datasets to build
-                                a robust system for clinical decision-making.</p>
-                            <a href="https://pathopredict-frontend.onrender.com" target="_blank" rel="noopener noreferrer"
-                                class="glossy-btn px-6 py-2 rounded-full text-white text-sm inline-flex items-center gap-2 font-mono w-max">
-                                <i class="fas fa-external-link-alt"></i> view_live_demo()
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-12">
-                    <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener noreferrer"
-                        class="glossy-btn px-8 py-3 rounded-full text-white font-medium inline-flex items-center gap-2 font-mono">
-                        <i class="fab fa-github"></i> view_all()
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications" class="py-24 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-bold mb-4">Professional <span
-                            class="gradient-text">Certifications</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Continuous learning through industry-recognized
-                        certifications</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- NVIDIA -->
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-microchip text-xl text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">NVIDIA</h4>
-                                <span class="text-indigo-400 text-sm">Certificate of Competency</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Applications of AI for Anomaly Detection</h3>
-                        <p class="text-gray-400 text-sm mb-4">Demonstrated competence in applying AI techniques for
-                            anomaly detection.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm"><i class="fas fa-calendar-alt mr-2"></i>December
-                                2025</span>
-                            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">AI/ML</span>
-                        </div>
-                    </div>
-                    <!-- GeeksforGeeks TCS -->
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-14 h-14 bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-code text-xl text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">GeeksforGeeks</h4>
-                                <span class="text-indigo-400 text-sm">Course Completion</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">TCS NQT Preparation Test Series</h3>
-                        <p class="text-gray-400 text-sm mb-4">Comprehensive preparation for TCS National Qualifier Test.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm"><i class="fas fa-award mr-2"></i>Certified</span>
-                            <span
-                                class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs">Placement</span>
-                        </div>
-                    </div>
-                    <!-- GeeksforGeeks Django -->
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-14 h-14 bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl flex items-center justify-center">
-                                <i class="fab fa-python text-xl text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">GeeksforGeeks</h4>
-                                <span class="text-indigo-400 text-sm">Nation SkillUp</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Django Skill Up</h3>
-                        <p class="text-gray-400 text-sm mb-4">Django web framework training with hands-on experience.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm"><i class="fas fa-award mr-2"></i>Certified</span>
-                            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-xs">Web Dev</span>
-                        </div>
-                    </div>
-                    <!-- IIT Indore -->
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-university text-xl text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">IIT Indore</h4>
-                                <span class="text-indigo-400 text-sm">SERB India</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Workshop on Algebraic Graph Theory</h3>
-                        <p class="text-gray-400 text-sm mb-4">One-Day Workshop on Ramanujan Graph at IIT Indore.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm"><i class="fas fa-calendar-alt mr-2"></i>October
-                                2024</span>
-                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Mathematics</span>
-                        </div>
-                    </div>
-                    <!-- CodeMantra -->
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-14 h-14 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center">
-                                <i class="fas fa-laptop-code text-xl text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">CodeMantra</h4>
-                                <span class="text-indigo-400 text-sm">ISO 9001:2015</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">C/C++ Programming Training</h3>
-                        <p class="text-gray-400 text-sm mb-4">Intensive training. Recognized as Sincere & Hardworking.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm"><i class="fas fa-calendar-alt mr-2"></i>Jul-Oct
-                                2023</span>
-                            <span
-                                class="px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-xs">Programming</span>
-                        </div>
-                    </div>
-                    <!-- Kaggle Data Visualization -->
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-                                <i class="fab fa-kaggle text-xl text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Kaggle</h4>
-                                <span class="text-indigo-400 text-sm">Course Completion</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Data Visualization</h3>
-                        <p class="text-gray-400 text-sm mb-4">Mastered techniques for effective data storytelling and
-                            visualization.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm"><i class="fas fa-calendar-alt mr-2"></i>December
-                                2025</span>
-                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Data
-                                Science</span>
-                        </div>
-                    </div>
-
-                    <!-- Kaggle Intro to Machine Learning -->
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-                                <i class="fab fa-kaggle text-xl text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Kaggle</h4>
-                                <span class="text-indigo-400 text-sm">Course Completion</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Intro to Machine Learning</h3>
-                        <p class="text-gray-400 text-sm mb-4">Learned core concepts of machine learning and model
-                            building.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm"><i class="fas fa-calendar-alt mr-2"></i>December
-                                2024</span>
-                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Machine
-                                Learning</span>
-                        </div>
-                    </div>
-
-                    <!-- Kaggle Intro to Programming -->
-                    <div class="glass-card p-6 rounded-2xl">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-14 h-14 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-                                <i class="fab fa-kaggle text-xl text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Kaggle</h4>
-                                <span class="text-indigo-400 text-sm">Course Completion</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-semibold mb-2">Intro to Programming</h3>
-                        <p class="text-gray-400 text-sm mb-4">Foundation in Python programming and computational
-                            thinking.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-500 text-sm"><i class="fas fa-calendar-alt mr-2"></i>December
-                                2023</span>
-                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Programming</span>
-                        </div>
-                    </div>
-
-                    <!-- More Coming -->
-                    <div
-                        class="glass-card p-6 rounded-2xl border-dashed border-2 border-gray-700 flex items-center justify-center">
-                        <div class="text-center">
-                            <div
-                                class="w-14 h-14 mx-auto bg-indigo-600/30 rounded-xl flex items-center justify-center mb-4">
-                                <i class="fas fa-plus text-xl text-indigo-400"></i>
-                            </div>
-                            <p class="text-gray-400">More coming soon...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="py-24">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-bold mb-4">My <span class="gradient-text">Education</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Academic journey and qualifications</p>
-                </div>
-                <div class="max-w-3xl mx-auto space-y-8">
-                    <div class="glass-card p-6 rounded-2xl relative ml-6">
-                        <div
-                            class="absolute -left-9 top-8 w-6 h-6 rounded-full bg-indigo-500 border-4 border-[#0a0a0a]">
-                        </div>
-                        <span class="text-indigo-400 text-sm">09/2023 - Present</span>
-                        <h4 class="text-xl font-bold mt-2">Indore Institute of Science and Technology</h4>
-                        <p class="text-gray-400">B.Tech in Computer Science - Specialization in Data Science</p>
-                        <p class="text-indigo-400 font-semibold mt-2">CGPA: 7.6</p>
-                        <p class="text-gray-500 text-sm mt-2">Indore, (M.P), India</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl relative ml-6">
-                        <div
-                            class="absolute -left-9 top-8 w-6 h-6 rounded-full bg-indigo-500/80 border-4 border-[#0a0a0a]">
-                        </div>
-                        <span class="text-indigo-400 text-sm">04/2020 - 07/2021</span>
-                        <h4 class="text-xl font-bold mt-2">Rose Petals Public School</h4>
-                        <p class="text-gray-400">Higher Secondary</p>
-                        <p class="text-indigo-400 font-semibold mt-2">Percentage: 71%</p>
-                        <p class="text-gray-500 text-sm mt-2">Rewa, (M.P), India</p>
-                    </div>
-                    <div class="glass-card p-6 rounded-2xl relative ml-6">
-                        <div
-                            class="absolute -left-9 top-8 w-6 h-6 rounded-full bg-indigo-500/60 border-4 border-[#0a0a0a]">
-                        </div>
-                        <span class="text-indigo-400 text-sm">04/2018 - 07/2019</span>
-                        <h4 class="text-xl font-bold mt-2">Gyanasthali Vidalaya</h4>
-                        <p class="text-gray-400">Secondary Education</p>
-                        <p class="text-indigo-400 font-semibold mt-2">Percentage: 71%</p>
-                        <p class="text-gray-500 text-sm mt-2">Rewa, (M.P), India</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-24">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl lg:text-5xl font-bold mb-4">Get In <span class="gradient-text">Touch</span></h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Let's connect and discuss opportunities</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <a href="#" data-email-link="true"
-                        class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
-                            <i class="far fa-envelope text-indigo-400 text-xl"></i>
-                        </div>
-                        <h3 class="font-bold text-white">Email</h3>
-                        <p class="text-indigo-400 text-sm mt-2" data-email-text="true">Email available on click</p>
-                    </a>
-                    <a href="#" data-phone-link="true"
-                        class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
-                            <i class="fas fa-phone text-indigo-400 text-xl"></i>
-                        </div>
-                        <h3 class="font-bold text-white">Phone</h3>
-                        <p class="text-indigo-400 text-sm mt-2" data-phone-text="true">Phone available on click</p>
-                    </a>
-                    <a href="https://www.linkedin.com/in/aryanmdev/" target="_blank" rel="noopener noreferrer"
-                        class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
-                            <i class="fab fa-linkedin-in text-indigo-400 text-xl"></i>
-                        </div>
-                        <h3 class="font-bold text-white">LinkedIn</h3>
-                        <p class="text-indigo-400 text-sm mt-2">Connect with me</p>
-                    </a>
-                    <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener noreferrer"
-                        class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
-                            <i class="fab fa-github text-indigo-400 text-xl"></i>
-                        </div>
-                        <h3 class="font-bold text-white">GitHub</h3>
-                        <p class="text-indigo-400 text-sm mt-2">View my projects</p>
-                    </a>
-                    <a href="https://leetcode.com/u/AryanMishra-dev/" target="_blank" rel="noopener noreferrer"
-                        class="glass-card p-6 rounded-2xl flex flex-col items-center text-center">
-                        <div class="w-14 h-14 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
-                            <i class="fas fa-code text-indigo-400 text-xl"></i>
-                        </div>
-                        <h3 class="font-bold text-white">LeetCode</h3>
-                        <p class="text-indigo-400 text-sm mt-2">Coding practice</p>
-                    </a>
-                </div>
-                <div class="mt-12 text-center">
-                    <div class="glass-card p-6 rounded-2xl inline-flex items-center gap-4">
-                        <i class="fas fa-map-marker-alt text-indigo-400 text-xl"></i>
-                        <div class="text-left">
-                            <h3 class="font-bold text-white">Location</h3>
-                            <p class="text-gray-400">Indore, MP</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="glass-card border-t border-white/10 py-8 font-mono">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <p class="text-gray-400 text-sm">© 2025 Aryan Mishra. All Rights Reserved.</p>
-                <div class="flex gap-4">
-                    <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener noreferrer"
-                        class="text-gray-400 hover:text-indigo-400 transition-colors">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/aryanmdev/" target="_blank" rel="noopener noreferrer"
-                        class="text-gray-400 hover:text-indigo-400 transition-colors">
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </a>
-                    <a href="#" data-email-link="true" aria-label="Email Aryan Mishra"
-                        class="text-gray-400 hover:text-indigo-400 transition-colors">
-                        <i class="fas fa-envelope text-xl"></i>
-                    </a>
-                    <a href="https://leetcode.com/u/AryanMishra-dev/" target="_blank" rel="noopener noreferrer"
-                        class="text-gray-400 hover:text-indigo-400 transition-colors">
-                        <i class="fas fa-code text-xl"></i>
-                    </a>
-                </div>
-            </div>
+          </div>
         </div>
-    </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop"
-        class="fixed bottom-8 right-8 w-12 h-12 glossy-btn rounded-full flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 z-50"
-        aria-label="Back to top">
-        <i class="fas fa-arrow-up text-white"></i>
-    </button>
+        <div class="hero-right">
+          <div class="hero-img-wrap">
+            <img src="profile_hd.png" alt="Aryan Mishra" class="hero-img">
+            <div class="hero-img-overlay"></div>
+            <div class="hero-img-label">01 / IDENTITY // ARYAN_MISHRA</div>
+          </div>
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <div class="hero-meta-key">Location</div>
+              <div class="hero-meta-val">Indore, India</div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-key">Status</div>
+              <div class="hero-meta-val cyan">Active_Node_01</div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-key">Tier</div>
+              <div class="hero-meta-val cyan">Datasets Master</div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-key">Pronouns</div>
+              <div class="hero-meta-val">He/Him</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script src="main.js" defer></script>
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="deco-grid"></div>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">// Professional_Narrative</div>
+          <h2>About <span>Me.</span></h2>
+        </div>
+        <div class="section-head-right">IIST · Indore · 2023–2027</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 340px;gap:2.5rem;align-items:start;">
+        <div>
+          <p style="font-size:15px;color:var(--text);margin-bottom:1.2rem;line-height:1.9;">
+            3rd-year B.Tech Computer Science student at Indore Institute of Science and Technology, specializing in Data Science. I build ML systems end-to-end — from exploratory analysis and feature engineering to model deployment with FastAPI and Docker.
+          </p>
+          <p style="margin-bottom:1.2rem;">
+            My focus areas are NLP, LLMs, and reproducible ML pipelines. I operate across the full stack of a data project, because a model that can't ship isn't a model — it's just math homework.
+          </p>
+          <p style="margin-bottom:2rem;">
+            Open to: Data Science · ML Engineering · MLOps · Research internships · Open-source ML collaborations.
+          </p>
+
+          <div class="panel">
+            <div class="panel-label">// Currently_Working_On</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="font-family:'Syne Mono',monospace;font-size:10.5px;color:var(--text);">→ Predicting Irrigation Need (Kaggle)</div>
+              <div style="font-family:'Syne Mono',monospace;font-size:10.5px;color:var(--text);">→ NVIDIA Nemotron Reasoning (Kaggle)</div>
+              <div style="font-family:'Syne Mono',monospace;font-size:10.5px;color:var(--text);">→ LLM Fine-tuning &amp; MLOps Tooling</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:1.5rem;">
+            <span class="badge">Open to Internships</span>
+            <span class="badge">IIST · 2027</span>
+            <span class="badge">Indore, India</span>
+            <span class="badge">CGPA 7.6</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
+          <div style="background:var(--panel);">
+            <div class="metrics-grid" style="grid-template-columns:1fr 1fr;">
+              <div class="metric">
+                <div class="metric-val accent">158</div>
+                <div class="metric-lbl">Kaggle Rank</div>
+              </div>
+              <div class="metric">
+                <div class="metric-val">154+</div>
+                <div class="metric-lbl">Dataset Votes</div>
+              </div>
+              <div class="metric">
+                <div class="metric-val">473</div>
+                <div class="metric-lbl">Contributions</div>
+              </div>
+              <div class="metric">
+                <div class="metric-val">100+</div>
+                <div class="metric-lbl">Day Streak</div>
+              </div>
+            </div>
+          </div>
+          <div class="panel" style="margin-top:0;">
+            <div class="panel-label">// Tech_Stack</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 1rem;">
+              <div>
+                <div style="font-family:'Syne Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">[ML / AI]</div>
+                <div style="font-family:'Syne Mono',monospace;font-size:9px;color:var(--text);line-height:2;">
+                  PyTorch<br>scikit-learn<br>TensorFlow<br>LangChain<br>XGBoost
+                </div>
+              </div>
+              <div>
+                <div style="font-family:'Syne Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">[Depl_Env]</div>
+                <div style="font-family:'Syne Mono',monospace;font-size:9px;color:var(--text);line-height:2;">
+                  FastAPI<br>Docker<br>PostgreSQL<br>MLflow<br>GitHub Actions
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="deco-grid"></div>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">// Technical_Ecology</div>
+          <h2>Core <span>Skills.</span></h2>
+        </div>
+        <div class="section-head-right">Precision: 99.2% // Recall: 97.8%</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+        <div class="panel">
+          <div class="panel-label">// ML / AI Systems</div>
+          <div class="skill-row">
+            <div class="skill-name">PyTorch</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+            <div class="skill-pct">88%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">scikit-learn</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+            <div class="skill-pct">92%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">LangChain</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+            <div class="skill-pct">80%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">XGBoost</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+            <div class="skill-pct">85%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">TensorFlow</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+            <div class="skill-pct">75%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Hugging Face</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+            <div class="skill-pct">78%</div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-label">// Data & Infrastructure</div>
+          <div class="skill-row">
+            <div class="skill-name">Python</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+            <div class="skill-pct">95%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Pandas / NumPy</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div>
+            <div class="skill-pct">93%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">FastAPI</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:87%"></div></div>
+            <div class="skill-pct">87%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Docker</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+            <div class="skill-pct">82%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">SQL / PostgreSQL</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+            <div class="skill-pct">80%</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">MLflow / W&amp;B</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+            <div class="skill-pct">75%</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <div class="panel">
+          <div class="panel-label">// Ancillary_Vector_Map</div>
+          <div class="tags" style="gap:6px;">
+            <span class="tag">NLP</span><span class="tag">LLMs</span><span class="tag">Anomaly Detection</span>
+            <span class="tag">Feature Engineering</span><span class="tag">EDA</span><span class="tag">Statistical Modeling</span>
+            <span class="tag">Django</span><span class="tag">Redis</span><span class="tag">MongoDB</span>
+            <span class="tag">Nginx</span><span class="tag">GitHub Actions</span><span class="tag">Matplotlib</span>
+            <span class="tag">Seaborn</span><span class="tag">Plotly</span><span class="tag">Jupyter</span>
+            <span class="tag">Google Colab</span><span class="tag">Weights &amp; Biases</span><span class="tag">Ollama</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="deco-grid"></div>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">// Selected_Research</div>
+          <h2>Featured <span>Projects.</span></h2>
+        </div>
+        <div class="section-head-right">31 Total Repositories</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div class="proj-card">
+          <div class="proj-num">01 / HEALTHCARE_RISK</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div style="flex:1;">
+              <h3 style="margin-bottom:6px;">Healthcare Risk Prediction</h3>
+              <p style="font-size:13px;">End-to-end ML pipeline — diabetes, heart disease &amp; cancer risk. EDA to deployment with FastAPI and Docker. Production-ready inference API.</p>
+              <div class="tags" style="margin-top:10px;">
+                <span class="tag">scikit-learn</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">Docker</span>
+              </div>
+            </div>
+            <a href="https://github.com/Aryanmishra-dev/healthcare_risk_prediction" target="_blank" rel="noopener" class="btn btn-outline" style="flex-shrink:0;"><i class="fab fa-github"></i>View_Repo</a>
+          </div>
+        </div>
+
+      
+
+        <div style="text-align:center;padding-top:0.5rem;">
+          <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i>All_31_Repositories</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- KAGGLE -->
+    <section class="section" id="kaggle">
+      <div class="deco-grid"></div>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">// Competitive_ML</div>
+          <h2>Kaggle <span>Profile.</span></h2>
+        </div>
+        <div class="section-head-right">Progression System // Active</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:1.5rem;">
+        <div class="panel" style="padding:2rem;">
+          <div class="panel-label">// Current_Tier</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:800;color:var(--cyan);text-transform:uppercase;line-height:1;margin-bottom:0.5rem;">Datasets Master</div>
+          <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--muted2);">Ranked 158 of 9,062 globally</div>
+        </div>
+        <div class="panel" style="padding:2rem;">
+          <div class="panel-label">// Medal_Count</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:800;color:var(--white);line-height:1;margin-bottom:0.5rem;">🥇 1 · 🥈 4</div>
+          <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--muted2);">Code: on path to Expert (2/5 bronze)</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <div class="eyebrow" style="margin-bottom:0.75rem;">// Published_Datasets (7)</div>
+        <div class="tl">
+          <div class="tl-item"><div class="tl-date">39 votes</div><div><h3>Cyber Attacks: Financial &amp; Market Impact</h3></div></div>
+          <div class="tl-item"><div class="tl-date">45 votes</div><div><h3>Tech Hiring &amp; Layoffs: Workforce Data (2000–2025)</h3></div></div>
+          <div class="tl-item"><div class="tl-date">31 votes</div><div><h3>Remote Work Burnout &amp; Social Isolation (2026)</h3></div></div>
+          <div class="tl-item"><div class="tl-date">29 votes</div><div><h3>Will EVs Replace Petrol Cars?</h3></div></div>
+          <div class="tl-item"><div class="tl-date">20 votes</div><div><h3>Global Economic Indicators (2005–2025)</h3></div></div>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-bottom:0.75rem;">// Competitions</div>
+      <div class="tl">
+        <div class="tl-item"><div class="tl-date">Apr 2026</div><div><h3>March Machine Learning Mania 2026</h3><p style="font-size:12px;margin-top:3px;">223 / 3,462 teams · Top 6.4% · 🥉 Bronze Medal</p></div></div>
+        <div class="tl-item"><div class="tl-date">Feb 2026</div><div><h3>Santa 2025 – Christmas Tree Packing</h3><p style="font-size:12px;margin-top:3px;">743 / 3,357 teams</p></div></div>
+        <div class="tl-item"><div class="tl-date">Mar 2026</div><div><h3>Stanford RNA 3D Folding Part 2</h3><p style="font-size:12px;margin-top:3px;">1,430 / 1,867 teams</p></div></div>
+        <div class="tl-item"><div class="tl-date">Apr 2026</div><div><h3>Predict Customer Churn</h3><p style="font-size:12px;margin-top:3px;">855 / 4,142 teams</p></div></div>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <a href="https://www.kaggle.com/aryanmdev" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-kaggle"></i>View_Kaggle_Profile</a>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section" id="certifications">
+      <div class="deco-grid"></div>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">// Learning_Protocols</div>
+          <h2>Certifications <span>&amp; Awards.</span></h2>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-date">Dec 2025</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div><h3>Applications of AI for Anomaly Detection</h3><p style="font-size:12px;margin-top:3px;">NVIDIA · Certificate of Competency</p></div>
+            <span class="badge">AI / ML</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Apr 2026</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div><h3>March Machine Learning Mania 2026</h3><p style="font-size:12px;margin-top:3px;">Kaggle · Bronze Medal</p></div>
+            <span class="badge">Competition</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Dec 2025</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div><h3>Data Visualization</h3><p style="font-size:12px;margin-top:3px;">Kaggle · Course Completion</p></div>
+            <span class="badge">Data Science</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Dec 2024</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div><h3>Intro to Machine Learning</h3><p style="font-size:12px;margin-top:3px;">Kaggle · Course Completion</p></div>
+            <span class="badge">ML</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Dec 2024</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div><h3>Intro to Programming</h3><p style="font-size:12px;margin-top:3px;">Kaggle · Course Completion</p></div>
+            <span class="badge">Programming</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2024</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div><h3>TCS NQT Preparation Test Series</h3><p style="font-size:12px;margin-top:3px;">GeeksforGeeks</p></div>
+            <span class="badge">Placement</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2024</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div><h3>Django Skill Up</h3><p style="font-size:12px;margin-top:3px;">GeeksforGeeks · Nation SkillUp</p></div>
+            <span class="badge">Web Dev</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Oct 2024</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div><h3>Workshop on Algebraic Graph Theory</h3><p style="font-size:12px;margin-top:3px;">IIT Indore · SERB India</p></div>
+            <span class="badge">Mathematics</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Jul–Oct 2023</div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
+            <div><h3>C / C++ Programming Training</h3><p style="font-size:12px;margin-top:3px;">CodeMantra · ISO 9001:2015</p></div>
+            <span class="badge">Programming</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <div class="deco-grid"></div>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">// Academic_Record</div>
+          <h2>Education <span>Log.</span></h2>
+        </div>
+      </div>
+
+      <div class="tl">
+        <div class="tl-item" style="padding:1.5rem 0;">
+          <div class="tl-date">2023 –<br>2027</div>
+          <div>
+            <div class="eyebrow" style="margin-bottom:4px;">Primary_Node</div>
+            <h3 style="font-size:16px;margin-bottom:4px;">Indore Institute of Science and Technology</h3>
+            <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--cyan);margin-bottom:8px;">B.Tech CSE · Data Science Specialization</div>
+            <p style="font-size:13px;">Focus: Machine Learning, NLP, Statistical Analysis, Data Engineering, Software Engineering. Indore, Madhya Pradesh.</p>
+          </div>
+        </div>
+        <div class="tl-item" style="padding:1.5rem 0;">
+          <div class="tl-date">2020 –<br>2021</div>
+          <div>
+            <div class="eyebrow" style="margin-bottom:4px;">Prior_Node</div>
+            <h3 style="font-size:15px;margin-bottom:4px;">Rose Petal Higher Secondary School</h3>
+            <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--muted2);">Class XII · Science (PCM + Biology) · Rewa, Madhya Pradesh</div>
+          </div>
+        </div>
+        <div class="tl-item" style="padding:1.5rem 0;">
+          <div class="tl-date">2018 –<br>2019</div>
+          <div>
+            <div class="eyebrow" style="margin-bottom:4px;">Base_Node</div>
+            <h3 style="font-size:15px;margin-bottom:4px;">Gyanasthali Sr. Secondary School</h3>
+            <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--muted2);">Class X · General Studies · Rewa, Madhya Pradesh</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="section" id="blog">
+      <div class="deco-grid"></div>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">// Writing_Protocol</div>
+          <h2>Latest <span>Entries.</span></h2>
+        </div>
+        <div class="section-head-right">Hashnode // Every 2 Weeks</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="https://aryanmdev.hashnode.dev/how-i-became-a-kaggle-datasets-master-in-90-days-and-the-system-that-got-me-there" target="_blank" rel="noopener" style="text-decoration:none;">
+          <div class="proj-card" style="cursor:pointer;">
+            <div class="proj-num">APR 2026 · 8 MIN READ</div>
+            <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;">
+              <div>
+                <h3 style="font-size:16px;margin-bottom:6px;">How I Became a Kaggle Datasets Master in 90 Days and the System that Got Me There</h3>
+                <p style="font-size:13px;">100+ days of consistency, what it built, and what a stranger's first upvote taught me about building in public.</p>
+              </div>
+              <i class="fas fa-arrow-up-right-from-square" style="color:var(--cyan);font-size:11px;flex-shrink:0;margin-top:3px;"></i>
+            </div>
+          </div>
+        </a>
+
+        <div class="panel" style="text-align:center;padding:2rem;">
+          <div style="font-family:'Syne Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px;">Pending_Transmission</div>
+          <div style="font-size:13px;color:var(--muted2);">More posts coming soon · Writing every 2 weeks on Hashnode</div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <a href="https://aryanmdev.hashnode.dev" target="_blank" rel="noopener" class="btn btn-outline"><i class="fas fa-external-link-alt"></i>Read_on_Hashnode</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="deco-grid"></div>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">// Establish_Connection</div>
+          <h2>Send <span>Transmission.</span></h2>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;">
+        <div>
+          <p style="font-size:15px;margin-bottom:2rem;">Open to internships, research collaborations, and open-source ML projects. Response latency: 24–48 hours for non-critical node communications.</p>
+
+          <a href="mailto:aryanmishra.dev@gmail.com" class="contact-link">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="contact-key">Email // Primary_Channel</div>
+              <div class="contact-val">aryanmishra.dev@gmail.com</div>
+            </div>
+            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/aryanmdev/" target="_blank" rel="noopener" class="contact-link">
+            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+            <div>
+              <div class="contact-key">LinkedIn // Professional_Node</div>
+              <div class="contact-val">linkedin.com/in/aryanmdev</div>
+            </div>
+            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
+          </a>
+          <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener" class="contact-link">
+            <div class="contact-icon"><i class="fab fa-github"></i></div>
+            <div>
+              <div class="contact-key">GitHub // Code_Repository</div>
+              <div class="contact-val">github.com/Aryanmishra-dev</div>
+            </div>
+            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
+          </a>
+          <a href="https://www.kaggle.com/aryanmdev" target="_blank" rel="noopener" class="contact-link">
+            <div class="contact-icon"><i class="fab fa-kaggle"></i></div>
+            <div>
+              <div class="contact-key">Kaggle // Competition_Node</div>
+              <div class="contact-val">kaggle.com/aryanmdev · Datasets Master</div>
+            </div>
+            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
+          </a>
+          <div class="contact-link" style="cursor:default;">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="contact-key">Location // Physical_Node</div>
+              <div class="contact-val">Indore, Madhya Pradesh, India</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="padding:1.75rem;">
+          <div class="panel-label">// Auto_Reply_Protocol: Active</div>
+          <p style="font-size:13px;margin-bottom:1.5rem;">Expect latency of 24–48 hours for non-critical node communications. For urgent transmissions, use the email channel directly.</p>
+          <div style="font-family:'Syne Mono',monospace;font-size:9px;color:var(--muted);line-height:2.2;letter-spacing:0.06em;">
+            SYSTEM_STATUS: ONLINE<br>
+            OPEN_TO: Internships · Research · Collab<br>
+            AVAILABILITY: Immediate<br>
+            TIMEZONE: IST (UTC+5:30)<br>
+            PREFERRED_CHANNEL: Email / LinkedIn
+          </div>
+          <div style="margin-top:1.5rem;height:1px;background:var(--border);"></div>
+          <div style="margin-top:1rem;display:flex;gap:8px;">
+            <span class="badge">Open to Internships</span>
+            <span class="badge">Remote OK</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+        <div style="font-family:'Syne Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;">© 2026 DATA_SCIENTIST // SYSTEM_ID: AM_01</div>
+        <div style="font-family:'Syne Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;">LATENCY: 14MS // BUFFER: STABLE</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  function navigate(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const sec = document.getElementById(id);
+    if (sec) sec.classList.add('active');
+    const nav = document.querySelector(`[data-s="${id}"]`);
+    if (nav) nav.classList.add('active');
+    document.getElementById('main').scrollTo(0, 0);
+    closeSidebar();
+  }
+  document.querySelectorAll('.nav-item').forEach(el => {
+    el.addEventListener('click', () => navigate(el.dataset.s));
+  });
+
+  const ham = document.getElementById('ham');
+  const sidebar = document.getElementById('sidebar');
+  const ov = document.getElementById('ov');
+  ham.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    ov.classList.toggle('open');
+  });
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    ov.classList.remove('open');
+  }
+</script>
 </body>
-
 </html>
