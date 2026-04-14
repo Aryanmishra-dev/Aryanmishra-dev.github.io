@@ -9,22 +9,22 @@
   <link rel="icon" type="image/png" href="profile_hd.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&family=Syne+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
   <style>
     :root {
-      --bg:     #0a0a08;
-      --bg2:    #0e0e0c;
-      --bg3:    #141412;
-      --panel:  #181816;
-      --border: rgba(255,255,224,0.07);
-      --border2: rgba(255,255,224,0.18);
-      --cyan:   #FFFFE0;
-      --cyan2:  #e8e8b0;
-      --text:   #c8c8b0;
-      --muted:  #4a4a38;
-      --muted2: #7a7a60;
-      --white:  #f0f0d8;
+      --bg:     #050505;
+      --bg2:    #050505;
+      --bg3:    #050505;
+      --panel:  #0c0c0c;
+      --border: rgba(229,229,229,0.12);
+      --border2: rgba(229,229,229,0.24);
+      --cyan:   #d4be46;
+      --cyan2:  #d4be46;
+      --text:   #e5e5e5;
+      --muted:  #a1a1a1;
+      --muted2: #e5e5e5;
+      --white:  #e5e5e5;
       --red:    #ff3b5c;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,303 +32,339 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Syne', sans-serif;
-      font-size: 14px;
-      line-height: 1.65;
+      font-family: 'Sora', sans-serif;
+      font-size: 16px;
+      line-height: 1.78;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-
-    /* ─── NOISE OVERLAY ─── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 180px;
-    }
-
-    /* ─── LAYOUT ─── */
-    .shell { display: flex; min-height: 100vh; }
-
-    /* ─── SIDEBAR ─── */
-    .sidebar {
-      width: 220px;
-      min-height: 100vh;
-      background: var(--bg2);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      padding: 2rem 1.5rem;
-      position: fixed;
-      top: 0; left: 0; height: 100vh;
-      z-index: 50;
+    body.menu-open {
       overflow: hidden;
     }
-    .sidebar::after {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+
+    /* ─── CLEAN BACKGROUND ─── */
+    body::before { content: none; }
+
+    /* ─── LAYOUT ─── */
+    .shell { min-height: 100vh; }
+
+    /* ─── TOP NAV BAR ─── */
+    .sidebar {
+      width: 100%;
+      min-height: 76px;
+      background: #080808;
+      backdrop-filter: blur(10px);
+      border-bottom: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.6rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 140;
+    }
+    .sidebar::after { content: none; }
+    .top-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      white-space: nowrap;
     }
     .logo {
-      font-family: 'Syne Mono', monospace;
-      font-size: 11px;
-      color: var(--cyan);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0;
+      white-space: nowrap;
     }
     .logo-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 18px;
+      font-family: 'Sora', sans-serif;
+      font-size: 20px;
       font-weight: 700;
       color: var(--white);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0;
+      white-space: nowrap;
     }
     .status-line {
       display: flex; align-items: center; gap: 7px;
-      font-family: 'Syne Mono', monospace;
-      font-size: 9px;
-      color: var(--cyan);
-      letter-spacing: 0.1em;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      margin-bottom: 2rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
+      margin-left: 0.4rem;
+      padding-left: 0.8rem;
+      border-left: none;
+      white-space: nowrap;
     }
     .status-dot {
       width: 5px; height: 5px; border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 4px rgba(255,255,224,0.4);
+      background: var(--muted);
+      box-shadow: none;
       animation: pulse 2s ease infinite;
       flex-shrink: 0;
     }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.85)} }
 
-    .nav { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+    .nav {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav::-webkit-scrollbar { display: none; }
     .nav-label {
-      font-family: 'Syne Mono', monospace;
-      font-size: 8.5px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 1rem 0 0.5rem;
+      display: none;
     }
     .nav-item {
       display: flex; align-items: center; gap: 10px;
-      padding: 8px 10px;
-      border-radius: 3px;
+      padding: 9px 12px;
+      border-radius: 6px;
       cursor: pointer;
-      color: var(--muted2);
-      font-family: 'Syne Mono', monospace;
-      font-size: 10.5px;
-      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
+      text-decoration: none;
       transition: all 0.15s;
       border: 1px solid transparent;
       position: relative;
       user-select: none;
+      white-space: nowrap;
     }
     .nav-item i { width: 13px; text-align: center; font-size: 10px; }
-    .nav-item:hover { color: var(--cyan); background: rgba(255,255,224,0.03); }
+    .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.06); }
     .nav-item.active {
-      color: var(--cyan);
-      background: rgba(255,255,224,0.05);
-      border-color: var(--border2);
-    }
-    .nav-item.active::before {
-      content: '';
-      position: absolute; left: -1px; top: 20%; bottom: 20%;
-      width: 2px;
+      color: #090909;
       background: var(--cyan);
-      box-shadow: 0 0 6px rgba(255,255,224,0.35);
+      border-color: transparent;
     }
+    .nav-item.active::before { content: none; }
     .sidebar-footer {
-      border-top: 1px solid var(--border);
-      padding-top: 1.25rem;
-      display: flex; gap: 14px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-left: auto;
     }
     .sidebar-footer a {
-      color: var(--muted2);
-      font-size: 13px;
+      color: var(--muted);
+      font-size: 15px;
       transition: color 0.15s;
     }
-    .sidebar-footer a:hover { color: var(--cyan); }
+    .sidebar-footer a:hover { color: var(--text); }
 
     /* ─── MAIN ─── */
     .main {
-      margin-left: 220px;
-      flex: 1;
-      overflow-y: auto;
-      height: 100vh;
+      margin-top: 76px;
+      min-height: calc(100vh - 76px);
     }
     .section {
-      display: none;
-      min-height: 100vh;
-      padding: 3rem 3.5rem;
-      animation: fadeIn 0.25s ease;
+      display: block;
+      min-height: calc(100vh - 76px);
+      padding: 3rem;
       position: relative;
       z-index: 1;
+      scroll-margin-top: 96px;
     }
-    .section.active { display: block; }
-    @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+    body.js-enhanced .section {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    body.js-enhanced .section.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      transition-delay: var(--stagger, 0ms);
+    }
+    .section.in-view .reveal-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--text);
+      transform-origin: left center;
+      transform: scaleX(0);
+      z-index: 250;
+      pointer-events: none;
+    }
 
     /* ─── TYPOGRAPHY ─── */
     .eyebrow {
-      font-family: 'Syne Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.2em;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 0.5rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
     }
     h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: 5.5rem;
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(3.5rem, 8.4vw, 6.4rem);
       font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.01em;
-      color: var(--white);
+      line-height: 0.93;
+      letter-spacing: -0.02em;
+      color: var(--cyan);
       text-transform: uppercase;
     }
-    h1 span { color: var(--cyan); display: block; }
+    h1 span { color: inherit; display: block; }
     h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 2.8rem;
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
       font-weight: 700;
-      line-height: 1.1;
+      line-height: 1.08;
       color: var(--white);
       text-transform: uppercase;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
-    h2 span { color: var(--cyan); }
+    h2 span { color: inherit; }
     h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 14px;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.06rem;
       font-weight: 600;
       color: var(--white);
+      line-height: 1.45;
     }
-    p { color: var(--muted2); line-height: 1.75; }
+    p {
+      color: var(--muted2);
+      line-height: 1.82;
+      font-size: 1.02rem;
+    }
 
     /* ─── COMPONENTS ─── */
     .panel {
       background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 1.25rem 1.5rem;
+      border: none;
+      padding: 1.4rem 1.6rem;
       position: relative;
     }
     .panel::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, var(--cyan), transparent);
+      content: none;
     }
     .panel-label {
-      font-family: 'Syne Mono', monospace;
-      font-size: 8px;
-      letter-spacing: 0.2em;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 0.75rem;
-      opacity: 0.7;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+      opacity: 0.78;
     }
 
     .tag {
       display: inline-block;
-      font-family: 'Syne Mono', monospace;
-      font-size: 9.5px;
-      padding: 3px 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      padding: 4px 10px;
       border: 1px solid var(--border2);
-      color: var(--muted2);
-      letter-spacing: 0.08em;
+      color: var(--text);
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       transition: all 0.15s;
     }
-    .tag:hover { color: var(--cyan); border-color: var(--cyan); }
-    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tag:hover { color: var(--text); border-color: var(--text); background: rgba(255,255,255,0.04); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .badge {
-      font-family: 'Syne Mono', monospace;
-      font-size: 8px;
-      padding: 2px 8px;
-      border: 1px solid var(--cyan);
-      color: var(--cyan);
-      letter-spacing: 0.12em;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      padding: 3px 8px;
+      border: 1px solid var(--border2);
+      color: var(--muted);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px;
-      font-family: 'Syne Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.12em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       text-decoration: none;
-      cursor: pointer; border: none;
+      cursor: pointer;
+      border: none;
       transition: all 0.18s;
     }
     .btn-cyan {
       background: var(--cyan);
-      color: #000;
+      color: #17130a;
     }
-    .btn-cyan:hover { background: var(--cyan2); box-shadow: 0 0 20px rgba(255,255,224,0.25); }
+    .btn-cyan:hover { background: var(--cyan2); box-shadow: none; }
     .btn-outline {
       background: transparent;
-      color: var(--cyan);
+      color: var(--text);
       border: 1px solid var(--border2);
     }
-    .btn-outline:hover { border-color: var(--cyan); box-shadow: 0 0 12px rgba(255,255,224,0.08); }
+    .btn-outline:hover { border-color: var(--text); box-shadow: none; background: rgba(255,255,255,0.04); }
 
     /* ─── METRICS ─── */
-    .metrics-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; background: transparent; }
+    .metrics-grid-2 { grid-template-columns: 1fr 1fr; }
     .metric {
       background: var(--panel);
-      padding: 1.25rem;
+      padding: 1.3rem;
       text-align: center;
     }
     .metric-val {
-      font-family: 'Syne', sans-serif;
-      font-size: 2.2rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 2.35rem;
       font-weight: 700;
       color: var(--white);
       line-height: 1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.35rem;
     }
-    .metric-val.accent { color: var(--cyan); }
+    .metric-val.accent { color: var(--white); }
     .metric-lbl {
-      font-family: 'Syne Mono', monospace;
-      font-size: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
       color: var(--muted);
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     /* ─── HERO ─── */
     #home {
-      display: none;
       padding: 0;
     }
-    #home.active { display: block; }
     .hero-wrap {
-      min-height: 100vh;
+      min-height: calc(100vh - 76px);
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(380px, 0.82fr);
     }
     .hero-left {
       padding: 4rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      border-right: 1px solid var(--border);
+      border-right: none;
       position: relative;
     }
-    .hero-left::after {
-      content: '';
-      position: absolute; bottom: 0; left: 4rem; right: 4rem; height: 1px;
-      background: linear-gradient(90deg, var(--cyan), transparent);
-    }
+    .hero-left::after { content: none; }
     .hero-right {
       display: flex;
       flex-direction: column;
@@ -347,84 +383,127 @@
       filter: grayscale(100%) contrast(1.1);
       opacity: 0.85;
       display: block;
+      will-change: transform;
     }
     .hero-img-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,224,0.07) 0%, transparent 60%),
-                  linear-gradient(to bottom, transparent 60%, var(--bg) 100%);
+      background: linear-gradient(to bottom, rgba(5,5,5,0.15) 0%, var(--bg) 100%);
     }
     .hero-img-label {
       position: absolute; bottom: 1.5rem; left: 1.5rem;
-      font-family: 'Syne Mono', monospace;
-      font-size: 8.5px;
-      color: var(--muted2);
-      letter-spacing: 0.15em;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.13em;
       text-transform: uppercase;
     }
     .hero-meta {
       background: var(--bg2);
-      border-top: 1px solid var(--border);
+      border-top: none;
       padding: 1.25rem 1.5rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
     .hero-meta-item {
-      font-family: 'Syne Mono', monospace;
+      font-family: 'IBM Plex Mono', monospace;
     }
     .hero-meta-key {
       font-size: 8px;
       color: var(--muted);
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
     }
     .hero-meta-val {
-      font-size: 10px;
+      font-size: 11px;
       color: var(--text);
     }
-    .hero-meta-val.cyan { color: var(--cyan); }
+    .hero-meta-val.cyan { color: var(--text); }
 
     .hero-h1-wrap { margin-bottom: 2rem; }
+    .hero-h1-wrap h1 {
+      animation: titleEnter 0.55s ease both;
+    }
+    @keyframes titleEnter {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
     .hero-desc {
-      font-size: 15px;
+      font-size: 1.06rem;
       color: var(--muted2);
-      line-height: 1.8;
-      max-width: 460px;
+      line-height: 1.9;
+      max-width: 560px;
       margin-bottom: 2rem;
     }
     .hero-tech-stack {
       margin-bottom: 2.5rem;
     }
     .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 3rem; }
-    .hero-metrics { border-top: 1px solid var(--border); padding-top: 2rem; }
+    .hero-metrics { border-top: none; padding-top: 1.2rem; }
 
     /* ─── GRID LAYOUTS ─── */
-    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; background: transparent; }
     .g2 > * { background: var(--bg); }
-    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .kaggle-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: transparent;
+      margin-bottom: 1.5rem;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .about-tech-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1rem;
+    }
 
     /* ─── SECTION HEADER ─── */
     .section-head {
-      border-bottom: 1px solid var(--border);
+      border-bottom: none;
       padding-bottom: 1.5rem;
       margin-bottom: 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      gap: 1rem;
     }
     .section-head-right {
-      font-family: 'Syne Mono', monospace;
-      font-size: 9px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
       color: var(--muted);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
     }
 
     /* ─── PROJECT CARD ─── */
     .proj-card {
       background: var(--panel);
-      border: 1px solid var(--border);
+      border: none;
       padding: 1.5rem;
       transition: border-color 0.2s;
       position: relative;
@@ -434,18 +513,18 @@
       content: '';
       position: absolute; top: 0; left: 0;
       width: 3px; height: 100%;
-      background: var(--cyan);
+      background: var(--text);
       transform: scaleY(0);
       transform-origin: top;
       transition: transform 0.25s ease;
     }
-    .proj-card:hover { border-color: var(--border2); }
+    .proj-card:hover { border-color: transparent; }
     .proj-card:hover::after { transform: scaleY(1); }
     .proj-num {
-      font-family: 'Syne Mono', monospace;
-      font-size: 9px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
       color: var(--muted);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.09em;
       margin-bottom: 0.6rem;
     }
 
@@ -453,17 +532,17 @@
     .tl { display: flex; flex-direction: column; gap: 0; }
     .tl-item {
       display: grid;
-      grid-template-columns: 90px 1fr;
+      grid-template-columns: 100px 1fr;
       gap: 1.5rem;
       padding: 1.25rem 0;
-      border-bottom: 1px solid var(--border);
+      border-bottom: none;
     }
     .tl-item:last-child { border-bottom: none; }
     .tl-date {
-      font-family: 'Syne Mono', monospace;
-      font-size: 9px;
-      color: var(--cyan);
-      letter-spacing: 0.08em;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       padding-top: 2px;
     }
@@ -471,36 +550,31 @@
     /* ─── SKILL BAR ─── */
     .skill-row {
       display: grid;
-      grid-template-columns: 130px 1fr 40px;
+      grid-template-columns: 140px 1fr 44px;
       align-items: center;
       gap: 1rem;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+      border-bottom: none;
     }
     .skill-row:last-child { border-bottom: none; }
     .skill-name {
-      font-family: 'Syne Mono', monospace;
-      font-size: 9.5px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
       color: var(--text);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
-    .skill-bar { height: 2px; background: var(--border); position: relative; }
+    .skill-bar { height: 3px; background: var(--border); position: relative; }
     .skill-fill {
       position: absolute; left: 0; top: 0; height: 100%;
-      background: var(--cyan);
-      box-shadow: 0 0 6px rgba(255,255,224,0.3);
+      background: var(--text);
+      box-shadow: none;
     }
     .skill-pct {
-      font-family: 'Syne Mono', monospace;
-      font-size: 9px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
       color: var(--muted);
       text-align: right;
-    }
-
-    /* ─── KAGGLE ─── */
-    .medal {
-      font-size: 1.1rem;
     }
 
     /* ─── CONTACT ─── */
@@ -508,7 +582,7 @@
       display: flex; align-items: center; gap: 1.25rem;
       padding: 1rem 1.25rem;
       background: var(--panel);
-      border: 1px solid var(--border);
+      border: none;
       text-decoration: none;
       color: var(--text);
       transition: all 0.18s;
@@ -520,80 +594,256 @@
       content: '';
       position: absolute; left: 0; top: 0; bottom: 0;
       width: 2px;
-      background: var(--cyan);
+      background: var(--text);
       transform: scaleY(0);
       transition: transform 0.2s;
     }
     .contact-link:hover { border-color: var(--border2); }
     .contact-link:hover::before { transform: scaleY(1); }
     .contact-icon {
-      width: 36px; height: 36px;
-      border: 1px solid var(--border2);
+      width: 38px; height: 38px;
+      border: none;
       display: flex; align-items: center; justify-content: center;
-      font-size: 12px; color: var(--cyan);
+      font-size: 12px; color: var(--text);
       flex-shrink: 0;
     }
     .contact-key {
-      font-family: 'Syne Mono', monospace;
-      font-size: 8px;
-      letter-spacing: 0.15em;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.13em;
       color: var(--muted);
       text-transform: uppercase;
       margin-bottom: 2px;
     }
     .contact-val {
-      font-size: 13px;
+      font-size: 14px;
       color: var(--white);
+      overflow-wrap: anywhere;
     }
 
     /* ─── DECORATIVE GRID ─── */
-    .deco-grid {
-      position: absolute;
-      top: 0; right: 0;
-      width: 300px; height: 300px;
-      opacity: 0.03;
-      background-image:
-        linear-gradient(var(--cyan) 1px, transparent 1px),
-        linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
-      background-size: 30px 30px;
-      pointer-events: none;
-    }
+    .deco-grid { display: none; }
 
     /* ─── SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg2); }
     ::-webkit-scrollbar-thumb { background: var(--border2); }
-    ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text); }
 
-    /* ─── MOBILE ─── */
+    /* ─── MOBILE NAV ─── */
     .ham {
       display: none;
-      position: fixed; top: 1rem; left: 1rem; z-index: 200;
+      position: fixed;
+      top: 0.95rem;
+      right: 1rem;
+      z-index: 210;
       background: var(--bg2);
       border: 1px solid var(--border2);
-      color: var(--cyan);
-      width: 38px; height: 38px;
-      align-items: center; justify-content: center;
-      cursor: pointer; font-size: 14px;
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
     }
     .ov {
       display: none;
-      position: fixed; inset: 0; z-index: 40;
-      background: rgba(0,0,0,0.7);
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(3, 3, 2, 0.6);
     }
     .ov.open { display: block; }
 
-    @media (max-width: 900px) {
-      .sidebar { transform: translateX(-100%); transition: transform 0.25s; }
-      .sidebar.open { transform: translateX(0); }
-      .main { margin-left: 0; }
+    @media (max-width: 1200px) {
+      .nav-item {
+        padding: 8px 10px;
+        font-size: 10px;
+      }
+      .section { padding: 2.6rem; }
+      .hero-left { padding: 3.4rem 3rem; }
+      .hero-left::after { left: 3rem; right: 3rem; }
+      .about-grid { grid-template-columns: minmax(0, 1fr) 300px; }
+    }
+
+    @media (max-width: 1024px) {
       .ham { display: flex; }
-      h1 { font-size: 3.5rem; }
-      .hero-wrap { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
-      .section { padding: 2rem 1.5rem; }
-      .hero-left { padding: 4rem 1.5rem 2.5rem; }
-      .metrics-grid { grid-template-columns: repeat(2,1fr); }
+      .sidebar {
+        min-height: auto;
+        padding: 0.9rem 1rem;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .top-brand {
+        width: calc(100% - 56px);
+      }
+      .sidebar-footer {
+        display: none;
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0.4rem;
+      }
+      .nav {
+        display: none;
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 0.75rem;
+        background: var(--bg2);
+        border: none;
+        border-radius: 8px;
+        padding: 0.8rem;
+        max-height: calc(100vh - 130px);
+        overflow-y: auto;
+      }
+      .sidebar.open .nav {
+        display: flex;
+      }
+      .sidebar.open .sidebar-footer {
+        display: flex;
+      }
+      .main {
+        margin-top: 76px;
+      }
+      .section {
+        padding: 2.2rem 1.5rem;
+      }
+      .hero-wrap {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+      .hero-left {
+        border-right: none;
+        border-bottom: none;
+        padding: 3.4rem 1.5rem 2.5rem;
+      }
+      .hero-left::after {
+        left: 1.5rem;
+        right: 1.5rem;
+      }
+      .hero-img-wrap {
+        min-height: 420px;
+      }
+      .hero-meta {
+        grid-template-columns: 1fr;
+      }
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .metrics-grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+      .about-grid,
+      .skills-grid,
+      .kaggle-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-tech-columns {
+        grid-template-columns: 1fr 1fr;
+      }
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .tl-item {
+        grid-template-columns: 1fr;
+        gap: 0.45rem;
+      }
+      .tl-date {
+        padding-top: 0;
+      }
+      .skill-row {
+        grid-template-columns: 102px 1fr 44px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .status-line {
+        display: none;
+      }
+      .top-brand {
+        width: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 15px;
+      }
+      .logo-name {
+        font-size: 16px;
+      }
+      .status-line {
+        display: none;
+      }
+      h1 {
+        font-size: clamp(2.6rem, 14vw, 3.6rem);
+      }
+      h2 {
+        font-size: clamp(1.65rem, 9vw, 2.2rem);
+      }
+      .section {
+        padding: 1.8rem 1rem;
+      }
+      .hero-left {
+        padding: 3.1rem 1rem 2rem;
+      }
+      .hero-left::after {
+        left: 1rem;
+        right: 1rem;
+      }
+      .hero-desc {
+        font-size: 0.98rem;
+      }
+      .hero-img-wrap {
+        min-height: 320px;
+      }
+      .hero-meta {
+        padding: 1rem;
+      }
+      .hero-btns {
+        gap: 8px;
+      }
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+      .metrics-grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .metric {
+        padding: 1rem;
+      }
+      .contact-link {
+        padding: 0.85rem 0.95rem;
+      }
+      .deco-grid {
+        display: none;
+      }
+      .about-tech-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+      body.js-enhanced .section,
+      .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .hero-h1-wrap h1 {
+        animation: none;
+      }
+      .hero-img {
+        transform: none !important;
+      }
     }
   </style>
 </head>
@@ -602,29 +852,34 @@
 <!-- Hamburger -->
 <button class="ham" id="ham" aria-label="Menu"><i class="fas fa-bars"></i></button>
 <div class="ov" id="ov" onclick="closeSidebar()"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <div class="shell">
 
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
-    <div class="logo">SYSTEM_ID // AM_01</div>
-    <div class="logo-name">Aryan Mishra</div>
-    <div class="status-line">
-      <span class="status-dot"></span>
-      Active_Node · Open to Internships
+    <div class="top-brand">
+      <div>
+        <div class="logo">Portfolio</div>
+        <div class="logo-name">Aryan Mishra</div>
+      </div>
+      <div class="status-line">
+        <span class="status-dot"></span>
+        Open to Internships
+      </div>
     </div>
 
     <nav class="nav">
-      <div class="nav-label">// Navigation</div>
-      <div class="nav-item active" data-s="home"><i class="fas fa-terminal"></i>Home</div>
-      <div class="nav-item" data-s="about"><i class="fas fa-user"></i>About</div>
-      <div class="nav-item" data-s="skills"><i class="fas fa-code"></i>Skills</div>
-      <div class="nav-item" data-s="projects"><i class="fas fa-folder-open"></i>Projects</div>
-      <div class="nav-item" data-s="kaggle"><i class="fab fa-kaggle"></i>Kaggle</div>
-      <div class="nav-item" data-s="certifications"><i class="fas fa-certificate"></i>Certifications</div>
-      <div class="nav-item" data-s="education"><i class="fas fa-graduation-cap"></i>Education</div>
-      <div class="nav-item" data-s="blog"><i class="fas fa-rss"></i>Blog</div>
-      <div class="nav-item" data-s="contact"><i class="fas fa-satellite-dish"></i>Contact</div>
+      <div class="nav-label">Navigation</div>
+      <a class="nav-item active" href="#home"><i class="fas fa-terminal"></i><span>Home</span></a>
+      <a class="nav-item" href="#about"><i class="fas fa-user"></i><span>About</span></a>
+      <a class="nav-item" href="#skills"><i class="fas fa-code"></i><span>Skills</span></a>
+      <a class="nav-item" href="#projects"><i class="fas fa-folder-open"></i><span>Projects</span></a>
+      <a class="nav-item" href="#kaggle"><i class="fab fa-kaggle"></i><span>Kaggle</span></a>
+      <a class="nav-item" href="#certifications"><i class="fas fa-certificate"></i><span>Certifications</span></a>
+      <a class="nav-item" href="#education"><i class="fas fa-graduation-cap"></i><span>Education</span></a>
+      <a class="nav-item" href="#blog"><i class="fas fa-rss"></i><span>Blog</span></a>
+      <a class="nav-item" href="#contact"><i class="fas fa-satellite-dish"></i><span>Contact</span></a>
     </nav>
 
     <div class="sidebar-footer">
@@ -639,22 +894,24 @@
   <main class="main" id="main">
 
     <!-- HOME -->
-    <section class="section active" id="home">
+    <section class="section" id="home">
       <div class="hero-wrap">
         <div class="hero-left">
           <div class="deco-grid"></div>
 
           <div class="hero-h1-wrap">
-            <div class="eyebrow">Data Scientist &amp; ML Engineer</div>
-            <h1>Building<span>Intelligence.</span></h1>
+            <div class="eyebrow">Machine Learning Portfolio</div>
+            <h1>Data<span>Scientist.</span></h1>
           </div>
 
           <p class="hero-desc">
-            I build ML systems end-to-end — from raw data to deployed models. Kaggle Datasets Master · NLP · LLMs · FastAPI · Docker. Open to internships and research collaborations.
+            End-to-end ML systems — from data to deployment.<br>
+            Kaggle Datasets Master · NLP · LLMs · FastAPI · Docker<br>
+            Open to internships &amp; research collaborations.
           </p>
 
           <div class="hero-tech-stack">
-            <div class="eyebrow" style="margin-bottom:0.5rem;">// Tech Stack</div>
+            <div class="eyebrow" style="margin-bottom:0.5rem;">Tech Stack</div>
             <div class="tags">
               <span class="tag">Python</span>
               <span class="tag">PyTorch</span>
@@ -667,13 +924,13 @@
           </div>
 
           <div class="hero-btns">
-            <a href="#" class="btn btn-cyan" onclick="navigate('projects');return false;"><i class="fas fa-folder"></i>View Projects</a>
+            <a href="#projects" class="btn btn-cyan"><i class="fas fa-folder"></i>View Projects</a>
             <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i>GitHub</a>
-            <a href="#" class="btn btn-outline" onclick="navigate('contact');return false;"><i class="fas fa-satellite-dish"></i>Connect</a>
+            <a href="#contact" class="btn btn-outline"><i class="fas fa-satellite-dish"></i>Connect</a>
           </div>
 
           <div class="hero-metrics">
-            <div class="eyebrow" style="margin-bottom:0.75rem;">// Metrics // System_Load</div>
+            <div class="eyebrow" style="margin-bottom:0.75rem;">Highlights</div>
             <div class="metrics-grid">
               <div class="metric">
                 <div class="metric-val accent">158</div>
@@ -699,7 +956,7 @@
           <div class="hero-img-wrap">
             <img src="profile_hd.png" alt="Aryan Mishra" class="hero-img">
             <div class="hero-img-overlay"></div>
-            <div class="hero-img-label">01 / IDENTITY // ARYAN_MISHRA</div>
+            <div class="hero-img-label">Aryan Mishra</div>
           </div>
           <div class="hero-meta">
             <div class="hero-meta-item">
@@ -708,7 +965,7 @@
             </div>
             <div class="hero-meta-item">
               <div class="hero-meta-key">Status</div>
-              <div class="hero-meta-val cyan">Active_Node_01</div>
+              <div class="hero-meta-val cyan">Available</div>
             </div>
             <div class="hero-meta-item">
               <div class="hero-meta-key">Tier</div>
@@ -728,13 +985,13 @@
       <div class="deco-grid"></div>
       <div class="section-head">
         <div>
-          <div class="eyebrow">// Professional_Narrative</div>
+          <div class="eyebrow">Professional Narrative</div>
           <h2>About <span>Me.</span></h2>
         </div>
-        <div class="section-head-right">IIST · Indore · 2023–2027</div>
+        <div class="section-head-right">B.Tech CSE (Data Science) · 2023-2027</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 340px;gap:2.5rem;align-items:start;">
+      <div class="about-grid">
         <div>
           <p style="font-size:15px;color:var(--text);margin-bottom:1.2rem;line-height:1.9;">
             3rd-year B.Tech Computer Science student at Indore Institute of Science and Technology, specializing in Data Science. I build ML systems end-to-end — from exploratory analysis and feature engineering to model deployment with FastAPI and Docker.
@@ -747,11 +1004,11 @@
           </p>
 
           <div class="panel">
-            <div class="panel-label">// Currently_Working_On</div>
+            <div class="panel-label">Currently Working On</div>
             <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="font-family:'Syne Mono',monospace;font-size:10.5px;color:var(--text);">→ Predicting Irrigation Need (Kaggle)</div>
-              <div style="font-family:'Syne Mono',monospace;font-size:10.5px;color:var(--text);">→ NVIDIA Nemotron Reasoning (Kaggle)</div>
-              <div style="font-family:'Syne Mono',monospace;font-size:10.5px;color:var(--text);">→ LLM Fine-tuning &amp; MLOps Tooling</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);">→ Predicting Irrigation Need (Kaggle)</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);">→ NVIDIA Nemotron Reasoning (Kaggle)</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);">→ LLM Fine-tuning &amp; MLOps Tooling</div>
             </div>
           </div>
 
@@ -763,9 +1020,9 @@
           </div>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);">
+        <div style="display:flex;flex-direction:column;gap:12px;">
           <div style="background:var(--panel);">
-            <div class="metrics-grid" style="grid-template-columns:1fr 1fr;">
+            <div class="metrics-grid metrics-grid-2">
               <div class="metric">
                 <div class="metric-val accent">158</div>
                 <div class="metric-lbl">Kaggle Rank</div>
@@ -785,17 +1042,17 @@
             </div>
           </div>
           <div class="panel" style="margin-top:0;">
-            <div class="panel-label">// Tech_Stack</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 1rem;">
+            <div class="panel-label">Tech Stack</div>
+            <div class="about-tech-columns">
               <div>
-                <div style="font-family:'Syne Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">[ML / AI]</div>
-                <div style="font-family:'Syne Mono',monospace;font-size:9px;color:var(--text);line-height:2;">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">[ML / AI]</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text);line-height:2;">
                   PyTorch<br>scikit-learn<br>TensorFlow<br>LangChain<br>XGBoost
                 </div>
               </div>
               <div>
-                <div style="font-family:'Syne Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">[Depl_Env]</div>
-                <div style="font-family:'Syne Mono',monospace;font-size:9px;color:var(--text);line-height:2;">
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">[Depl_Env]</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text);line-height:2;">
                   FastAPI<br>Docker<br>PostgreSQL<br>MLflow<br>GitHub Actions
                 </div>
               </div>
@@ -810,15 +1067,15 @@
       <div class="deco-grid"></div>
       <div class="section-head">
         <div>
-          <div class="eyebrow">// Technical_Ecology</div>
+          <div class="eyebrow">Technical Skills</div>
           <h2>Core <span>Skills.</span></h2>
         </div>
-        <div class="section-head-right">Precision: 99.2% // Recall: 97.8%</div>
+        <div class="section-head-right">Precision: 99.2% | Recall: 97.8%</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+      <div class="skills-grid">
         <div class="panel">
-          <div class="panel-label">// ML / AI Systems</div>
+          <div class="panel-label">ML and AI Systems</div>
           <div class="skill-row">
             <div class="skill-name">PyTorch</div>
             <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
@@ -852,7 +1109,7 @@
         </div>
 
         <div class="panel">
-          <div class="panel-label">// Data & Infrastructure</div>
+          <div class="panel-label">Data and Infrastructure</div>
           <div class="skill-row">
             <div class="skill-name">Python</div>
             <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
@@ -888,7 +1145,7 @@
 
       <div style="margin-top:1.5rem;">
         <div class="panel">
-          <div class="panel-label">// Ancillary_Vector_Map</div>
+          <div class="panel-label">Additional Skills</div>
           <div class="tags" style="gap:6px;">
             <span class="tag">NLP</span><span class="tag">LLMs</span><span class="tag">Anomaly Detection</span>
             <span class="tag">Feature Engineering</span><span class="tag">EDA</span><span class="tag">Statistical Modeling</span>
@@ -906,7 +1163,7 @@
       <div class="deco-grid"></div>
       <div class="section-head">
         <div>
-          <div class="eyebrow">// Selected_Research</div>
+          <div class="eyebrow">Selected Projects</div>
           <h2>Featured <span>Projects.</span></h2>
         </div>
         <div class="section-head-right">31 Total Repositories</div>
@@ -940,27 +1197,27 @@
       <div class="deco-grid"></div>
       <div class="section-head">
         <div>
-          <div class="eyebrow">// Competitive_ML</div>
+          <div class="eyebrow">Competitive ML</div>
           <h2>Kaggle <span>Profile.</span></h2>
         </div>
-        <div class="section-head-right">Progression System // Active</div>
+        <div class="section-head-right">Progression System Active</div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:1.5rem;">
+      <div class="kaggle-grid">
         <div class="panel" style="padding:2rem;">
-          <div class="panel-label">// Current_Tier</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:800;color:var(--cyan);text-transform:uppercase;line-height:1;margin-bottom:0.5rem;">Datasets Master</div>
-          <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--muted2);">Ranked 158 of 9,062 globally</div>
+          <div class="panel-label">Current Tier</div>
+          <div style="font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;color:var(--text);text-transform:uppercase;line-height:1;margin-bottom:0.5rem;">Datasets Master</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);">Ranked 158 of 9,062 globally</div>
         </div>
         <div class="panel" style="padding:2rem;">
-          <div class="panel-label">// Medal_Count</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:800;color:var(--white);line-height:1;margin-bottom:0.5rem;">🥇 1 · 🥈 4</div>
-          <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--muted2);">Code: on path to Expert (2/5 bronze)</div>
+          <div class="panel-label">Medal Count</div>
+          <div style="font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;color:var(--white);line-height:1;margin-bottom:0.5rem;">🥇 1 · 🥈 4</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);">Code: on path to Expert (2/5 bronze)</div>
         </div>
       </div>
 
       <div style="margin-bottom:1.5rem;">
-        <div class="eyebrow" style="margin-bottom:0.75rem;">// Published_Datasets (7)</div>
+        <div class="eyebrow" style="margin-bottom:0.75rem;">Published Datasets (7)</div>
         <div class="tl">
           <div class="tl-item"><div class="tl-date">39 votes</div><div><h3>Cyber Attacks: Financial &amp; Market Impact</h3></div></div>
           <div class="tl-item"><div class="tl-date">45 votes</div><div><h3>Tech Hiring &amp; Layoffs: Workforce Data (2000–2025)</h3></div></div>
@@ -970,7 +1227,7 @@
         </div>
       </div>
 
-      <div class="eyebrow" style="margin-bottom:0.75rem;">// Competitions</div>
+      <div class="eyebrow" style="margin-bottom:0.75rem;">Competitions</div>
       <div class="tl">
         <div class="tl-item"><div class="tl-date">Apr 2026</div><div><h3>March Machine Learning Mania 2026</h3><p style="font-size:12px;margin-top:3px;">223 / 3,462 teams · Top 6.4% · 🥉 Bronze Medal</p></div></div>
         <div class="tl-item"><div class="tl-date">Feb 2026</div><div><h3>Santa 2025 – Christmas Tree Packing</h3><p style="font-size:12px;margin-top:3px;">743 / 3,357 teams</p></div></div>
@@ -988,7 +1245,7 @@
       <div class="deco-grid"></div>
       <div class="section-head">
         <div>
-          <div class="eyebrow">// Learning_Protocols</div>
+          <div class="eyebrow">Learning and Certifications</div>
           <h2>Certifications <span>&amp; Awards.</span></h2>
         </div>
       </div>
@@ -1065,7 +1322,7 @@
       <div class="deco-grid"></div>
       <div class="section-head">
         <div>
-          <div class="eyebrow">// Academic_Record</div>
+          <div class="eyebrow">Academic Record</div>
           <h2>Education <span>Log.</span></h2>
         </div>
       </div>
@@ -1076,7 +1333,7 @@
           <div>
             <div class="eyebrow" style="margin-bottom:4px;">Primary_Node</div>
             <h3 style="font-size:16px;margin-bottom:4px;">Indore Institute of Science and Technology</h3>
-            <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--cyan);margin-bottom:8px;">B.Tech CSE · Data Science Specialization</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:8px;">B.Tech CSE · Data Science Specialization</div>
             <p style="font-size:13px;">Focus: Machine Learning, NLP, Statistical Analysis, Data Engineering, Software Engineering. Indore, Madhya Pradesh.</p>
           </div>
         </div>
@@ -1085,7 +1342,7 @@
           <div>
             <div class="eyebrow" style="margin-bottom:4px;">Prior_Node</div>
             <h3 style="font-size:15px;margin-bottom:4px;">Rose Petal Higher Secondary School</h3>
-            <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--muted2);">Class XII · Science (PCM + Biology) · Rewa, Madhya Pradesh</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);">Class XII · Science (PCM + Biology) · Rewa, Madhya Pradesh</div>
           </div>
         </div>
         <div class="tl-item" style="padding:1.5rem 0;">
@@ -1093,7 +1350,7 @@
           <div>
             <div class="eyebrow" style="margin-bottom:4px;">Base_Node</div>
             <h3 style="font-size:15px;margin-bottom:4px;">Gyanasthali Sr. Secondary School</h3>
-            <div style="font-family:'Syne Mono',monospace;font-size:10px;color:var(--muted2);">Class X · General Studies · Rewa, Madhya Pradesh</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);">Class X · General Studies · Rewa, Madhya Pradesh</div>
           </div>
         </div>
       </div>
@@ -1104,10 +1361,10 @@
       <div class="deco-grid"></div>
       <div class="section-head">
         <div>
-          <div class="eyebrow">// Writing_Protocol</div>
+          <div class="eyebrow">Writing</div>
           <h2>Latest <span>Entries.</span></h2>
         </div>
-        <div class="section-head-right">Hashnode // Every 2 Weeks</div>
+        <div class="section-head-right">Hashnode | Every 2 Weeks</div>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:8px;">
@@ -1119,13 +1376,13 @@
                 <h3 style="font-size:16px;margin-bottom:6px;">How I Became a Kaggle Datasets Master in 90 Days and the System that Got Me There</h3>
                 <p style="font-size:13px;">100+ days of consistency, what it built, and what a stranger's first upvote taught me about building in public.</p>
               </div>
-              <i class="fas fa-arrow-up-right-from-square" style="color:var(--cyan);font-size:11px;flex-shrink:0;margin-top:3px;"></i>
+              <i class="fas fa-arrow-up-right-from-square" style="color:var(--muted);font-size:11px;flex-shrink:0;margin-top:3px;"></i>
             </div>
           </div>
         </a>
 
         <div class="panel" style="text-align:center;padding:2rem;">
-          <div style="font-family:'Syne Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px;">Pending_Transmission</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px;">Pending_Transmission</div>
           <div style="font-size:13px;color:var(--muted2);">More posts coming soon · Writing every 2 weeks on Hashnode</div>
         </div>
       </div>
@@ -1140,19 +1397,19 @@
       <div class="deco-grid"></div>
       <div class="section-head">
         <div>
-          <div class="eyebrow">// Establish_Connection</div>
+          <div class="eyebrow">Contact</div>
           <h2>Send <span>Transmission.</span></h2>
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;">
+      <div class="contact-grid">
         <div>
           <p style="font-size:15px;margin-bottom:2rem;">Open to internships, research collaborations, and open-source ML projects. Response latency: 24–48 hours for non-critical node communications.</p>
 
           <a href="mailto:aryanmishra.dev@gmail.com" class="contact-link">
             <div class="contact-icon"><i class="fas fa-envelope"></i></div>
             <div>
-              <div class="contact-key">Email // Primary_Channel</div>
+              <div class="contact-key">Email</div>
               <div class="contact-val">aryanmishra.dev@gmail.com</div>
             </div>
             <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
@@ -1160,7 +1417,7 @@
           <a href="https://www.linkedin.com/in/aryanmdev/" target="_blank" rel="noopener" class="contact-link">
             <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
             <div>
-              <div class="contact-key">LinkedIn // Professional_Node</div>
+              <div class="contact-key">LinkedIn</div>
               <div class="contact-val">linkedin.com/in/aryanmdev</div>
             </div>
             <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
@@ -1168,7 +1425,7 @@
           <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener" class="contact-link">
             <div class="contact-icon"><i class="fab fa-github"></i></div>
             <div>
-              <div class="contact-key">GitHub // Code_Repository</div>
+              <div class="contact-key">GitHub</div>
               <div class="contact-val">github.com/Aryanmishra-dev</div>
             </div>
             <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
@@ -1176,7 +1433,7 @@
           <a href="https://www.kaggle.com/aryanmdev" target="_blank" rel="noopener" class="contact-link">
             <div class="contact-icon"><i class="fab fa-kaggle"></i></div>
             <div>
-              <div class="contact-key">Kaggle // Competition_Node</div>
+              <div class="contact-key">Kaggle</div>
               <div class="contact-val">kaggle.com/aryanmdev · Datasets Master</div>
             </div>
             <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
@@ -1184,23 +1441,23 @@
           <div class="contact-link" style="cursor:default;">
             <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
             <div>
-              <div class="contact-key">Location // Physical_Node</div>
+              <div class="contact-key">Location</div>
               <div class="contact-val">Indore, Madhya Pradesh, India</div>
             </div>
           </div>
         </div>
 
         <div class="panel" style="padding:1.75rem;">
-          <div class="panel-label">// Auto_Reply_Protocol: Active</div>
+          <div class="panel-label">Response Policy: Active</div>
           <p style="font-size:13px;margin-bottom:1.5rem;">Expect latency of 24–48 hours for non-critical node communications. For urgent transmissions, use the email channel directly.</p>
-          <div style="font-family:'Syne Mono',monospace;font-size:9px;color:var(--muted);line-height:2.2;letter-spacing:0.06em;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);line-height:2.2;letter-spacing:0.06em;">
             SYSTEM_STATUS: ONLINE<br>
             OPEN_TO: Internships · Research · Collab<br>
             AVAILABILITY: Immediate<br>
             TIMEZONE: IST (UTC+5:30)<br>
             PREFERRED_CHANNEL: Email / LinkedIn
           </div>
-          <div style="margin-top:1.5rem;height:1px;background:var(--border);"></div>
+          <div style="margin-top:1.5rem;height:1px;background:transparent;"></div>
           <div style="margin-top:1rem;display:flex;gap:8px;">
             <span class="badge">Open to Internships</span>
             <span class="badge">Remote OK</span>
@@ -1208,9 +1465,9 @@
         </div>
       </div>
 
-      <div style="margin-top:4rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-        <div style="font-family:'Syne Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;">© 2026 DATA_SCIENTIST // SYSTEM_ID: AM_01</div>
-        <div style="font-family:'Syne Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.1em;">LATENCY: 14MS // BUFFER: STABLE</div>
+      <div style="margin-top:4rem;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;">© 2026 Aryan Mishra</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;">Open to internships and research collaborations</div>
       </div>
     </section>
 
@@ -1218,31 +1475,116 @@
 </div>
 
 <script>
-  function navigate(id) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    const sec = document.getElementById(id);
-    if (sec) sec.classList.add('active');
-    const nav = document.querySelector(`[data-s="${id}"]`);
-    if (nav) nav.classList.add('active');
-    document.getElementById('main').scrollTo(0, 0);
-    closeSidebar();
-  }
-  document.querySelectorAll('.nav-item').forEach(el => {
-    el.addEventListener('click', () => navigate(el.dataset.s));
-  });
+  document.body.classList.add('js-enhanced');
 
+  const sections = Array.from(document.querySelectorAll('.section'));
+  const navItems = Array.from(document.querySelectorAll('.nav-item[href^="#"]'));
   const ham = document.getElementById('ham');
   const sidebar = document.getElementById('sidebar');
   const ov = document.getElementById('ov');
+  const scrollProgress = document.getElementById('scrollProgress');
+  const heroImage = document.querySelector('.hero-img');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  ham.setAttribute('aria-expanded', 'false');
+
   ham.addEventListener('click', () => {
     sidebar.classList.toggle('open');
     ov.classList.toggle('open');
+    document.body.classList.toggle('menu-open', sidebar.classList.contains('open'));
+    ham.setAttribute('aria-expanded', sidebar.classList.contains('open') ? 'true' : 'false');
   });
+
   function closeSidebar() {
     sidebar.classList.remove('open');
     ov.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    ham.setAttribute('aria-expanded', 'false');
   }
+
+  navItems.forEach((link) => {
+    link.addEventListener('click', () => closeSidebar());
+  });
+
+  function updateActiveNav() {
+    const offset = 130;
+    let currentId = sections[0]?.id;
+
+    sections.forEach((section) => {
+      if (window.scrollY + offset >= section.offsetTop) {
+        currentId = section.id;
+      }
+    });
+
+    navItems.forEach((item) => {
+      const isActive = item.getAttribute('href') === `#${currentId}`;
+      item.classList.toggle('active', isActive);
+    });
+  }
+
+  function updateScrollProgress() {
+    const doc = document.documentElement;
+    const total = doc.scrollHeight - doc.clientHeight;
+    const progress = total > 0 ? doc.scrollTop / total : 0;
+    scrollProgress.style.transform = `scaleX(${progress})`;
+  }
+
+  function updateParallax() {
+    if (!heroImage || prefersReducedMotion || window.innerWidth <= 1024) {
+      if (heroImage) heroImage.style.transform = 'translateY(0)';
+      return;
+    }
+    const rect = heroImage.getBoundingClientRect();
+    const shift = Math.max(Math.min(rect.top * -0.08, 24), -24);
+    heroImage.style.transform = `translateY(${shift}px) scale(1.04)`;
+  }
+
+  sections.forEach((section) => {
+    const revealTargets = section.querySelectorAll('.panel, .metric, .proj-card, .skill-row, .tl-item, .contact-link, .tag, .badge');
+    revealTargets.forEach((el, index) => {
+      el.classList.add('reveal-item');
+      el.style.setProperty('--stagger', `${Math.min(index * 55, 420)}ms`);
+    });
+  });
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    },
+    { threshold: 0.16, rootMargin: '0px 0px -12% 0px' }
+  );
+
+  sections.forEach((section) => revealObserver.observe(section));
+  if (sections[0]) sections[0].classList.add('in-view');
+
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveNav();
+        updateScrollProgress();
+        updateParallax();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) closeSidebar();
+    onScroll();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSidebar();
+  });
 </script>
 </body>
 </html>
