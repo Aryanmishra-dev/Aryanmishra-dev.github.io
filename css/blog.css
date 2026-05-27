@@ -1,0 +1,39 @@
+.blog-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.blog-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.blog-brief {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.blog-cta {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  transition: color var(--transition-fast);
+}
+
+.blog-card:hover .blog-cta {
+  color: var(--color-accent-dim);
+}

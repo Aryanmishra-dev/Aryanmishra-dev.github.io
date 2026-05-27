@@ -1,0 +1,190 @@
+.tag {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      padding: 4px 10px;
+      border: 1px solid var(--border2);
+      color: var(--text);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all 0.15s;
+    }
+
+.tag:hover { color: var(--text); border-color: var(--text); background: rgba(255,255,255,0.04); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.18s;
+    }
+
+.btn-cyan {
+      background: var(--cyan);
+      color: #17130a;
+    }
+
+.btn-cyan:hover { background: var(--cyan2); box-shadow: none; }
+
+.btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border2);
+    }
+
+.btn-outline:hover { border-color: var(--text); box-shadow: none; background: rgba(255,255,255,0.04); }
+
+.proj-card::after {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--text);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.25s ease;
+    }
+
+.proj-card:hover { border-color: transparent; }
+
+.proj-card:hover::after { transform: scaleY(1); }
+
+.proj-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.09em;
+      margin-bottom: 0.6rem;
+    }
+
+.filter-btn {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+.filter-btn.active {
+  background: var(--color-text-primary);
+  color: var(--color-bg-base);
+  border-color: var(--color-text-primary);
+}
+
+.project-card {
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-normal);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.project-number { color: var(--color-text-muted); }
+
+.project-tag { 
+  background: var(--color-bg-subtle);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+}
+
+.project-stat { color: var(--color-success); font-weight: 500; }
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.project-desc {
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.project-approach {
+  margin-bottom: 1.5rem;
+}
+
+.project-approach p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.stack-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-ghost {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.btn-ghost:hover {
+  color: var(--color-accent);
+}
+
+.btn-accent {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.btn-accent:hover {
+  color: var(--color-accent-dim);
+}

@@ -1,0 +1,74 @@
+.panel::before {
+      content: none;
+    }
+
+.panel-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+      opacity: 0.78;
+    }
+
+.kaggle-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: transparent;
+      margin-bottom: 1.5rem;
+    }
+
+.rank-bar-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.rank-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  background: var(--color-bg-subtle);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.rank-bar-track {
+  height: 8px;
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-pill);
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.rank-bar-fill {
+  width: var(--fill-pct);
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: var(--radius-pill);
+  transition: width 1.2s var(--transition-slow);
+}
+
+.rank-marker {
+  position: absolute;
+  top: -24px;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.rank-bar-ends {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}

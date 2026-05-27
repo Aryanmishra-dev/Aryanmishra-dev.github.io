@@ -1,0 +1,12 @@
+.about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+.about-tech-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1rem;
+    }

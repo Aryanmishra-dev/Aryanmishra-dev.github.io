@@ -1,0 +1,18 @@
+.tl-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: none;
+    }
+
+.tl-item:last-child { border-bottom: none; }
+
+.tl-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
