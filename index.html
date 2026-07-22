@@ -1,696 +1,655 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html class="light" lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aryan Mishra — Data Scientist & ML Engineer · IIST Indore</title>
-  <meta name="description" content="B.Tech CSE (Data Science) student at IIST Indore. Kaggle Datasets Master (Rank #158 globally). Building end-to-end ML systems: NLP, LLMs, FastAPI, Docker. Open to internships 2025–26.">
-  <meta name="keywords" content="Aryan Mishra, Data Scientist, Machine Learning Engineer, Kaggle Datasets Master, NLP, LLMs, FastAPI, IIST Indore, ML Internship India">
-  <meta name="author" content="Aryan Mishra">
-  <meta name="robots" content="index, follow">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+:root {
+  --color-on-tertiary-fixed: #191c1d;
+  --color-outline-variant: #c3c6d7;
+  --color-surface-container-low: #eff4ff;
+  --color-surface-dim: #cbdbf5;
+  --color-secondary-fixed-dim: #bcc7de;
+  --color-inverse-on-surface: #eaf1ff;
+  --color-on-surface-variant: #434655;
+  --color-surface-container-high: #dce9ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-tertiary-fixed-variant: #43474b;
+  --color-on-primary-fixed-variant: #003ea7;
+  --color-error: #ba1a1a;
+  --color-on-secondary: #ffffff;
+  --color-surface-tint: #346EF6;
+  --color-on-secondary-fixed-variant: #3c475a;
+  --color-inverse-surface: #213145;
+  --color-on-secondary-fixed: #111c2d;
+  --color-surface-container-highest: #d3e4fe;
+  --color-surface-container: #e5eeff;
+  --color-background: #f8f9ff;
+  --color-tertiary-container: #707579;
+  --color-primary: #346EF6;
+  --color-primary-fixed: #dbe1ff;
+  --color-surface: #f8f9ff;
+  --color-inverse-primary: #b4c5ff;
+  --color-primary-container: #346EF6;
+  --color-on-error: #ffffff;
+  --color-primary-fixed-dim: #b4c5ff;
+  --color-on-secondary-container: #586377;
+  --color-on-tertiary-container: #fbfcff;
+  --color-surface-bright: #f8f9ff;
+  --color-surface-variant: #d3e4fe;
+  --color-tertiary-fixed-dim: #c3c7cb;
+  --color-tertiary: #585d60;
+  --color-on-tertiary: #ffffff;
+  --color-secondary: #545f73;
+  --color-on-primary-container: #fefcff;
+  --color-outline: #737686;
+  --color-on-surface: #0b1c30;
+  --color-error-container: #ffdad6;
+  --color-on-primary-fixed: #00174b;
+  --color-tertiary-fixed: #dfe3e7;
+  --color-secondary-container: #d5e0f8;
+  --color-on-background: #0b1c30;
+  --color-secondary-fixed: #d8e3fb;
+  --color-on-primary: #ffffff;
+  --color-on-error-container: #93000a;
+}
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://aryanmishra-dev.github.io/">
-  <meta property="og:title" content="Aryan Mishra — Data Scientist & ML Engineer">
-  <meta property="og:description" content="Kaggle Datasets Master · Rank #158 globally · B.Tech CS (Data Science) · NLP · LLMs · FastAPI · Open to internships">
-  <meta property="og:image" content="https://aryanmishra-dev.github.io/assets/images/og-cover.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Aryan Mishra — Data Scientist & ML Engineer">
-  <meta name="twitter:description" content="Kaggle Datasets Master · Rank #158 · NLP · LLMs · Open to internships">
-  <meta name="twitter:image" content="https://aryanmishra-dev.github.io/assets/images/og-cover.png">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://aryanmishra-dev.github.io/">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
-  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-
-  <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/main.css">
-  <!-- Scripts -->
-
-  <script src="js/main.js" type="module"></script>
+.dark {
+  --color-on-tertiary-fixed: #d2dee2;
+  --color-outline-variant: #475569;
+  --color-surface-container-low: #0f172a;
+  --color-surface-dim: #171819;
+  --color-secondary-fixed-dim: #1e1f20;
+  --color-inverse-on-surface: #0f172a;
+  --color-on-surface-variant: #94a3b8;
+  --color-surface-container-high: #334155;
+  --color-surface-container-lowest: #020617;
+  --color-on-tertiary-fixed-variant: #aaafb3;
+  --color-on-primary-fixed-variant: #2c3c58;
+  --color-error: #452727;
+  --color-on-secondary: #191919;
+  --color-surface-tint: #346EF6;
+  --color-on-secondary-fixed-variant: #8993a4;
+  --color-inverse-surface: #f8fafc;
+  --color-on-secondary-fixed: #90aad2;
+  --color-surface-container-highest: #475569;
+  --color-surface-container: #1e293b;
+  --color-background: #0f172a;
+  --color-tertiary-container: #818386;
+  --color-primary: #3b82f6;
+  --color-primary-fixed: #1e3a8a;
+  --color-surface: #1e293b;
+  --color-inverse-primary: #151619;
+  --color-primary-container: #1d4ed8;
+  --color-on-error: #191919;
+  --color-primary-fixed-dim: #151619;
+  --color-on-secondary-container: #cbd5e1;
+  --color-on-tertiary-container: #191919;
+  --color-surface-bright: #334155;
+  --color-surface-variant: #171819;
+  --color-tertiary-fixed-dim: #323334;
+  --color-tertiary: #989c9f;
+  --color-on-tertiary: #191919;
+  --color-secondary: #797f8c;
+  --color-on-primary-container: #eff6ff;
+  --color-outline: #64748b;
+  --color-on-surface: #f8fafc;
+  --color-error-container: #191717;
+  --color-on-primary-fixed: #bfdbfe;
+  --color-tertiary-fixed: #191919;
+  --color-secondary-container: #334155;
+  --color-on-background: #f8fafc;
+  --color-secondary-fixed: #171819;
+  --color-on-primary: #191919;
+  --color-on-error-container: #6c3639;
+}
+</style>
+    <script id="tailwind-config">
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "on-tertiary-fixed": "var(--color-on-tertiary-fixed)",
+                            "outline-variant": "var(--color-outline-variant)",
+                            "surface-container-low": "var(--color-surface-container-low)",
+                            "surface-dim": "var(--color-surface-dim)",
+                            "secondary-fixed-dim": "var(--color-secondary-fixed-dim)",
+                            "inverse-on-surface": "var(--color-inverse-on-surface)",
+                            "on-surface-variant": "var(--color-on-surface-variant)",
+                            "surface-container-high": "var(--color-surface-container-high)",
+                            "surface-container-lowest": "var(--color-surface-container-lowest)",
+                            "on-tertiary-fixed-variant": "var(--color-on-tertiary-fixed-variant)",
+                            "on-primary-fixed-variant": "var(--color-on-primary-fixed-variant)",
+                            "error": "var(--color-error)",
+                            "on-secondary": "var(--color-on-secondary)",
+                            "surface-tint": "var(--color-surface-tint)",
+                            "on-secondary-fixed-variant": "var(--color-on-secondary-fixed-variant)",
+                            "inverse-surface": "var(--color-inverse-surface)",
+                            "on-secondary-fixed": "var(--color-on-secondary-fixed)",
+                            "surface-container-highest": "var(--color-surface-container-highest)",
+                            "surface-container": "var(--color-surface-container)",
+                            "background": "var(--color-background)",
+                            "tertiary-container": "var(--color-tertiary-container)",
+                            "primary": "var(--color-primary)",
+                            "primary-fixed": "var(--color-primary-fixed)",
+                            "surface": "var(--color-surface)",
+                            "inverse-primary": "var(--color-inverse-primary)",
+                            "primary-container": "var(--color-primary-container)",
+                            "on-error": "var(--color-on-error)",
+                            "primary-fixed-dim": "var(--color-primary-fixed-dim)",
+                            "on-secondary-container": "var(--color-on-secondary-container)",
+                            "on-tertiary-container": "var(--color-on-tertiary-container)",
+                            "surface-bright": "var(--color-surface-bright)",
+                            "surface-variant": "var(--color-surface-variant)",
+                            "tertiary-fixed-dim": "var(--color-tertiary-fixed-dim)",
+                            "tertiary": "var(--color-tertiary)",
+                            "on-tertiary": "var(--color-on-tertiary)",
+                            "secondary": "var(--color-secondary)",
+                            "on-primary-container": "var(--color-on-primary-container)",
+                            "outline": "var(--color-outline)",
+                            "on-surface": "var(--color-on-surface)",
+                            "error-container": "var(--color-error-container)",
+                            "on-primary-fixed": "var(--color-on-primary-fixed)",
+                            "tertiary-fixed": "var(--color-tertiary-fixed)",
+                            "secondary-container": "var(--color-secondary-container)",
+                            "on-background": "var(--color-on-background)",
+                            "secondary-fixed": "var(--color-secondary-fixed)",
+                            "on-primary": "var(--color-on-primary)",
+                            "on-error-container": "var(--color-on-error-container)"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "fontFamily": {
+                            "body-lg": ["Inter", "Hanken Grotesk"],
+                            "label-caps": ["JetBrains Mono", "Hanken Grotesk"],
+                            "body-md": ["Inter", "Hanken Grotesk"],
+                            "headline-md": ["Hanken Grotesk"],
+                            "headline-lg": ["Hanken Grotesk"],
+                            "headline-lg-mobile": ["Hanken Grotesk"],
+                            "display-lg": ["Hanken Grotesk"]
+                        },
+                        "fontSize": {
+                            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                            "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                            "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "headline-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                            "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "800" }]
+                        }
+                    },
+                },
+            }
+        } catch (_e) { }
+    </script>
 </head>
-<body>
-<a href="#main" class="skip-link">Skip to content</a>
 
-<!-- Hamburger -->
-<button class="ham" id="ham" aria-label="Menu"><i class="fas fa-bars"></i></button>
-<div class="ov" id="ov" onclick="closeSidebar()"></div>
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<div class="shell">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
-    <div class="top-brand">
-      <div>
-        <div class="logo">Portfolio</div>
-        <div class="logo-name">Aryan Mishra</div>
-      </div>
-      <div class="status-line">
-        <span class="status-dot"></span>
-        Open to Internships
-      </div>
-    </div>
-
-    <nav class="nav">
-      <div class="nav-label">Navigation</div>
-      <a class="nav-item active" href="#home"><i class="fas fa-terminal"></i><span>Home</span></a>
-      <a class="nav-item" href="#about"><i class="fas fa-user"></i><span>About</span></a>
-      <a class="nav-item" href="#skills"><i class="fas fa-code"></i><span>Skills</span></a>
-      <a class="nav-item" href="#projects"><i class="fas fa-folder-open"></i><span>Projects</span></a>
-      <a class="nav-item" href="#kaggle"><i class="fab fa-kaggle"></i><span>Kaggle</span></a>
-      <a class="nav-item" href="#certifications"><i class="fas fa-certificate"></i><span>Certifications</span></a>
-      <a class="nav-item" href="#education"><i class="fas fa-graduation-cap"></i><span>Education</span></a>
-      <a class="nav-item" href="#blog"><i class="fas fa-rss"></i><span>Blog</span></a>
-      <a class="nav-item" href="#contact"><i class="fas fa-satellite-dish"></i><span>Contact</span></a>
-    </nav>
-
-    <div class="sidebar-footer">
-      <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/aryanmdev/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.kaggle.com/aryanmdev" target="_blank" rel="noopener"><i class="fab fa-kaggle"></i></a>
-      <a href="mailto:aryanmishra.dev@gmail.com"><i class="fas fa-envelope"></i></a>
-    </div>
-  </aside>
-
-  <!-- MAIN CONTENT -->
-  <main class="main" id="main">
-
-    <!-- HOME -->
-    <section class="section reveal" id="home">
-      <div class="hero-wrap">
-        <div class="hero-left">
-          <div class="deco-grid"></div>
-
-          <div class="hero-h1-wrap">
-            <div class="eyebrow">Machine Learning Portfolio</div>
-            <h1>Data<span>Scientist.</span></h1>
-          </div>
-
-          <p class="hero-desc">
-            I build end-to-end ML systems from data to deployment.<br>
-            Focus: NLP, LLMs, FastAPI, Docker, and real-world use cases.
-          </p>
-
-          <div class="hero-tech-stack">
-            <div class="eyebrow" style="margin-bottom:0.5rem;">Tech Stack</div>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">scikit-learn</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">Docker</span>
+<body class="bg-background text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- TopNavBar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+        <nav class="flex justify-between items-center w-full px-8 py-5 max-w-7xl mx-auto">
+            <div class="font-headline-md text-headline-md font-bold text-on-surface">AR.</div>
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center gap-6">
+                <a class="font-body-md text-body-md text-on-surface font-bold transition-colors duration-200"
+                    href="#home">Home</a>
+                <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
+                    href="#about">About</a>
+                <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
+                    href="#projects">Projects</a>
+                <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
+                    href="#education">Education</a>
+                <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
+                    href="#certifications">Certifications</a>
+                <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
+                    href="#blog">Blog</a>
+                <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
+                    href="#contact">Contact</a>
             </div>
-          </div>
-
-          <div class="hero-btns">
-            <a href="#projects" class="btn btn-cyan"><i class="fas fa-folder"></i>View Projects</a>
-            <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i>GitHub</a>
-            <a href="#contact" class="btn btn-outline"><i class="fas fa-satellite-dish"></i>Connect</a>
-          </div>
-
-          <div class="hero-metrics">
-            <div class="eyebrow" style="margin-bottom:0.75rem;">Highlights</div>
-            <div class="metrics-grid">
-              <div class="metric">
-                <div class="metric-val accent">120</div>
-                <div class="metric-lbl">Kaggle Rank</div>
-              </div>
-              <div class="metric">
-                <div class="metric-val" data-stat="repos">--</div>
-                <div class="metric-lbl">Repos</div>
-              </div>
-              <div class="metric">
-                <div class="metric-val" data-stat="commits">--</div>
-                <div class="metric-lbl">Commits</div>
-              </div>
-              <div class="metric">
-                <div class="metric-val" data-stat="stars">--</div>
-                <div class="metric-lbl">Stars</div>
-              </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="material-symbols-outlined text-primary p-2 hover:bg-surface-container rounded-full transition-colors">dark_mode</button>
             </div>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <div class="hero-img-wrap">
-            <picture>
-              <source srcset="assets/images/profile_hd.webp" type="image/webp">
-              <img src="assets/images/profile_hd.png" alt="Aryan Mishra" class="hero-img" width="380" height="500" loading="eager">
-            </picture>
-            <div class="hero-img-overlay"></div>
-            <div class="hero-img-label">Aryan Mishra</div>
-          </div>
-          <div class="hero-meta">
-            <div class="hero-meta-item">
-              <div class="hero-meta-key">Location</div>
-              <div class="hero-meta-val">Indore, India</div>
-            </div>
-            <div class="hero-meta-item">
-              <div class="hero-meta-key">Status</div>
-              <div class="hero-meta-val cyan">Available</div>
-            </div>
-            <div class="hero-meta-item">
-              <div class="hero-meta-key">Tier</div>
-              <div class="hero-meta-val cyan">Datasets Master</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="section reveal" id="about">
-      <div class="deco-grid"></div>
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Professional Narrative</div>
-          <h2>About <span>Me.</span></h2>
-        </div>
-        <div class="section-head-right">B.Tech CSE (Data Science) · 2023-2027</div>
-      </div>
-
-      <div class="about-grid">
-        <div>
-          <p style="font-size:15px;color:var(--text);margin-bottom:1.2rem;line-height:1.9;">
-            I am a B.Tech CSE (Data Science) student at IIST Indore, building practical ML systems from analysis to API deployment.
-          </p>
-          <p style="margin-bottom:1.2rem;">
-            My focus is NLP, LLM workflows, and reproducible pipelines. Open to internships and collaborative ML projects.
-          </p>
-
-          <div class="panel">
-            <div class="panel-label">Currently Working On</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);">→ Predicting Irrigation Need (Kaggle)</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);">→ LLM Fine-tuning and MLOps Tooling</div>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:1.5rem;">
-            <span class="badge">Open to Internships</span>
-            <span class="badge">IIST · 2027</span>
-            <span class="badge">Indore, India</span>
-          </div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          <div style="background:var(--panel);">
-            <div class="metrics-grid metrics-grid-2">
-              <div class="metric">
-                <div class="metric-val accent">158</div>
-                <div class="metric-lbl">Kaggle Rank</div>
-              </div>
-              <div class="metric">
-                <div class="metric-val">154+</div>
-                <div class="metric-lbl">Dataset Votes</div>
-              </div>
-              <div class="metric">
-                <div class="metric-val">473</div>
-                <div class="metric-lbl">Contributions</div>
-              </div>
-              <div class="metric">
-                <div class="metric-val">100+</div>
-                <div class="metric-lbl">Day Streak</div>
-              </div>
-            </div>
-          </div>
-          <div class="panel" style="margin-top:0;">
-            <div class="panel-label">Tech Stack</div>
-            <div class="about-tech-columns">
-              <div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">[ML / AI]</div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text);line-height:2;">
-                  PyTorch<br>scikit-learn<br>LangChain<br>XGBoost
+        </nav>
+    </header>
+    <main class="pt-20 overflow-x-hidden">
+        <!-- Hero Section -->
+        <section class="relative min-h-[90vh] flex items-center px-8 max-w-7xl mx-auto py-12" id="home">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
+                <div class="space-y-8 order-2 md:order-1">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-[10px] uppercase tracking-wider">
+                        <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                        DATA SCIENCE | ML ENGINEERING | MLOPS
+                    </div>
+                    <h1
+                        class="font-display-lg text-[56px] md:text-display-lg leading-tight tracking-tight text-on-surface">
+                        Hi, I'm <span class="text-primary">Aryan Mishra.</span>
+                    </h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        I build end-to-end Machine Learning systems from data analysis to API deployment. Specialized in
+                        NLP, LLM workflows, FastAPI, and Docker for scalable digital solutions.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a class="px-8 py-4 bg-on-surface text-surface rounded-full font-headline-md text-[18px] flex items-center gap-3 shadow-lg hover:shadow-xl hover:bg-primary transition-all duration-300"
+                            href="#projects">
+                            View Projects
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                        <a class="px-8 py-4 bg-surface-container text-on-surface rounded-full font-headline-md text-[18px] border border-outline-variant hover:bg-surface-container-high transition-all"
+                            href="#blog">
+                            Read Blog
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-4 pt-2">
+                        <a aria-label="GitHub"
+                            class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-200"
+                            href="https://github.com/Aryanmishra-dev" target="_blank"><svg class="w-5 h-5 fill-current"
+                                viewbox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                                </path>
+                            </svg></a>
+                        <a aria-label="LinkedIn"
+                            class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-200"
+                            href="https://www.linkedin.com/in/aryanmdev/" target="_blank"><svg
+                                class="w-5 h-5 fill-current" viewbox="0 0 24 24">
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                                </path>
+                            </svg></a>
+                        <a aria-label="Kaggle"
+                            class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-200"
+                            href="https://www.kaggle.com/aryanmdev" target="_blank"><svg class="w-5 h-5 fill-current"
+                                viewbox="0 0 24 24">
+                                <path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.34-.246.526-.246h3.257c.142 0 .235.05.281.143.047.092.036.178-.035.258L12.35 14.54l6.51 9.06c.07.082.081.168.035.259z"></path>
+                            </svg></a>
+                        <a aria-label="X (Twitter)"
+                            class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-200"
+                            href="https://x.com/aryanmdev" target="_blank"><svg class="w-4 h-4 fill-current"
+                                viewbox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                            </svg></a>
+                    </div>
+                    <!-- Key Metrics -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-outline-variant/30">
+                        <div>
+                            <div class="font-display-lg text-[32px] text-primary">#83</div>
+                            <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">Kaggle Rank
+                            </div>
+                        </div>
+                        <div>
+                            <div class="font-display-lg text-[32px] text-primary">10+</div>
+                            <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">Repos</div>
+                        </div>
+                        <div>
+                            <div class="font-display-lg text-[32px] text-primary">8+</div>
+                            <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">
+                                Certifications</div>
+                        </div>
+                        <div>
+                            <div class="font-display-lg text-[32px] text-primary">B.Tech</div>
+                            <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">Education
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">[Depl_Env]</div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text);line-height:2;">
-                  FastAPI<br>Docker<br>PostgreSQL<br>GitHub Actions
+                <div class="relative order-1 md:order-2 flex justify-center">
+                    <div
+                        class="relative w-full max-w-[420px] aspect-square rounded-full overflow-hidden border-8 border-surface-container shadow-2xl">
+                        <img alt="Aryan Mishra" class="w-full h-full object-cover" src="assets/images/profile_hd.png" />
+                    </div>
+                    <div
+                        class="absolute -bottom-4 -right-4 glass-card p-4 rounded-xl border border-outline-variant shadow-lg bg-surface/90 backdrop-blur-sm">
+                        <div class="font-label-caps text-[10px] text-primary mb-1 uppercase tracking-wider">Status</div>
+                        <div class="font-headline-md text-[14px] text-on-surface font-bold">Looking for Internships
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section class="section reveal" id="skills">
-      <div class="deco-grid"></div>
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Technical Skills</div>
-          <h2>Core <span>Skills.</span></h2>
-        </div>
-        <div class="section-head-right">Focused and Practical Stack</div>
-      </div>
-
-      <div class="skills-matrix">
-        <div class="skill-category">
-          <h3 class="category-label">ML & AI</h3>
-          <div class="skill-pills">
-            <span class="skill-pill" data-projects="healthcare_risk_prediction,march-mania-2026" data-level="expert">PyTorch</span>
-            <span class="skill-pill" data-projects="healthcare_risk_prediction" data-level="expert">scikit-learn</span>
-            <span class="skill-pill" data-projects="llm-finetuning" data-level="proficient">LangChain</span>
-            <span class="skill-pill" data-projects="healthcare_risk_prediction,march-mania-2026" data-level="proficient">XGBoost</span>
-            <span class="skill-pill" data-level="proficient">NLP</span>
-            <span class="skill-pill" data-level="learning">LLM Fine-tuning</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3 class="category-label">Data & Infra</h3>
-          <div class="skill-pills">
-            <span class="skill-pill" data-projects="healthcare_risk_prediction" data-level="expert">Python</span>
-            <span class="skill-pill" data-projects="march-mania-2026" data-level="expert">Pandas / NumPy</span>
-            <span class="skill-pill" data-projects="llm-finetuning" data-level="proficient">FastAPI</span>
-            <span class="skill-pill" data-level="proficient">Docker</span>
-            <span class="skill-pill" data-level="learning">Kubernetes</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3 class="category-label">Tools & Ops</h3>
-          <div class="skill-pills">
-            <span class="skill-pill" data-level="expert">Git & GitHub</span>
-            <span class="skill-pill" data-level="proficient">MLflow</span>
-            <span class="skill-pill" data-level="proficient">GitHub Actions</span>
-            <span class="skill-pill" data-level="learning">Terraform</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="section reveal" id="projects">
-      <div class="deco-grid"></div>
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Selected Projects</div>
-          <h2>Featured <span>Projects.</span></h2>
-        </div>
-        <div class="section-head-right">31 Total Repositories</div>
-      </div>
-
-      <div class="project-filters" role="tablist">
-        <button class="filter-btn active" data-filter="all">All (5)</button>
-        <button class="filter-btn" data-filter="nlp">NLP</button>
-        <button class="filter-btn" data-filter="mlops">MLOps</button>
-        <button class="filter-btn" data-filter="kaggle">Kaggle</button>
-        <button class="filter-btn" data-filter="data">Data</button>
-      </div>
-
-      <div class="projects-grid">
-        <article class="project-card reveal" style="transition-delay: 100ms;" data-category="mlops">
-          <div class="project-meta">
-            <span class="project-number font-mono">01</span>
-            <span class="project-tag">MLOps</span>
-            <span class="project-stat">↑ High Accuracy</span>
-          </div>
-          <h3 class="project-title">Healthcare Risk Prediction</h3>
-          <p class="project-desc">ML pipeline for diabetes, heart disease, and cancer risk prediction.</p>
-          <div class="project-approach">
-            <span class="approach-label">Approach</span>
-            <p>Built with scikit-learn and deployed via FastAPI with Docker.</p>
-          </div>
-          <div class="project-stack">
-            <span class="stack-tag">scikit-learn</span>
-            <span class="stack-tag">FastAPI</span>
-            <span class="stack-tag">Docker</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/Aryanmishra-dev/healthcare_risk_prediction" class="btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card reveal" style="transition-delay: 100ms;" data-category="nlp">
-          <div class="project-meta">
-            <span class="project-number font-mono">02</span>
-            <span class="project-tag">NLP</span>
-            <span class="project-stat">↑ 92.4% F1</span>
-          </div>
-          <h3 class="project-title">LLM Fine-tuning Pipeline</h3>
-          <p class="project-desc">Domain-specific fine-tuning of large language models.</p>
-          <div class="project-approach">
-            <span class="approach-label">Approach</span>
-            <p>Fine-tuned LLM using PyTorch and LangChain, tracked with MLflow.</p>
-          </div>
-          <div class="project-stack">
-            <span class="stack-tag">PyTorch</span>
-            <span class="stack-tag">LangChain</span>
-            <span class="stack-tag">MLflow</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card reveal" style="transition-delay: 100ms;" data-category="kaggle">
-          <div class="project-meta">
-            <span class="project-number font-mono">03</span>
-            <span class="project-tag">Kaggle</span>
-            <span class="project-stat">Top 6.4%</span>
-          </div>
-          <h3 class="project-title">March ML Mania 2026</h3>
-          <p class="project-desc">Predicting outcomes for the NCAA basketball tournament.</p>
-          <div class="project-approach">
-            <span class="approach-label">Approach</span>
-            <p>Engineered features with Pandas and trained XGBoost models.</p>
-          </div>
-          <div class="project-stack">
-            <span class="stack-tag">XGBoost</span>
-            <span class="stack-tag">Pandas</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="btn-ghost" target="_blank" rel="noopener">Notebook ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card reveal" style="transition-delay: 100ms;" data-category="data">
-          <div class="project-meta">
-            <span class="project-number font-mono">04</span>
-            <span class="project-tag">Data</span>
-            <span class="project-stat">1M+ Rows</span>
-          </div>
-          <h3 class="project-title">Predicting Irrigation Need</h3>
-          <p class="project-desc">Kaggle competition dataset analysis and modeling.</p>
-          <div class="project-approach">
-            <span class="approach-label">Approach</span>
-            <p>Data cleaning, EDA, and feature engineering for agriculture.</p>
-          </div>
-          <div class="project-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">EDA</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card reveal" style="transition-delay: 100ms;" data-category="nlp">
-          <div class="project-meta">
-            <span class="project-number font-mono">05</span>
-            <span class="project-tag">NLP</span>
-            <span class="project-stat">Fast</span>
-          </div>
-          <h3 class="project-title">Text Summarization API</h3>
-          <p class="project-desc">FastAPI backend serving an NLP summarization model.</p>
-          <div class="project-approach">
-            <span class="approach-label">Approach</span>
-            <p>HuggingFace transformers deployed behind a REST API.</p>
-          </div>
-          <div class="project-stack">
-            <span class="stack-tag">HuggingFace</span>
-            <span class="stack-tag">FastAPI</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </article>
-      </div>
-
-      <div style="text-align:center;padding-top:2rem;">
-        <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener" class="btn-outline" style="padding:10px 20px; text-transform:uppercase; text-decoration:none; color:var(--color-text-primary); border:1px solid var(--color-border);"><i class="fab fa-github"></i> All Repositories</a>
-      </div>
-    </section>
-
-    <!-- KAGGLE -->
-    <section class="section reveal" id="kaggle">
-      <div class="deco-grid"></div>
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Competitive ML</div>
-          <h2>Kaggle <span>Profile.</span></h2>
-        </div>
-        <div class="section-head-right">Top Highlights</div>
-      </div>
-
-      <div class="kaggle-grid">
-        <div class="panel" style="padding:2rem;">
-          <div class="panel-label">Datasets</div>
-          <div style="font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;color:var(--text);text-transform:uppercase;line-height:1;margin-bottom:0.5rem;">Master</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);margin-bottom:1rem;">Ranked 120 of 9,783 globally</div>
-          <div style="font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:var(--white);">🥇 1 · 🥈 6 · 🥉 1</div>
-        </div>
-        <div class="panel" style="padding:2rem;">
-          <div class="panel-label">Notebooks</div>
-          <div style="font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;color:var(--white);line-height:1;margin-bottom:0.5rem;">Expert</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);margin-bottom:1rem;">Ranked 1,598 of 62,266 globally</div>
-          <div style="font-family:'Sora',sans-serif;font-size:1.5rem;font-weight:700;color:var(--white);">🥉 6</div>
-        </div>
-      </div>
-
-      <div style="margin-bottom:1.5rem;">
-        <div class="eyebrow" style="margin-bottom:0.75rem;">Published Datasets (Top 3)</div>
-        <div class="tl">
-          <div class="tl-item"><div class="tl-date">39 votes</div><div><h3>Cyber Attacks: Financial &amp; Market Impact</h3></div></div>
-          <div class="tl-item"><div class="tl-date">45 votes</div><div><h3>Tech Hiring &amp; Layoffs: Workforce Data (2000–2025)</h3></div></div>
-          <div class="tl-item"><div class="tl-date">31 votes</div><div><h3>Remote Work Burnout &amp; Social Isolation (2026)</h3></div></div>
-        </div>
-      </div>
-
-      <div class="eyebrow" style="margin-bottom:0.75rem;">Competitions</div>
-      <div class="rank-bar-wrapper">
-        <div class="rank-bar-label">
-          <span>March ML Mania 2026</span>
-          <span class="rank-badge">Top 6.4% · 🥉 Bronze</span>
-        </div>
-        <div class="rank-bar-track">
-          <div class="rank-bar-fill" style="--fill-pct: 6.4%"></div>
-          <div class="rank-marker" style="left: 6.4%">◆ #223</div>
-        </div>
-        <div class="rank-bar-ends">
-          <span>#1</span><span>#3,462</span>
-        </div>
-      </div>
-
-      <div style="margin-top:1.5rem;">
-        <a href="https://www.kaggle.com/aryanmdev" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-kaggle"></i>View Kaggle Profile</a>
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS -->
-    <section class="section reveal" id="certifications">
-      <div class="deco-grid"></div>
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Learning and Certifications</div>
-          <h2>Certifications <span>&amp; Awards.</span></h2>
-        </div>
-      </div>
-
-      <div class="tl">
-        <div class="tl-item">
-          <div class="tl-date">Dec 2025</div>
-          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
-            <div><h3>Applications of AI for Anomaly Detection</h3><p style="font-size:12px;margin-top:3px;">NVIDIA · Certificate of Competency</p></div>
-            <span class="badge">AI / ML</span>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">Apr 2026</div>
-          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
-            <div><h3>March Machine Learning Mania 2026</h3><p style="font-size:12px;margin-top:3px;">Kaggle · Bronze Medal</p></div>
-            <span class="badge">Competition</span>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">Dec 2025</div>
-          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
-            <div><h3>Data Visualization</h3><p style="font-size:12px;margin-top:3px;">Kaggle · Course Completion</p></div>
-            <span class="badge">Data Science</span>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">Dec 2024</div>
-          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
-            <div><h3>Intro to Machine Learning</h3><p style="font-size:12px;margin-top:3px;">Kaggle · Course Completion</p></div>
-            <span class="badge">ML</span>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">Dec 2024</div>
-          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
-            <div><h3>Intro to Programming</h3><p style="font-size:12px;margin-top:3px;">Kaggle · Course Completion</p></div>
-            <span class="badge">Programming</span>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">2024</div>
-          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
-            <div><h3>Django Skill Up</h3><p style="font-size:12px;margin-top:3px;">GeeksforGeeks · Nation SkillUp</p></div>
-            <span class="badge">Web Dev</span>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">Oct 2024</div>
-          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
-            <div><h3>Workshop on Algebraic Graph Theory</h3><p style="font-size:12px;margin-top:3px;">IIT Indore · SERB India</p></div>
-            <span class="badge">Mathematics</span>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">Jul–Oct 2023</div>
-          <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;">
-            <div><h3>C / C++ Programming Training</h3><p style="font-size:12px;margin-top:3px;">CodeMantra · ISO 9001:2015</p></div>
-            <span class="badge">Programming</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="section reveal" id="education">
-      <div class="deco-grid"></div>
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Academic Record</div>
-          <h2>Education <span>Log.</span></h2>
-        </div>
-      </div>
-
-      <div class="tl">
-        <div class="tl-item" style="padding:1.5rem 0;">
-          <div class="tl-date">2023 –<br>2027</div>
-          <div>
-            <div class="eyebrow" style="margin-bottom:4px;">Current</div>
-            <h3 style="font-size:16px;margin-bottom:4px;">Indore Institute of Science and Technology</h3>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:8px;">B.Tech CSE · Data Science Specialization</div>
-            <p style="font-size:13px;">Focus: Machine Learning, NLP, and Data Engineering.</p>
-          </div>
-        </div>
-        <div class="tl-item" style="padding:1.5rem 0;">
-          <div class="tl-date">2020 –<br>2021</div>
-          <div>
-            <div class="eyebrow" style="margin-bottom:4px;">Previous</div>
-            <h3 style="font-size:15px;margin-bottom:4px;">Rose Petal Higher Secondary School</h3>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);">Class XII · Science (PCM + Biology) · Rewa, Madhya Pradesh</div>
-          </div>
-        </div>
-        <div class="tl-item" style="padding:1.5rem 0;">
-          <div class="tl-date">2018 –<br>2019</div>
-          <div>
-            <div class="eyebrow" style="margin-bottom:4px;">School</div>
-            <h3 style="font-size:15px;margin-bottom:4px;">Gyanasthali Sr. Secondary School</h3>
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted2);">Class X · General Studies · Rewa, Madhya Pradesh</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BLOG -->
-    <section class="section reveal" id="blog">
-      <div class="deco-grid"></div>
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Writing</div>
-          <h2>Latest <span>Entries.</span></h2>
-        </div>
-        <div class="section-head-right">Hashnode</div>
-      </div>
-
-      <div id="blog-container">
-        <!-- Hashnode posts will be rendered here -->
-      </div>
-
-      <div style="margin-top:1.5rem;">
-        <a href="https://aryanmdev.hashnode.dev" target="_blank" rel="noopener" class="btn btn-outline"><i class="fas fa-external-link-alt"></i>Read on Hashnode</a>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section reveal" id="contact">
-      <div class="deco-grid"></div>
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Contact</div>
-          <h2>Send <span>Transmission.</span></h2>
-        </div>
-      </div>
-
-      <div class="contact-grid">
-        <div>
-          <div class="response-badge">
-            <span class="dot-green"></span>
-            Typical response: 24–48 hours
-          </div>
-
-          <a href="mailto:aryanmishra.dev@gmail.com" class="contact-link">
-            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-            <div>
-              <div class="contact-key">Email</div>
-              <div class="contact-val">aryanmishra.dev@gmail.com</div>
+        </section>
+        <!-- Expertise Section -->
+        <section class="bg-surface-container-low py-24 px-8" id="about">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16">
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Core Expertise</h2>
+                    <div class="h-1.5 w-24 bg-primary rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div
+                        class="md:col-span-8 bg-surface p-8 rounded-lg border border-outline-variant flex flex-col justify-between">
+                        <div>
+                            <div class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">
+                                Technical Stack</div>
+                            <h3 class="font-headline-md text-headline-md text-on-surface mb-6">Building production-ready
+                                ML infrastructure.</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span
+                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">Python</span>
+                            <span
+                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">PyTorch</span>
+                            <span
+                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">FastAPI</span>
+                            <span
+                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">Docker</span>
+                            <span
+                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">LangChain</span>
+                        </div>
+                    </div>
+                    <div
+                        <div class="md:col-span-4 bg-on-surface p-8 rounded-lg text-surface flex flex-col items-center justify-center text-center">
+                        <div class="material-symbols-outlined text-[48px] mb-4 text-primary">workspace_premium</div>
+                        <div class="font-label-caps text-label-caps text-primary uppercase mb-2 tracking-widest">Kaggle
+                            Distinction</div>
+                        <div class="font-headline-lg text-headline-lg mb-2">Datasets Master</div>
+                        <p class="font-body-md text-outline-variant opacity-80">Ranked #83 globally.</p>
+                    </div>
+                </div>
             </div>
-            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/aryanmdev/" target="_blank" rel="noopener" class="contact-link">
-            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-            <div>
-              <div class="contact-key">LinkedIn</div>
-              <div class="contact-val">linkedin.com/in/aryanmdev</div>
+        </section>
+        <!-- Projects Section -->
+        <section class="py-24 px-8 max-w-7xl mx-auto" id="projects">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Featured Projects</h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">End-to-end ML solutions
+                        focusing on production scalability.</p>
+                </div>
+                <a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 hover:text-on-surface transition-colors tracking-widest"
+                    href="https://github.com/Aryanmishra-dev">VIEW ALL REPOSITORIES</a>
             </div>
-            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
-          </a>
-          <a href="https://github.com/Aryanmishra-dev" target="_blank" rel="noopener" class="contact-link">
-            <div class="contact-icon"><i class="fab fa-github"></i></div>
-            <div>
-              <div class="contact-key">GitHub</div>
-              <div class="contact-val">github.com/Aryanmishra-dev</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Project Card 1 -->
+                <a href="https://github.com/Aryanmishra-dev/Healthcare-Risk-Prediction" target="_blank" class="group block cursor-pointer">
+                    <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
+                        <img alt="Healthcare Project"
+                            class="w-full h-full object-cover transition-all duration-700"
+                            src="assets/images/projects/healthcare-risk-prediction.png" />
+                    </div>
+                    <h3
+                        class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
+                        Healthcare Risk Prediction <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
+                    <p class="font-body-md text-on-surface-variant mt-2">Full-stack ML pipeline for diabetes and heart
+                        disease risk prediction with FastAPI.</p>
+                </a>
+                <!-- Project Card 2 -->
+                <a href="https://github.com/Aryanmishra-dev/Employee-Attrition-Prediction" target="_blank" class="group block cursor-pointer">
+                    <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
+                        <img alt="Employee Attrition Project"
+                            class="w-full h-full object-cover transition-all duration-700"
+                            src="assets/images/projects/employee-attrition.png" />
+                    </div>
+                    <h3
+                        class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
+                        Employee Attrition Prediction <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
+                    <p class="font-body-md text-on-surface-variant mt-2">End-to-end employee attrition prediction system using XGBoost, FastAPI, HTMX, Docker, and SHAP explainability.</p>
+                </a>
+                <!-- Project Card 3 -->
+                <a href="https://github.com/Aryanmishra-dev/MedAgent-AI" target="_blank" class="group block cursor-pointer">
+                    <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
+                        <img alt="MedAgent-AI Project"
+                            class="w-full h-full object-cover transition-all duration-700"
+                            src="assets/images/projects/medagent-ai.png" />
+                    </div>
+                    <h3
+                        class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
+                        MedAgent-AI <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
+                    <p class="font-body-md text-on-surface-variant mt-2">Production-ready multi-agent healthcare platform powered by FastAPI, LangGraph, RAG, PostgreSQL, Docker, and local LLMs.</p>
+                </a>
+                <!-- Project Card 4 -->
+                <a href="https://github.com/Aryanmishra-dev/Multilingual-ABSA" target="_blank" class="group block cursor-pointer">
+                    <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
+                        <img alt="Multilingual-ABSA Project"
+                            class="w-full h-full object-cover transition-all duration-700"
+                            src="assets/images/projects/multilingual-absa.png" />
+                    </div>
+                    <h3
+                        class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
+                        Multilingual-ABSA <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
+                    <p class="font-body-md text-on-surface-variant mt-2">Aspect-level sentiment analysis on multi-lingual product reviews (English, Hindi & Hinglish). Fine-tuned XLM-RoBERTa + IndicBERT.</p>
+                </a>
             </div>
-            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
-          </a>
-          <a href="https://www.kaggle.com/aryanmdev" target="_blank" rel="noopener" class="contact-link">
-            <div class="contact-icon"><i class="fab fa-kaggle"></i></div>
-            <div>
-              <div class="contact-key">Kaggle</div>
-              <div class="contact-val">kaggle.com/aryanmdev · Datasets Master</div>
+        </section>
+        <!-- Education Section -->
+        <section class="bg-surface-container-low py-24 px-8" id="education">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16">
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Education</h2>
+                    <div class="h-1.5 w-24 bg-primary rounded-full"></div>
+                </div>
+                <div class="space-y-12">
+                    <!-- Timeline Item 1 -->
+                    <div
+                        class="flex flex-col md:flex-row gap-8 relative pb-12 border-l-2 border-primary-fixed ml-4 md:ml-0 md:border-none">
+                        <div class="hidden md:block w-32 font-label-caps text-label-caps text-outline pt-2">2023 — 2027
+                        </div>
+                        <div
+                            class="relative md:w-full bg-surface p-8 rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-colors">
+                            <div class="md:hidden font-label-caps text-label-caps text-primary mb-2">2023 — 2027</div>
+                            <h3 class="font-headline-md text-[20px] text-on-surface">IIST Indore</h3>
+                            <p class="font-body-md text-primary font-medium">B.Tech CSE - Data Science</p>
+                            <p class="font-body-md text-on-surface-variant mt-2">Specializing in Machine Learning
+                                workflows and Data Engineering. Currently pursuing deep research in predictive
+                                analytics.</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div
+                        class="flex flex-col md:flex-row gap-8 relative pb-12 border-l-2 border-primary-fixed ml-4 md:ml-0 md:border-none">
+                        <div class="hidden md:block w-32 font-label-caps text-label-caps text-outline pt-2">2020 — 2021
+                        </div>
+                        <div
+                            class="relative md:w-full bg-surface p-8 rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-colors">
+                            <div class="md:hidden font-label-caps text-label-caps text-primary mb-2">2020 — 2021</div>
+                            <h3 class="font-headline-md text-[20px] text-on-surface">Rose Petal Higher Secondary School
+                            </h3>
+                            <p class="font-body-md text-primary font-medium">Class XII</p>
+                        </div>
+                    </div>
+                    <!-- Timeline Item 3 -->
+                    <div class="flex flex-col md:flex-row gap-8 relative ml-4 md:ml-0">
+                        <div class="hidden md:block w-32 font-label-caps text-label-caps text-outline pt-2">2018 — 2019
+                        </div>
+                        <div
+                            class="relative md:w-full bg-surface p-8 rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-colors">
+                            <div class="md:hidden font-label-caps text-label-caps text-primary mb-2">2018 — 2019</div>
+                            <h3 class="font-headline-md text-[20px] text-on-surface">Gyanasthali Sr. Secondary School
+                            </h3>
+                            <p class="font-body-md text-primary font-medium">Class X</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <i class="fas fa-arrow-right" style="margin-left:auto;color:var(--muted);font-size:10px;"></i>
-          </a>
-          <div class="contact-link" style="cursor:default;">
-            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div>
-              <div class="contact-key">Location</div>
-              <div class="contact-val">Indore, Madhya Pradesh, India</div>
+        </section>
+        <!-- Certifications Section -->
+        <section class="py-24 px-8 max-w-7xl mx-auto" id="certifications">
+            <div class="mb-16">
+                <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Certifications</h2>
+                <div class="h-1.5 w-24 bg-primary rounded-full"></div>
             </div>
-          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">memory</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">NVIDIA</h4>
+                    <p class="font-body-md text-on-surface-variant">Deep Learning Institute Certification</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">award_star</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">Kaggle Bronze Medal</h4>
+                    <p class="font-body-md text-on-surface-variant">Competition Achievement</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">analytics</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">Cisco</h4>
+                    <p class="font-body-md text-on-surface-variant">Data Analytics Essentials</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">auto_awesome</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">Cisco</h4>
+                    <p class="font-body-md text-on-surface-variant">Introduction to Modern AI</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">genetics</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">PW x Microsoft</h4>
+                    <p class="font-body-md text-on-surface-variant">Generative AI Program</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">psychology</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">Intro to ML</h4>
+                    <p class="font-body-md text-on-surface-variant">Kaggle Machine Learning Certification</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">terminal</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">GeeksforGeeks</h4>
+                    <p class="font-body-md text-on-surface-variant">DSA &amp; Algorithms Specialist</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">school</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">IIT Indore</h4>
+                    <p class="font-body-md text-on-surface-variant">Summer Technical Research Workshop</p>
+                </div>
+            </div>
+        </section>
+        <!-- Blog Section -->
+        <section class="bg-on-surface py-24 px-8 text-surface" id="blog">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <div>
+                        <h2 class="font-headline-lg text-headline-lg text-surface mb-4">Latest from the Blog</h2>
+                        <p class="font-body-lg text-outline-variant max-w-2xl">Sharing insights on MLOps, LLMs, and
+                            Python development.</p>
+                    </div>
+                    <a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 hover:text-surface transition-colors tracking-widest"
+                        href="#">VISIT HASHNODE</a>
+                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <a href="https://aryanmdev.hashnode.dev/how-i-became-a-kaggle-datasets-master-in-90-days-and-the-system-that-got-me-there" target="_blank" class="group block cursor-pointer">
+                    <div
+                        class="aspect-video bg-surface-variant/10 rounded-lg mb-6 overflow-hidden">
+                        <img alt="Kaggle Master Journey"
+                            class="w-full h-full object-cover transition-all duration-700"
+                            src="assets/images/projects/blog-kaggle-master.png" />
+                    </div>
+                        <div class="font-label-caps text-[10px] text-primary mb-2 uppercase tracking-widest">Kaggle Journey</div>
+                        <h3 class="font-headline-md text-[20px] mb-2 group-hover:text-primary transition-colors">
+                            How I became a Kaggle Datasets Master in 90 Days...</h3>
+                        <p class="font-body-md text-outline-variant line-clamp-2">A deep dive into the system that got me to Kaggle Datasets Master status globally.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="py-24 px-8" id="contact">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="font-display-lg text-headline-lg md:text-display-lg leading-none mb-8">Ready to <span
+                            class="text-primary">Collaborate?</span></h2>
+                    <p class="font-body-lg text-on-surface-variant max-w-md mb-12">Looking for internship opportunities
+                        and research collaborations in Data Science and ML Engineering.</p>
+                    <div class="space-y-6">
+                        <a class="flex items-center gap-6 group" href="mailto:aryanmishraa18@gmail.com">
+                            <div
+                                class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all">
+                                <span class="material-symbols-outlined group-hover:text-surface">mail</span>
+                            </div>
+                            <div class="font-headline-md text-[20px] group-hover:text-primary transition-colors">
+                                aryanmishraa18@gmail.com</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low p-8 rounded-lg border border-outline-variant">
+                    <form class="space-y-6">
+                        <div>
+                            <label
+                                class="block font-label-caps text-[10px] tracking-widest text-on-surface-variant mb-2 uppercase">Full
+                                Name</label>
+                            <input
+                                class="w-full bg-surface border-b-2 border-outline-variant p-4 focus:outline-none focus:border-primary transition-colors"
+                                placeholder="John Doe" type="text" />
+                        </div>
+                        <div>
+                            <label
+                                class="block font-label-caps text-[10px] tracking-widest text-on-surface-variant mb-2 uppercase">Message</label>
+                            <textarea
+                                class="w-full bg-surface border-b-2 border-outline-variant p-4 focus:outline-none focus:border-primary transition-colors"
+                                placeholder="Tell me about your project..." rows="4"></textarea>
+                        </div>
+                        <button
+                            class="w-full py-6 bg-on-surface text-surface rounded-full font-headline-md text-[20px] hover:bg-primary transition-all shadow-xl">Send
+                            Transmission</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-surface border-t border-outline-variant">
+        <div class="flex flex-col md:flex-row justify-between items-center w-full px-8 py-12 max-w-7xl mx-auto gap-8">
+            <div class="font-headline-md text-headline-md font-bold text-on-surface">AR.</div>
+            <div class="font-label-caps text-label-caps text-on-surface-variant tracking-wider">
+                © 2026 Aryan Mishra. All rights reserved.
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <a class="font-label-caps text-[10px] tracking-widest text-on-surface-variant hover:text-primary transition-colors uppercase"
+                    href="https://github.com/Aryanmishra-dev" target="_blank">GitHub</a>
+                <a class="font-label-caps text-[10px] tracking-widest text-on-surface-variant hover:text-primary transition-colors uppercase"
+                    href="https://www.linkedin.com/in/aryanmdev/" target="_blank">LinkedIn</a>
+                <a class="font-label-caps text-[10px] tracking-widest text-on-surface-variant hover:text-primary transition-colors uppercase"
+                    href="https://www.kaggle.com/aryanmdev" target="_blank">Kaggle</a>
+                <a class="font-label-caps text-[10px] tracking-widest text-on-surface-variant hover:text-primary transition-colors uppercase"
+                    href="https://x.com/aryanmdev" target="_blank">Twitter</a>
+            </div>
         </div>
+    </footer>
+    <script>
+        // Smooth reveal animations
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
 
-        <div class="panel" style="padding:1.75rem;">
-          <div class="panel-label">Terminal Access</div>
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
-            <input type="text"  name="name"    placeholder="Name" required autocomplete="name">
-            <input type="email" name="email"   placeholder="Email" required autocomplete="email">
-            <input type="text"  name="subject" placeholder="Subject (e.g. ML Internship Opportunity)">
-            <textarea name="message" rows="5"  placeholder="Message" required></textarea>
-            <button type="submit" class="btn-accent">Send Transmission ↗</button>
-          </form>
-        </div>
-      </div>
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'ease-out', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
 
-      <div style="margin-top:4rem;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;">© 2026 Aryan Mishra</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em;">Open to internships and research collaborations</div>
-      </div>
-    </section>
-
-  </main>
-</div>
-
+        // Toggle simulation
+        const darkModeBtn = document.querySelector('.material-symbols-outlined');
+        darkModeBtn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            darkModeBtn.textContent = darkModeBtn.textContent === 'dark_mode' ? 'light_mode' : 'dark_mode';
+        });
+    </script>
 </body>
+
 </html>
