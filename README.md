@@ -1,4 +1,4 @@
-# Aryan Mishra — Portfolio
+# Portfolio
 
 Live site: https://aryanmishra-dev.github.io
 
