@@ -13,14 +13,13 @@ Static HTML + CSS + Vanilla JS. No build tools. Hosted on GitHub Pages.
 
 ## Dynamic features
 - GitHub stats: fetched live via GitHub REST API (js/stats.js)
-- Blog posts: fetched from Hashnode GraphQL API (js/hashnode-feed.js)
 - Contact form: Formspree endpoint (replace YOUR_FORM_ID in index.html)
 
 ## Adding a new project
 1. Copy the template from components/project-cards.html
 2. Paste into index.html inside .projects-grid
 3. Update title, description, metrics, stack tags, and links
-4. Set data-category to: nlp | mlops | kaggle | data | web
+4. Set data-category to: nlp | mlops | data | web
 
 ## Performance targets
 - Lighthouse Performance ≥ 95
