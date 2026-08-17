@@ -1,117 +1,147 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en">
+<html class="light scroll-smooth" lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap"
-        rel="stylesheet" />
+    <title>Aryan Mishra - Data Science & ML Engineering</title>
+    <meta name="description" content="Portfolio of Aryan Mishra, specializing in Data Science, Machine Learning Engineering, MLOps, NLP, and FastAPI." />
+    <!-- Preload LCP Image -->
+    <link rel="preload" as="image" href="assets/images/profile_hd.webp" />
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <style>
+<style>
 :root {
-  --color-on-tertiary-fixed: #191c1d;
-  --color-outline-variant: #c3c6d7;
-  --color-surface-container-low: #eff4ff;
-  --color-surface-dim: #cbdbf5;
-  --color-secondary-fixed-dim: #bcc7de;
-  --color-inverse-on-surface: #eaf1ff;
-  --color-on-surface-variant: #434655;
-  --color-surface-container-high: #dce9ff;
-  --color-surface-container-lowest: #ffffff;
-  --color-on-tertiary-fixed-variant: #43474b;
-  --color-on-primary-fixed-variant: #003ea7;
-  --color-error: #ba1a1a;
-  --color-on-secondary: #ffffff;
-  --color-surface-tint: #346EF6;
-  --color-on-secondary-fixed-variant: #3c475a;
-  --color-inverse-surface: #213145;
-  --color-on-secondary-fixed: #111c2d;
-  --color-surface-container-highest: #d3e4fe;
-  --color-surface-container: #e5eeff;
-  --color-background: #f8f9ff;
-  --color-tertiary-container: #707579;
-  --color-primary: #346EF6;
-  --color-primary-fixed: #dbe1ff;
-  --color-surface: #f8f9ff;
-  --color-inverse-primary: #b4c5ff;
-  --color-primary-container: #346EF6;
-  --color-on-error: #ffffff;
-  --color-primary-fixed-dim: #b4c5ff;
-  --color-on-secondary-container: #586377;
-  --color-on-tertiary-container: #fbfcff;
-  --color-surface-bright: #f8f9ff;
-  --color-surface-variant: #d3e4fe;
-  --color-tertiary-fixed-dim: #c3c7cb;
-  --color-tertiary: #585d60;
-  --color-on-tertiary: #ffffff;
-  --color-secondary: #545f73;
-  --color-on-primary-container: #fefcff;
-  --color-outline: #737686;
-  --color-on-surface: #0b1c30;
-  --color-error-container: #ffdad6;
-  --color-on-primary-fixed: #00174b;
-  --color-tertiary-fixed: #dfe3e7;
-  --color-secondary-container: #d5e0f8;
-  --color-on-background: #0b1c30;
-  --color-secondary-fixed: #d8e3fb;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+
+  /* Target colors */
+  --color-white: #ffffff;
+  --color-grey-50: #fbfbfd;
+  --color-grey-100: #f5f5f7;
+  --color-grey-150: #eeeef1;
+  --color-grey-200: #e8e8ed;
+  --color-grey-300: #d2d2d7;
+  --color-grey-400: #aeaeb2;
+  --color-grey-500: #86868b;
+  --color-grey-600: #6e6e73;
+  --color-grey-900: #1d1d1f;
+
+  --glass-bg: rgba(255,255,255,0.55);
+  --glass-bg-strong: rgba(255,255,255,0.72);
+  --glass-border: rgba(255,255,255,0.75);
+  --glass-shadow: 0 10px 40px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.6);
+
+  /* Map old variables to new colors for compatibility */
+  --color-background: #fbfbfd;
+  --color-on-background: #1d1d1f;
+  --color-surface: rgba(255,255,255,0.55);
+  --color-surface-container: rgba(255,255,255,0.72);
+  --color-surface-container-low: #f5f5f7;
+  --color-surface-container-high: #e8e8ed;
+  --color-surface-container-highest: #d2d2d7;
+  --color-on-surface: #1d1d1f;
+  --color-on-surface-variant: #6e6e73;
+  --color-outline-variant: #d2d2d7;
+  --color-primary: #1d1d1f;
   --color-on-primary: #ffffff;
-  --color-on-error-container: #93000a;
+  --color-primary-fixed: #e8e8ed;
+  --color-on-primary-fixed: #1d1d1f;
+  --color-secondary-container: #f5f5f7;
+  --color-on-secondary-container: #1d1d1f;
+  --color-outline: #86868b;
 }
 
 .dark {
-  --color-on-tertiary-fixed: #d2dee2;
-  --color-outline-variant: #475569;
-  --color-surface-container-low: #0f172a;
-  --color-surface-dim: #171819;
-  --color-secondary-fixed-dim: #1e1f20;
-  --color-inverse-on-surface: #0f172a;
-  --color-on-surface-variant: #94a3b8;
-  --color-surface-container-high: #334155;
-  --color-surface-container-lowest: #020617;
-  --color-on-tertiary-fixed-variant: #aaafb3;
-  --color-on-primary-fixed-variant: #2c3c58;
-  --color-error: #452727;
-  --color-on-secondary: #191919;
-  --color-surface-tint: #346EF6;
-  --color-on-secondary-fixed-variant: #8993a4;
-  --color-inverse-surface: #f8fafc;
-  --color-on-secondary-fixed: #90aad2;
-  --color-surface-container-highest: #475569;
-  --color-surface-container: #1e293b;
-  --color-background: #0f172a;
-  --color-tertiary-container: #818386;
-  --color-primary: #3b82f6;
-  --color-primary-fixed: #1e3a8a;
-  --color-surface: #1e293b;
-  --color-inverse-primary: #151619;
-  --color-primary-container: #1d4ed8;
-  --color-on-error: #191919;
-  --color-primary-fixed-dim: #151619;
-  --color-on-secondary-container: #cbd5e1;
-  --color-on-tertiary-container: #191919;
-  --color-surface-bright: #334155;
-  --color-surface-variant: #171819;
-  --color-tertiary-fixed-dim: #323334;
-  --color-tertiary: #989c9f;
-  --color-on-tertiary: #191919;
-  --color-secondary: #797f8c;
-  --color-on-primary-container: #eff6ff;
-  --color-outline: #64748b;
-  --color-on-surface: #f8fafc;
-  --color-error-container: #191717;
-  --color-on-primary-fixed: #bfdbfe;
-  --color-tertiary-fixed: #191919;
-  --color-secondary-container: #334155;
-  --color-on-background: #f8fafc;
-  --color-secondary-fixed: #171819;
-  --color-on-primary: #191919;
-  --color-on-error-container: #6c3639;
+  /* Dark mode Apple-style */
+  --color-white: #000000;
+  --color-grey-50: #000000;
+  --color-grey-100: #1d1d1f;
+  --color-grey-150: #2d2d2f;
+  --color-grey-200: #3d3d3f;
+  --color-grey-300: #424245;
+  --color-grey-400: #515154;
+  --color-grey-500: #86868b;
+  --color-grey-600: #98989d;
+  --color-grey-900: #f5f5f7;
+
+  --glass-bg: rgba(29,29,31,0.55);
+  --glass-bg-strong: rgba(29,29,31,0.72);
+  --glass-border: rgba(255,255,255,0.1);
+  --glass-shadow: 0 10px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+
+  --color-background: #000000;
+  --color-on-background: #f5f5f7;
+  --color-surface: rgba(29,29,31,0.55);
+  --color-surface-container: rgba(29,29,31,0.72);
+  --color-surface-container-low: #1d1d1f;
+  --color-surface-container-high: #3d3d3f;
+  --color-surface-container-highest: #424245;
+  --color-on-surface: #f5f5f7;
+  --color-on-surface-variant: #98989d;
+  --color-outline-variant: #424245;
+  --color-primary: #f5f5f7;
+  --color-on-primary: #1d1d1f;
+  --color-primary-fixed: #3d3d3f;
+  --color-on-primary-fixed: #f5f5f7;
+  --color-secondary-container: #1d1d1f;
+  --color-on-secondary-container: #f5f5f7;
+  --color-outline: #86868b;
+}
+
+body {
+  font-family: var(--font);
+  background:
+    radial-gradient(1200px 600px at 15% -10%, var(--color-white) 0%, transparent 60%),
+    radial-gradient(1000px 700px at 100% 0%, var(--color-white) 0%, transparent 55%),
+    linear-gradient(180deg, var(--color-grey-50) 0%, var(--color-grey-100) 100%);
+  background-attachment: fixed;
+}
+
+/* Glassmorphism utility */
+.glass-card, .bg-surface, .bg-surface-container, .bg-surface-container-low {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 30%, var(--color-white), var(--color-grey-300) 70%);
+}
+.orb-1 { width: 520px; height: 520px; top: -160px; left: -140px; animation: float1 22s ease-in-out infinite; }
+.orb-2 { width: 420px; height: 420px; top: 220px; right: -160px; background: radial-gradient(circle at 30% 30%, var(--color-white), var(--color-grey-200) 70%); animation: float2 26s ease-in-out infinite; }
+.orb-3 { width: 380px; height: 380px; bottom: -180px; left: 35%; background: radial-gradient(circle at 30% 30%, var(--color-white), var(--color-grey-300) 70%); animation: float3 30s ease-in-out infinite; }
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 60px) scale(1.08); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 40px) scale(1.05); }
+}
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -40px) scale(1.1); }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 </style>
     <script id="tailwind-config">
@@ -176,22 +206,22 @@
                             "full": "9999px"
                         },
                         "fontFamily": {
-                            "body-lg": ["Inter", "Hanken Grotesk"],
-                            "label-caps": ["JetBrains Mono", "Hanken Grotesk"],
-                            "body-md": ["Inter", "Hanken Grotesk"],
-                            "headline-md": ["Hanken Grotesk"],
-                            "headline-lg": ["Hanken Grotesk"],
-                            "headline-lg-mobile": ["Hanken Grotesk"],
-                            "display-lg": ["Hanken Grotesk"]
+                            "body-lg": ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Roboto", "sans-serif"],
+                            "label-caps": ["SF Mono", "ui-monospace", "Cascadia Code", "monospace"],
+                            "body-md": ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Roboto", "sans-serif"],
+                            "headline-md": ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Roboto", "sans-serif"],
+                            "headline-lg": ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Roboto", "sans-serif"],
+                            "headline-lg-mobile": ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Roboto", "sans-serif"],
+                            "display-lg": ["-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Roboto", "sans-serif"]
                         },
                         "fontSize": {
                             "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
-                            "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                            "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
                             "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
                             "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
                             "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
                             "headline-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                            "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "800" }]
+                            "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700" }]
                         }
                     },
                 },
@@ -201,12 +231,17 @@
 </head>
 
 <body class="bg-background text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- Ambient Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
     <!-- TopNavBar -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
-        <nav class="flex justify-between items-center w-full px-8 py-5 max-w-7xl mx-auto">
-            <div class="font-headline-md text-headline-md font-bold text-on-surface">AR.</div>
-            <!-- Desktop Navigation -->
-            <div class="hidden lg:flex items-center gap-6">
+        <nav class="flex flex-wrap lg:flex-nowrap justify-between items-center w-full px-4 lg:px-8 py-4 lg:py-5 max-w-7xl mx-auto">
+            <div class="font-headline-md text-headline-md font-bold text-on-surface order-1">AR.</div>
+            <!-- Navigation -->
+            <div class="flex items-center gap-6 overflow-x-auto whitespace-nowrap scrollbar-hide order-3 w-full mt-4 lg:order-2 lg:w-auto lg:mt-0 px-2 lg:px-0 lg:flex-nowrap">
                 <a class="font-body-md text-body-md text-on-surface font-bold transition-colors duration-200"
                     href="#home">Home</a>
                 <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
@@ -220,8 +255,8 @@
                 <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
                     href="#contact">Contact</a>
             </div>
-            <div class="flex items-center gap-4">
-                <button
+            <div class="flex items-center gap-4 order-2 lg:order-3">
+                <button aria-label="Toggle Dark Mode"
                     class="material-symbols-outlined text-primary p-2 hover:bg-surface-container rounded-full transition-colors">dark_mode</button>
             </div>
         </nav>
@@ -251,7 +286,7 @@
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
                         <a class="px-8 py-4 bg-primary text-on-primary rounded-full font-headline-md text-[18px] flex items-center gap-3 shadow-lg hover:shadow-xl hover:opacity-90 transition-all duration-300"
-                            href="AryanMishra-Resume.pdf" download="AryanMishra-Resume.pdf">
+                            href="AI_Engineer_Resume.pdf" download="Aryan_Mishra_Resume.pdf">
                             <span class="material-symbols-outlined text-[20px]">download</span>
                             Resume
                         </a>
@@ -301,7 +336,7 @@
                 <div class="relative order-1 md:order-2 flex justify-center">
                     <div
                         class="relative w-full max-w-[420px] aspect-square rounded-full overflow-hidden border-8 border-surface-container shadow-2xl">
-                        <img alt="Aryan Mishra" class="w-full h-full object-cover" src="assets/images/profile_hd.webp" />
+                        <img alt="Aryan Mishra" fetchpriority="high" class="w-full h-full object-cover" src="assets/images/profile_hd.webp" />
                     </div>
                     <div
                         class="absolute -bottom-4 -right-4 glass-card p-4 rounded-xl border border-outline-variant shadow-lg bg-surface/90 backdrop-blur-sm">
@@ -361,7 +396,7 @@
                 <!-- Project Card 1 -->
                 <a href="https://github.com/Aryanmishra-dev/Healthcare-Risk-Prediction" target="_blank" class="group block cursor-pointer">
                     <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
-                        <img alt="Healthcare Project"
+                        <img alt="Healthcare Project" loading="lazy"
                             class="w-full h-full object-cover transition-all duration-700"
                             src="assets/images/projects/healthcare-risk-prediction.png" />
                     </div>
@@ -374,7 +409,7 @@
                 <!-- Project Card 2 -->
                 <a href="https://github.com/Aryanmishra-dev/Employee-Attrition-Prediction" target="_blank" class="group block cursor-pointer">
                     <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
-                        <img alt="Employee Attrition Project"
+                        <img alt="Employee Attrition Project" loading="lazy"
                             class="w-full h-full object-cover transition-all duration-700"
                             src="assets/images/projects/employee-attrition.png" />
                     </div>
@@ -386,7 +421,7 @@
                 <!-- Project Card 3 -->
                 <a href="https://github.com/Aryanmishra-dev/MedAgent-AI" target="_blank" class="group block cursor-pointer">
                     <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
-                        <img alt="MedAgent-AI Project"
+                        <img alt="MedAgent-AI Project" loading="lazy"
                             class="w-full h-full object-cover transition-all duration-700"
                             src="assets/images/projects/medagent-ai.png" />
                     </div>
@@ -398,7 +433,7 @@
                 <!-- Project Card 4 -->
                 <a href="https://github.com/Aryanmishra-dev/Multilingual-ABSA" target="_blank" class="group block cursor-pointer">
                     <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
-                        <img alt="Multilingual-ABSA Project"
+                        <img alt="Multilingual-ABSA Project" loading="lazy"
                             class="w-full h-full object-cover transition-all duration-700"
                             src="assets/images/projects/multilingual-absa.png" />
                     </div>
