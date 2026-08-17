@@ -7,10 +7,14 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Aryan Mishra - Data Science & ML Engineering</title>
     <meta name="description" content="Portfolio of Aryan Mishra, specializing in Data Science, Machine Learning Engineering, MLOps, NLP, and FastAPI." />
+    <!-- Preconnect to external origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
     <!-- Preload LCP Image -->
     <link rel="preload" as="image" href="assets/images/profile_hd.webp" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <style>
@@ -94,34 +98,57 @@
 
 body {
   font-family: var(--font);
+  background: var(--color-grey-50);
+}
+
+/* Fixed background via pseudo-element avoids the catastrophic
+   repaint-on-every-scroll caused by background-attachment: fixed */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
   background:
     radial-gradient(1200px 600px at 15% -10%, var(--color-white) 0%, transparent 60%),
     radial-gradient(1000px 700px at 100% 0%, var(--color-white) 0%, transparent 55%),
     linear-gradient(180deg, var(--color-grey-50) 0%, var(--color-grey-100) 100%);
-  background-attachment: fixed;
+  pointer-events: none;
 }
 
-/* Glassmorphism utility */
-.glass-card, .bg-surface, .bg-surface-container, .bg-surface-container-low {
+/* Glassmorphism — only .glass-card gets backdrop-filter (used sparingly).
+   Section-level classes use semi-opaque backgrounds instead to avoid
+   massive compositing cost from backdrop-filter on large areas. */
+.glass-card {
   background: var(--glass-bg) !important;
   border: 1px solid var(--glass-border) !important;
   box-shadow: var(--glass-shadow) !important;
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+}
+.bg-surface, .bg-surface-container, .bg-surface-container-low {
+  background: var(--glass-bg-strong) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
 }
 
 .orb {
   position: fixed;
   border-radius: 50%;
-  filter: blur(70px);
+  filter: blur(50px);
   opacity: 0.5;
   z-index: -1;
   pointer-events: none;
+  will-change: transform; /* justified: continuously animated fixed elements */
   background: radial-gradient(circle at 30% 30%, var(--color-white), var(--color-grey-300) 70%);
 }
 .orb-1 { width: 520px; height: 520px; top: -160px; left: -140px; animation: float1 22s ease-in-out infinite; }
 .orb-2 { width: 420px; height: 420px; top: 220px; right: -160px; background: radial-gradient(circle at 30% 30%, var(--color-white), var(--color-grey-200) 70%); animation: float2 26s ease-in-out infinite; }
 .orb-3 { width: 380px; height: 380px; bottom: -180px; left: 35%; background: radial-gradient(circle at 30% 30%, var(--color-white), var(--color-grey-300) 70%); animation: float3 30s ease-in-out infinite; }
+
+/* Disable expensive orb animations on mobile to save GPU */
+@media (max-width: 768px) {
+  .orb { animation: none !important; opacity: 0.3; filter: blur(40px); }
+}
 
 @keyframes float1 {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -142,6 +169,12 @@ body {
 .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+/* Skip rendering work for off-screen sections */
+.section-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 </style>
     <script id="tailwind-config">
@@ -237,7 +270,7 @@ body {
     <div class="orb orb-3"></div>
 
     <!-- TopNavBar -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+    <header class="fixed top-0 left-0 right-0 z-50 border-b border-outline-variant" style="background: var(--glass-bg-strong); backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%);">
         <nav class="flex flex-wrap lg:flex-nowrap justify-between items-center w-full px-4 lg:px-8 py-4 lg:py-5 max-w-7xl mx-auto">
             <div class="font-headline-md text-headline-md font-bold text-on-surface order-1">AR.</div>
             <!-- Navigation -->
@@ -246,6 +279,8 @@ body {
                     href="#home">Home</a>
                 <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
                     href="#about">About</a>
+                <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
+                    href="#skills">Skills</a>
                 <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
                     href="#projects">Projects</a>
                 <a class="font-body-md text-body-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200"
@@ -256,7 +291,7 @@ body {
                     href="#contact">Contact</a>
             </div>
             <div class="flex items-center gap-4 order-2 lg:order-3">
-                <button aria-label="Toggle Dark Mode"
+                <button id="dark-mode-toggle" aria-label="Toggle Dark Mode"
                     class="material-symbols-outlined text-primary p-2 hover:bg-surface-container rounded-full transition-colors">dark_mode</button>
             </div>
         </nav>
@@ -269,15 +304,16 @@ body {
                     <div
                         class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-caps text-[10px] uppercase tracking-wider">
                         <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-                        DATA SCIENCE | ML ENGINEERING | MLOPS
+                        AI/ML ENGINEER | DATA SCIENCE | MLOPS
                     </div>
                     <h1
                         class="font-display-lg text-[56px] md:text-display-lg leading-tight tracking-tight text-on-surface">
                         Hi, I'm <span class="text-primary">Aryan Mishra.</span>
                     </h1>
                     <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
-                        I build end-to-end Machine Learning systems from data analysis to API deployment. Specialized in
-                        NLP, LLM workflows, FastAPI, and Docker for scalable digital solutions.
+                        Final-year CS (Data Science) undergraduate with hands-on experience shipping end-to-end AI
+                        systems — RAG evaluation harnesses, multi-agent platforms, and multilingual NLP engines. Core
+                        strengths in Python, FastAPI, LangGraph, RAG pipelines, and MLOps tooling.
                     </p>
                     <div class="flex flex-wrap gap-4 pt-4">
                         <a class="px-8 py-4 bg-on-surface text-surface rounded-full font-headline-md text-[18px] flex items-center gap-3 shadow-lg hover:shadow-xl hover:bg-primary transition-all duration-300"
@@ -318,25 +354,28 @@ body {
                     <!-- Key Metrics -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-outline-variant/30">
                         <div>
-                            <div class="font-display-lg text-[32px] text-primary">10+</div>
-                            <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">Repos</div>
+                            <div class="font-display-lg text-[32px] text-primary">3+</div>
+                            <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">AI Systems Shipped</div>
                         </div>
                         <div>
-                            <div class="font-display-lg text-[32px] text-primary">8+</div>
+                            <div class="font-display-lg text-[32px] text-primary">10+</div>
                             <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">
                                 Certifications</div>
                         </div>
                         <div>
-                            <div class="font-display-lg text-[32px] text-primary">B.Tech</div>
-                            <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">Education
-                            </div>
+                            <div class="font-display-lg text-[32px] text-primary">78.1%</div>
+                            <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">Best F1 Score</div>
+                        </div>
+                        <div>
+                            <div class="font-display-lg text-[32px] text-primary">🥉</div>
+                            <div class="font-label-caps text-[10px] text-outline uppercase tracking-widest">Kaggle Medalist</div>
                         </div>
                     </div>
                 </div>
                 <div class="relative order-1 md:order-2 flex justify-center">
                     <div
                         class="relative w-full max-w-[420px] aspect-square rounded-full overflow-hidden border-8 border-surface-container shadow-2xl">
-                        <img alt="Aryan Mishra" fetchpriority="high" class="w-full h-full object-cover" src="assets/images/profile_hd.webp" />
+                        <img alt="Aryan Mishra" fetchpriority="high" width="420" height="420" class="w-full h-full object-cover" src="assets/images/profile_hd.webp" />
                     </div>
                     <div
                         class="absolute -bottom-4 -right-4 glass-card p-4 rounded-xl border border-outline-variant shadow-lg bg-surface/90 backdrop-blur-sm">
@@ -349,34 +388,95 @@ body {
                 </div>
             </div>
         </section>
-        <!-- Expertise Section -->
-        <section class="bg-surface-container-low py-24 px-8" id="about">
+        <!-- About Section -->
+        <section class="bg-surface-container-low py-24 px-8 section-lazy" id="about">
             <div class="max-w-7xl mx-auto">
                 <div class="mb-16">
-                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Core Expertise</h2>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">About Me</h2>
                     <div class="h-1.5 w-24 bg-primary rounded-full"></div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    <div
-                        class="md:col-span-12 bg-surface p-8 rounded-lg border border-outline-variant flex flex-col justify-between">
-                        <div>
-                            <div class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">
-                                Technical Stack</div>
-                            <h3 class="font-headline-md text-headline-md text-on-surface mb-6">Building production-ready
-                                ML infrastructure.</h3>
-                        </div>
-                        <div class="flex flex-wrap gap-3">
-                            <span
-                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">Python</span>
-                            <span
-                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">PyTorch</span>
-                            <span
-                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">FastAPI</span>
-                            <span
-                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">Docker</span>
-                            <span
-                                class="px-4 py-2 bg-surface-container-high rounded-full font-body-md text-on-surface">LangChain</span>
-                        </div>
+                <div class="bg-surface p-8 md:p-12 rounded-lg border border-outline-variant">
+                    <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-4xl">
+                        Final-year Computer Science (Data Science) undergraduate and aspiring AI/ML Engineer with
+                        hands-on experience designing and shipping <strong class="text-on-surface">3 end-to-end AI systems</strong>:
+                        a RAG evaluation harness, a multi-agent healthcare platform, and a multilingual NLP engine.
+                        Core strengths in Python, FastAPI, LangGraph, RAG pipelines, and MLOps tooling (Docker, CI/CD, MLflow).
+                    </p>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-4xl mt-4">
+                        Track record of measurable results: <strong class="text-on-surface">100% top-5 hit rate</strong> retrieval,
+                        <strong class="text-on-surface">92% agent-routing precision</strong>,
+                        <strong class="text-on-surface">78.1% multilingual sentiment F1</strong> — validated with automated
+                        test suites and CI quality gates.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section class="py-24 px-8 max-w-7xl mx-auto section-lazy" id="skills">
+            <div class="mb-16">
+                <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Technical Skills</h2>
+                <div class="h-1.5 w-24 bg-primary rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-surface p-6 rounded-lg border border-outline-variant">
+                    <div class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">Languages</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">Python</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">SQL</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">Bash</span>
+                    </div>
+                </div>
+                <div class="bg-surface p-6 rounded-lg border border-outline-variant">
+                    <div class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">AI / ML</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">PyTorch</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">scikit-learn</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">LangChain</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">LangGraph</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">HuggingFace</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">NLP</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">RAG</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">Multi-Agent Systems</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">Prompt Engineering</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">ONNX INT8</span>
+                    </div>
+                </div>
+                <div class="bg-surface p-6 rounded-lg border border-outline-variant">
+                    <div class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">Retrieval &amp; Search</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">ChromaDB</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">FAISS</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">BM25</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">Hybrid Retrieval</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">Semantic Search</span>
+                    </div>
+                </div>
+                <div class="bg-surface p-6 rounded-lg border border-outline-variant">
+                    <div class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">Backend</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">FastAPI</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">REST APIs</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">PostgreSQL</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">SQLAlchemy</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">Pydantic</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">JWT Auth</span>
+                    </div>
+                </div>
+                <div class="bg-surface p-6 rounded-lg border border-outline-variant">
+                    <div class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">Cloud &amp; MLOps</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">GCP</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">Docker</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">GitHub Actions</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">MLflow</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">DVC</span>
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">pytest</span>
+                    </div>
+                </div>
+                <div class="bg-surface p-6 rounded-lg border border-outline-variant">
+                    <div class="font-label-caps text-label-caps text-primary uppercase mb-4 tracking-widest">Protocols</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-surface-container-high rounded-full font-body-md text-[14px] text-on-surface">Model Context Protocol (MCP)</span>
                     </div>
                 </div>
             </div>
@@ -393,59 +493,89 @@ body {
                     href="https://github.com/Aryanmishra-dev">VIEW ALL REPOSITORIES</a>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Project Card 1 -->
-                <a href="https://github.com/Aryanmishra-dev/Healthcare-Risk-Prediction" target="_blank" class="group block cursor-pointer">
+                <!-- Project Card 1: RAG EvalForge -->
+                <a href="https://github.com/Aryanmishra-dev/rag-evalforge" target="_blank" class="group block cursor-pointer">
                     <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
-                        <img alt="Healthcare Project" loading="lazy"
+                        <img alt="RAG EvalForge Project" loading="lazy" decoding="async"
+                            width="640" height="360"
                             class="w-full h-full object-cover transition-all duration-700"
-                            src="assets/images/projects/healthcare-risk-prediction.png" />
+                            src="assets/images/projects/rag-evalforge.png" />
                     </div>
                     <h3
                         class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
-                        Healthcare Risk Prediction <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
-                    <p class="font-body-md text-on-surface-variant mt-2">Full-stack ML pipeline for diabetes and heart
-                        disease risk prediction with FastAPI.</p>
-                </a>
-                <!-- Project Card 2 -->
-                <a href="https://github.com/Aryanmishra-dev/Employee-Attrition-Prediction" target="_blank" class="group block cursor-pointer">
-                    <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
-                        <img alt="Employee Attrition Project" loading="lazy"
-                            class="w-full h-full object-cover transition-all duration-700"
-                            src="assets/images/projects/employee-attrition.png" />
+                        RAG EvalForge <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
+                    <p class="font-body-md text-on-surface-variant mt-2">Production-grade RAG evaluation harness. Benchmarked 4 chunking strategies reaching <strong class="text-on-surface">100% top-5 hit rate</strong> and 0.858 MRR. Combined dense, lexical, and cross-encoder re-ranking with Reciprocal Rank Fusion, cutting retrieval latency by 35%. CI quality gate with 108 pytest cases (89% coverage). Exposed MCP server for ingestion and benchmarking tools.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">ChromaDB</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">BM25</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">MCP</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">pytest</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">CI/CD</span>
                     </div>
-                    <h3
-                        class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
-                        Employee Attrition Prediction <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
-                    <p class="font-body-md text-on-surface-variant mt-2">End-to-end employee attrition prediction system using XGBoost, FastAPI, HTMX, Docker, and SHAP explainability.</p>
                 </a>
-                <!-- Project Card 3 -->
+                <!-- Project Card 2: MedAgent-AI -->
                 <a href="https://github.com/Aryanmishra-dev/MedAgent-AI" target="_blank" class="group block cursor-pointer">
                     <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
-                        <img alt="MedAgent-AI Project" loading="lazy"
+                        <img alt="MedAgent-AI Project" loading="lazy" decoding="async"
+                            width="640" height="360"
                             class="w-full h-full object-cover transition-all duration-700"
                             src="assets/images/projects/medagent-ai.png" />
                     </div>
                     <h3
                         class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
                         MedAgent-AI <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
-                    <p class="font-body-md text-on-surface-variant mt-2">Production-ready multi-agent healthcare platform powered by FastAPI, LangGraph, RAG, PostgreSQL, Docker, and local LLMs.</p>
+                    <p class="font-body-md text-on-surface-variant mt-2">Multi-agent healthcare conversational platform. LangGraph supervisor routing across 4 specialized agents with <strong class="text-on-surface">92% intent-routing precision</strong> on 500+ test scenarios. Domain RAG pipeline with persistent memory improving multi-turn context retention by 30%. JWT auth, SSE streaming, Celery + Redis async processing. Load-tested for 500+ concurrent sessions.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">LangGraph</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">FastAPI</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">PostgreSQL</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">Docker</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">RAG</span>
+                    </div>
                 </a>
-                <!-- Project Card 4 -->
+                <!-- Project Card 3: Multilingual ABSA -->
                 <a href="https://github.com/Aryanmishra-dev/Multilingual-ABSA" target="_blank" class="group block cursor-pointer">
                     <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
-                        <img alt="Multilingual-ABSA Project" loading="lazy"
+                        <img alt="Multilingual-ABSA Project" loading="lazy" decoding="async"
+                            width="640" height="360"
                             class="w-full h-full object-cover transition-all duration-700"
                             src="assets/images/projects/multilingual-absa.png" />
                     </div>
                     <h3
                         class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
-                        Multilingual-ABSA <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
-                    <p class="font-body-md text-on-surface-variant mt-2">Aspect-level sentiment analysis on multi-lingual product reviews (English, Hindi & Hinglish). Fine-tuned XLM-RoBERTa + IndicBERT.</p>
+                        Multilingual ABSA <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
+                    <p class="font-body-md text-on-surface-variant mt-2">Cross-lingual aspect-based sentiment engine for English, Hindi &amp; Hinglish reviews. <strong class="text-on-surface">78.1% F1 (English)</strong>, 67.8% F1 (Hindi) with ONNX INT8-quantized models at 185ms p95 latency. Fallback inference chain guaranteeing 100% request availability. Full ML pipeline tracked with DVC and MLflow.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">XLM-RoBERTa</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">ONNX</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">DVC</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">MLflow</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">Streamlit</span>
+                    </div>
                 </a>
+                <!-- Project Card 4: Healthcare Risk Prediction -->
+                <a href="https://github.com/Aryanmishra-dev/Healthcare-Risk-Prediction" target="_blank" class="group block cursor-pointer">
+                    <div class="relative aspect-video rounded-lg overflow-hidden mb-6 bg-surface-container-highest">
+                        <img alt="Healthcare Project" loading="lazy" decoding="async"
+                            width="640" height="360"
+                            class="w-full h-full object-cover transition-all duration-700"
+                            src="assets/images/projects/healthcare-risk-prediction.png" />
+                    </div>
+                    <h3
+                        class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors flex items-center">
+                        Healthcare Risk Prediction <span class="material-symbols-outlined text-[20px] ml-2">open_in_new</span></h3>
+                    <p class="font-body-md text-on-surface-variant mt-2">Full-stack ML pipeline for diabetes and heart disease risk prediction with FastAPI backend and interactive web UI.</p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">FastAPI</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">scikit-learn</span>
+                        <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface">Docker</span>
+                    </div>
+                </a>
+
             </div>
         </section>
         <!-- Education Section -->
-        <section class="bg-surface-container-low py-24 px-8" id="education">
+        <section class="bg-surface-container-low py-24 px-8 section-lazy" id="education">
             <div class="max-w-7xl mx-auto">
                 <div class="mb-16">
                     <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Education</h2>
@@ -460,11 +590,19 @@ body {
                         <div
                             class="relative md:w-full bg-surface p-8 rounded-xl border border-outline-variant shadow-sm hover:border-primary transition-colors">
                             <div class="md:hidden font-label-caps text-label-caps text-primary mb-2">2023 — 2027</div>
-                            <h3 class="font-headline-md text-[20px] text-on-surface">IIST Indore</h3>
-                            <p class="font-body-md text-primary font-medium">B.Tech CSE - Data Science</p>
+                            <h3 class="font-headline-md text-[20px] text-on-surface">Indore Institute of Science and Technology</h3>
+                            <p class="font-body-md text-primary font-medium">B.Tech CSE — Data Science &nbsp;·&nbsp; CGPA: 7.41/10</p>
                             <p class="font-body-md text-on-surface-variant mt-2">Specializing in Machine Learning
                                 workflows and Data Engineering. Currently pursuing deep research in predictive
                                 analytics.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface-variant">Data Structures</span>
+                                <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface-variant">Algorithms</span>
+                                <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface-variant">Machine Learning</span>
+                                <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface-variant">Deep Learning</span>
+                                <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface-variant">Database Systems</span>
+                                <span class="px-3 py-1 bg-surface-container-high rounded-full font-label-caps text-[10px] text-on-surface-variant">Statistics</span>
+                            </div>
                         </div>
                     </div>
                     <!-- Timeline Item 2 -->
@@ -496,7 +634,7 @@ body {
             </div>
         </section>
         <!-- Certifications Section -->
-        <section class="py-24 px-8 max-w-7xl mx-auto" id="certifications">
+        <section class="py-24 px-8 max-w-7xl mx-auto section-lazy" id="certifications">
             <div class="mb-16">
                 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Certifications</h2>
                 <div class="h-1.5 w-24 bg-primary rounded-full"></div>
@@ -505,26 +643,32 @@ body {
                 <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">memory</span>
                     </div>
-                    <h4 class="font-headline-md text-[18px] mb-1">NVIDIA</h4>
-                    <p class="font-body-md text-on-surface-variant">Deep Learning Institute Certification</p>
+                    <h4 class="font-headline-md text-[18px] mb-1">NVIDIA DLI</h4>
+                    <p class="font-body-md text-on-surface-variant">Anomaly Detection for Predictive Maintenance &amp; Computer Vision</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">cloud</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">Google Cloud</h4>
+                    <p class="font-body-md text-on-surface-variant">Generative AI Fundamentals</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">cloud</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">Google Cloud</h4>
+                    <p class="font-body-md text-on-surface-variant">Large Language Model Implementations</p>
+                </div>
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">smart_toy</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-1">Anthropic</h4>
+                    <p class="font-body-md text-on-surface-variant">MCP, Claude 101, Claude Code 101 &amp; Agent Skills</p>
                 </div>
                 <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">analytics</span>
                     </div>
                     <h4 class="font-headline-md text-[18px] mb-1">Cisco</h4>
-                    <p class="font-body-md text-on-surface-variant">Data Analytics Essentials</p>
-                </div>
-                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
-                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">auto_awesome</span>
-                    </div>
-                    <h4 class="font-headline-md text-[18px] mb-1">Cisco</h4>
-                    <p class="font-body-md text-on-surface-variant">Introduction to Modern AI</p>
-                </div>
-                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
-                    <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">genetics</span>
-                    </div>
-                    <h4 class="font-headline-md text-[18px] mb-1">PW x Microsoft</h4>
-                    <p class="font-body-md text-on-surface-variant">Generative AI Program</p>
+                    <p class="font-body-md text-on-surface-variant">Apply AI: Analyze Customer Reviews &amp; Intro to Modern AI</p>
                 </div>
                 <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">terminal</span>
@@ -541,7 +685,33 @@ body {
             </div>
         </section>
         <!-- Contact Section -->
-        <section class="py-24 px-8" id="contact">
+        <!-- Achievements Section -->
+        <section class="bg-surface-container-low py-24 px-8 section-lazy" id="achievements">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16">
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Achievements</h2>
+                    <div class="h-1.5 w-24 bg-primary rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-surface p-8 rounded-lg border border-outline-variant flex items-start gap-6">
+                        <div class="text-[48px] leading-none">🥉</div>
+                        <div>
+                            <h4 class="font-headline-md text-[20px] text-on-surface mb-1">Kaggle Bronze Medalist</h4>
+                            <p class="font-body-md text-on-surface-variant">March Machine Learning Mania 2024</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface p-8 rounded-lg border border-outline-variant flex items-start gap-6">
+                        <span class="material-symbols-outlined text-[48px] text-primary">verified</span>
+                        <div>
+                            <h4 class="font-headline-md text-[20px] text-on-surface mb-1">100% Top-5 Hit Rate</h4>
+                            <p class="font-body-md text-on-surface-variant">RAG EvalForge retrieval benchmark with recursive chunking strategy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="py-24 px-8 section-lazy" id="contact">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div>
                     <h2 class="font-display-lg text-headline-lg md:text-display-lg leading-none mb-8">Ready to <span
@@ -602,23 +772,28 @@ body {
     </footer>
     <script>
         // Smooth reveal animations
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
+        // - Skip hero (#home) so it's visible immediately → better LCP
+        // - Unobserve after reveal to stop unnecessary callback work during scroll
+        const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    requestAnimationFrame(() => {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    });
+                    obs.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('section').forEach(section => {
+            if (section.id === 'home') return; // Hero stays visible for fast LCP
             section.classList.add('transition-all', 'duration-1000', 'ease-out', 'opacity-0', 'translate-y-10');
             observer.observe(section);
         });
 
-        // Toggle simulation
-        const darkModeBtn = document.querySelector('.material-symbols-outlined');
+        // Dark mode toggle — use dedicated ID instead of fragile class selector
+        const darkModeBtn = document.getElementById('dark-mode-toggle');
         darkModeBtn.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
             darkModeBtn.textContent = darkModeBtn.textContent === 'dark_mode' ? 'light_mode' : 'dark_mode';
