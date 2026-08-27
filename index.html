@@ -137,6 +137,19 @@
             -webkit-backdrop-filter: blur(12px) saturate(140%);
         }
 
+        /* GPU-promote the fixed header so backdrop-filter composites on its
+           own layer instead of re-blurring the entire page on every scroll frame */
+        .nav-gpu-layer {
+            transform: translateZ(0);
+            contain: layout style;
+        }
+
+        /* Sections: contain layout so paint from one section doesn't
+           invalidate siblings during scroll-driven reveals */
+        .section-contain {
+            contain: layout style paint;
+        }
+
         .bg-surface,
         .bg-surface-container,
         .bg-surface-container-low {
@@ -234,8 +247,12 @@
             scrollbar-width: none;
         }
 
-        /* Removed content-visibility: auto to prevent scroll stuttering */
-        .section-lazy {}
+        /* Lazy sections: use content-visibility on off-screen sections.
+           contain-intrinsic-size prevents the CLS jump when they render. */
+        .section-lazy {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 600px;
+        }
     </style>
     <script id="tailwind-config">
         try {
@@ -330,7 +347,7 @@
     <div class="orb orb-3"></div>
 
     <!-- TopNavBar -->
-    <header class="fixed top-0 left-0 right-0 z-50 border-b border-outline-variant"
+    <header class="fixed top-0 left-0 right-0 z-50 border-b border-outline-variant nav-gpu-layer"
         style="background: var(--glass-bg-strong); backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%);">
         <nav
             class="flex flex-wrap lg:flex-nowrap justify-between items-center w-full px-4 lg:px-8 py-4 lg:py-5 max-w-7xl mx-auto">
@@ -359,7 +376,7 @@
             </div>
         </nav>
     </header>
-    <main class="pt-20 overflow-x-hidden">
+    <main class="pt-20" style="overflow-x: clip;">
         <!-- Hero Section -->
         <section class="relative min-h-[90vh] flex items-center px-8 max-w-7xl mx-auto py-12" id="home">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
@@ -454,7 +471,7 @@
             </div>
         </section>
         <!-- About Section -->
-        <section class="bg-surface-container-low py-24 px-8 section-lazy" id="about">
+        <section class="bg-surface-container-low py-24 px-8 section-lazy section-contain" id="about">
             <div class="max-w-7xl mx-auto">
                 <div class="mb-16">
                     <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">About Me</h2>
@@ -478,7 +495,7 @@
             </div>
         </section>
         <!-- Skills Section -->
-        <section class="py-24 px-8 max-w-7xl mx-auto section-lazy" id="skills">
+        <section class="py-24 px-8 max-w-7xl mx-auto section-lazy section-contain" id="skills">
             <div class="mb-16">
                 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Technical Skills</h2>
                 <div class="h-1.5 w-24 bg-primary rounded-full"></div>
@@ -705,7 +722,7 @@
             </div>
         </section>
         <!-- Education Section -->
-        <section class="bg-surface-container-low py-24 px-8 section-lazy" id="education">
+        <section class="bg-surface-container-low py-24 px-8 section-lazy section-contain" id="education">
             <div class="max-w-7xl mx-auto">
                 <div class="mb-16">
                     <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Education</h2>
@@ -776,52 +793,52 @@
             </div>
         </section>
         <!-- Certifications Section -->
-        <section class="py-24 px-8 max-w-7xl mx-auto section-lazy" id="certifications">
+        <section class="py-24 px-8 max-w-7xl mx-auto section-lazy section-contain" id="certifications">
             <div class="mb-16">
                 <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Certifications</h2>
                 <div class="h-1.5 w-24 bg-primary rounded-full"></div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-shadow duration-200">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">memory</span>
                     </div>
                     <h4 class="font-headline-md text-[18px] mb-1">NVIDIA DLI</h4>
                     <p class="font-body-md text-on-surface-variant">Anomaly Detection for Predictive Maintenance &amp;
                         Computer Vision</p>
                 </div>
-                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-shadow duration-200">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">cloud</span>
                     </div>
                     <h4 class="font-headline-md text-[18px] mb-1">Google Cloud</h4>
                     <p class="font-body-md text-on-surface-variant">Generative AI Fundamentals</p>
                 </div>
-                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-shadow duration-200">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">cloud</span>
                     </div>
                     <h4 class="font-headline-md text-[18px] mb-1">Google Cloud</h4>
                     <p class="font-body-md text-on-surface-variant">Large Language Model Implementations</p>
                 </div>
-                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-shadow duration-200">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">smart_toy</span>
                     </div>
                     <h4 class="font-headline-md text-[18px] mb-1">Anthropic</h4>
                     <p class="font-body-md text-on-surface-variant">MCP, Claude 101, Claude Code 101 &amp; Agent Skills
                     </p>
                 </div>
-                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-shadow duration-200">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">analytics</span>
                     </div>
                     <h4 class="font-headline-md text-[18px] mb-1">Cisco</h4>
                     <p class="font-body-md text-on-surface-variant">Apply AI: Analyze Customer Reviews &amp; Intro to
                         Modern AI</p>
                 </div>
-                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-shadow duration-200">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">terminal</span>
                     </div>
                     <h4 class="font-headline-md text-[18px] mb-1">GeeksforGeeks</h4>
                     <p class="font-body-md text-on-surface-variant">DSA &amp; Algorithms Specialist</p>
                 </div>
-                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-all">
+                <div class="p-6 bg-surface border border-outline-variant rounded-lg hover:shadow-md transition-shadow duration-200">
                     <div class="text-primary mb-4"><span class="material-symbols-outlined text-[32px]">school</span>
                     </div>
                     <h4 class="font-headline-md text-[18px] mb-1">IIT Indore</h4>
@@ -831,7 +848,7 @@
         </section>
         <!-- Contact Section -->
         <!-- Achievements Section -->
-        <section class="bg-surface-container-low py-24 px-8 section-lazy" id="achievements">
+        <section class="bg-surface-container-low py-24 px-8 section-lazy section-contain" id="achievements">
             <div class="max-w-7xl mx-auto">
                 <div class="mb-16">
                     <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Achievements</h2>
@@ -849,7 +866,7 @@
             </div>
         </section>
         <!-- Contact Section -->
-        <section class="py-24 px-8 section-lazy" id="contact">
+        <section class="py-24 px-8 section-lazy section-contain" id="contact">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div>
                     <h2 class="font-display-lg text-headline-lg md:text-display-lg leading-none mb-8">Ready to <span
@@ -920,7 +937,7 @@
                     obs.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0, rootMargin: '100px' });
+        }, { threshold: 0.05, rootMargin: '50px' });
 
         document.querySelectorAll('section').forEach(section => {
             if (section.id === 'home') return; // Hero stays visible for fast LCP
@@ -928,6 +945,11 @@
             section.classList.add('transition-[opacity,transform]', 'duration-700', 'ease-out', 'opacity-0', 'translate-y-10');
             observer.observe(section);
         });
+
+        // Reduce Motion: disable all animations if user prefers reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.orb').forEach(o => o.style.display = 'none');
+        }
 
         // Dark mode toggle — use dedicated ID instead of fragile class selector
         const darkModeBtn = document.getElementById('dark-mode-toggle');
