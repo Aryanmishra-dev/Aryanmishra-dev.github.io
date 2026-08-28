@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="light scroll-smooth" lang="en">
+<html class="dark scroll-smooth" lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -71,40 +71,40 @@
         }
 
         .dark {
-            /* Dark mode Apple-style */
+            /* Pure Black Dark Mode */
             --color-white: #000000;
             --color-grey-50: #000000;
-            --color-grey-100: #1d1d1f;
-            --color-grey-150: #2d2d2f;
-            --color-grey-200: #3d3d3f;
-            --color-grey-300: #424245;
-            --color-grey-400: #515154;
-            --color-grey-500: #86868b;
-            --color-grey-600: #98989d;
-            --color-grey-900: #f5f5f7;
+            --color-grey-100: #0a0a0a;
+            --color-grey-150: #111111;
+            --color-grey-200: #1a1a1a;
+            --color-grey-300: #222222;
+            --color-grey-400: #333333;
+            --color-grey-500: #777777;
+            --color-grey-600: #999999;
+            --color-grey-900: #f0f0f0;
 
-            --glass-bg: rgba(29, 29, 31, 0.55);
-            --glass-bg-strong: rgba(29, 29, 31, 0.72);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(0, 0, 0, 0.75);
+            --glass-bg-strong: rgba(0, 0, 0, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
             --color-background: #000000;
-            --color-on-background: #f5f5f7;
-            --color-surface: rgba(29, 29, 31, 0.55);
-            --color-surface-container: rgba(29, 29, 31, 0.72);
-            --color-surface-container-low: #1d1d1f;
-            --color-surface-container-high: #3d3d3f;
-            --color-surface-container-highest: #424245;
-            --color-on-surface: #f5f5f7;
-            --color-on-surface-variant: #98989d;
-            --color-outline-variant: #424245;
-            --color-primary: #f5f5f7;
-            --color-on-primary: #1d1d1f;
-            --color-primary-fixed: #3d3d3f;
-            --color-on-primary-fixed: #f5f5f7;
-            --color-secondary-container: #1d1d1f;
-            --color-on-secondary-container: #f5f5f7;
-            --color-outline: #86868b;
+            --color-on-background: #f0f0f0;
+            --color-surface: rgba(10, 10, 10, 0.8);
+            --color-surface-container: rgba(10, 10, 10, 0.9);
+            --color-surface-container-low: #0a0a0a;
+            --color-surface-container-high: #1a1a1a;
+            --color-surface-container-highest: #222222;
+            --color-on-surface: #f0f0f0;
+            --color-on-surface-variant: #999999;
+            --color-outline-variant: #222222;
+            --color-primary: #f0f0f0;
+            --color-on-primary: #000000;
+            --color-primary-fixed: #1a1a1a;
+            --color-on-primary-fixed: #f0f0f0;
+            --color-secondary-container: #0a0a0a;
+            --color-on-secondary-container: #f0f0f0;
+            --color-outline: #555555;
         }
 
         body {
@@ -372,7 +372,7 @@
             </div>
             <div class="flex items-center gap-4 order-2 lg:order-3">
                 <button id="dark-mode-toggle" aria-label="Toggle Dark Mode"
-                    class="material-symbols-outlined text-primary p-2 hover:bg-surface-container rounded-full transition-colors">dark_mode</button>
+                    class="material-symbols-outlined text-primary p-2 hover:bg-surface-container rounded-full transition-colors">light_mode</button>
             </div>
         </nav>
     </header>
@@ -955,7 +955,8 @@
         const darkModeBtn = document.getElementById('dark-mode-toggle');
         darkModeBtn.addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
-            darkModeBtn.textContent = darkModeBtn.textContent === 'dark_mode' ? 'light_mode' : 'dark_mode';
+            document.documentElement.classList.toggle('light');
+            darkModeBtn.textContent = document.documentElement.classList.contains('dark') ? 'light_mode' : 'dark_mode';
         });
     </script>
 </body>
